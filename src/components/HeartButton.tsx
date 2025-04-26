@@ -56,7 +56,10 @@ export const HeartButton = ({ setActiveIndex }: any) => {
         }}
       >
         <IconButton
-          onClick={() => setActiveIndex(0)}
+          onClick={() => {
+            window.location.hash = '#secret'
+            setActiveIndex(0)
+          }}
           icon="FaHeart"
           round
           className="z-50 bg-red-600/40 !border-red-700 hover:text-red-600 hover:bg-white/5 "

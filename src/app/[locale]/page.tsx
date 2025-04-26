@@ -55,29 +55,44 @@ export default function Home() {
   const t = useTranslations("home");
   const hash = useHash();
   const height = useWindowHeight();
-  const initialSlide = hash === "#love" ? 0 : 1;
-
+  const initialSlide = hash === "#secret" ? 0 : 1;
+  const [showLove, setShowLove] = useState(hash === "#secret");
   const [activeIndex, setActiveIndex] = useState(initialSlide);
   const locale = useLocale();
 
-  useMotionValueEvent(index, "change", (i) => {
-    if ((swiper?.activeIndex || 0) > 0) {
-      swiper?.slideTo(Math.round(i));
-    } else if (Math.round(i) === 2) {
-      swiper?.slideTo(2);
-    }
-  });
-
   useEffect(() => {
     swiper?.on("activeIndexChange", (j) => {
-      setActiveIndex(j.activeIndex);
+      if (j.activeIndex === 0) {
+        window.location.hash = "#secret";
+      } else if (j.activeIndex === 1) {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.toString().replace(/#.+$/g, "")
+        );
+      }
+      setTimeout(() => {
+        setActiveIndex(j.activeIndex);
+      }, 0);
     });
   }, [swiper]);
 
   useEffect(() => {
-    console.log("SLIDE TO", activeIndex);
     swiper?.slideTo(activeIndex);
   }, [activeIndex, swiper]);
+
+  useMotionValueEvent(index, "change", (i) => {
+    let newInd = Math.round(i);
+
+    if (window.location.hash === "#secret" && newInd === 1) {
+      newInd = 0;
+    }
+    if ((swiper?.activeIndex || 0) > 0) {
+      swiper?.slideTo(newInd);
+    } else if (activeIndex === 0 && i > 1.5) {
+      swiper?.slideTo(2);
+    }
+  });
 
   const iOS_1to12 = /iPad|iPhone|iPod/.test("");
   const h = (n: number) => `${n}${iOS_1to12 ? "vh" : "lvh"}`;
@@ -123,7 +138,7 @@ export default function Home() {
         {/* <AutoPlayButton /> */}
       </StickySection>
 
-      <StickySection height={h(500)} fullScreen>
+      <StickySection height={h(activeIndex === 0 ? 1200 : 700)} fullScreen>
         {/* <IntersectionAnchor
           hash={"love"}
           block="center"
@@ -307,7 +322,7 @@ export default function Home() {
                 offset={0.6}
               />
             </Parallax>
-            <SproutingHearts n={24} range={[0, 0.5]} />
+            <SproutingHearts n={128} range={[0, 0.5]} />
             {/* <Parallax trans={[1, 0.75]} className='absolute w-full flex flex-col items-center gap-2 mt-[50lvh]' distance={height * -0.25} offset={0}>
                             <PerfumeLink range={[0.75, 1]} />
                         </Parallax> */}

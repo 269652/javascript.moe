@@ -33,14 +33,15 @@ export const SproutingHearts = ({ n = 4, range = [0, 1] }) => {
   const width = useWindowWidth();
   const arr = [...Array(n)].map(() => {
     return [
-      getRandomInt(0, 7) / 10,
-      getRandomInt(-(width / 2) + 48, -48 + width / 2),
-      getRandomInt(-(height / 2) + 48, -48 + height / 2),
+      getRandomInt(0, 4) / 10,
+      getRandomInt(-width + 48, -48 + width),
+      getRandomInt(-height + 48, -48 + height),
     ];
   });
-  return arr.map(([offset, x, y]) => {
+  return arr.map(([offset, x, y], i) => {
     return (
       <Sprout
+        key={i}
         range={[range[0] + offset, range[1]]}
         offset={offset}
         x={x}
