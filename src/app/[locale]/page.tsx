@@ -19,7 +19,7 @@ import { Parallax } from "@/components/Parallax";
 import { Swiper, SwiperSlide, SwiperClass } from "swiper/react";
 import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useHash, useWindowHeight } from "@/lib/hooks";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
 import { FlyOut } from "@/components/FlyOut";
 import { Container } from "@/components/Container";
@@ -56,6 +56,7 @@ export default function Home() {
   const initialSlide = hash === "#love" ? 0 : 1;
 
   const [activeIndex, setActiveIndex] = useState(initialSlide);
+  const locale = useLocale();
 
   useMotionValueEvent(index, "change", (i) => {
     if ((swiper?.activeIndex || 0) > 0) {
@@ -504,12 +505,12 @@ export default function Home() {
                     {
                       text: t("texts.ingredients"),
                       logo: () => <Icon icon="FaFlask" />,
-                      href: `https://perfumery.javascript.moe/inventory`,
+                      href: `https://perfumery.javascript.moe/${locale}/inventory`,
                     },
                     {
                       text: t("texts.formulas"),
                       logo: () => <Icon icon="FaBook" />,
-                      href: `https://perfumery.javascript.moe/formulas`,
+                      href: `https://perfumery.javascript.moe/${locale}formulas`,
                     },
                   ]}
                   reverse
