@@ -8,7 +8,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useParallax, useWindowHeight, useWindowWidth } from "@/lib/hooks";
-import { useContext, useRef, useState, useMemo } from "react";
+import { useContext, useRef, useState, useMemo, useEffect } from "react";
 import { sectionCtx } from "@/components/AnimatedSection";
 import clsx from "clsx";
 import { getHeight } from "@/lib/util";
@@ -43,13 +43,20 @@ export const AnimatedText = () => {
 export const MyName = () => {
   const { ref } = useContext(sectionCtx);
   const height = getHeight(ref?.current || null);
-  const { scrollYProgress } = useScroll({
-    layoutEffect: false,
-    target: ref || undefined,
-    offset: ["start start", "end end"],
-  });
-  const { scrollYProgress: scrollYPage } = useScroll();
 
+  const { scrollYProgress: scrollYPage1 } = useScroll();
+  const scrollYPage =
+    typeof window === "undefined" ? new MotionValue(0) : scrollYPage1;
+  const scrollYProgressHook = useTransform(scrollYPage, [0, 0.144], [0, 1], {
+    clamp: true,
+  });
+  const scrollYProgress =
+    typeof window === "undefined" ? new MotionValue(1) : scrollYProgressHook;
+  // const { scrollYProgress } = useScroll({
+  //   layoutEffect: false,
+  //   target: ref || undefined,
+  //   offset: ["start start", "end end"],
+  // });
   const hRef = useRef<HTMLDivElement>(null);
 
   const distance = height / 1.75 / 4;
@@ -61,7 +68,10 @@ export const MyName = () => {
   }
 
   const offset = marginBottom;
-  const trans = useTransform(scrollYProgress, [0, 0.75], [0, 1]);
+  const trans =
+    typeof window === "undefined"
+      ? new MotionValue(0)
+      : useTransform(scrollYProgress, [0, 0.75], [0, 1]);
 
   const y = useParallax(trans, distance - offset, distance - offset, easeInOut);
   const width = useWindowWidth();
@@ -100,40 +110,73 @@ export const MyName = () => {
   const oeRect = oeRef.current?.getBoundingClientRect() || null;
   const cw = (mRect?.width || 0) + (oeRect?.width || 0);
   const heightPipe = useTransform(trans, [0.95, 1], ["0px", 0.681 * cw + "px"]);
-  const widthUS = useTransform(trans, [0.95, 1], ["0px", cw + "px"]);
+  const widthUS = useTransform(trans, [0.95, 1], ["0px", cw + "px"], {
+    clamp: true,
+  });
   const yPpipe = useTransform(
     trans,
     [0.95, 1],
-    [fS * -0.25 + "px", 0.25 * cw + "px"]
+    [fS * -0.25 + "px", 0.25 * cw + "px"],
+    {
+      clamp: true,
+    }
   );
   const xUS = useTransform(
     trans,
     [0.95, 1],
-    ["0px", -(mRect?.width || 0) + "px"]
+    ["0px", -(mRect?.width || 0) + "px"],
+    {
+      clamp: true,
+    }
   );
-  const yUS = useTransform(trans, [0.95, 1], [0, -4]);
+  const yUS = useTransform(trans, [0.95, 1], [0, -4], {
+    clamp: true,
+  });
   const shadowPipe = useTransform(
     trans,
     [0.97, 1],
-    ["0px 0px 4px 2px #FFFFFF", "0px 0px 1px 0.5px #C0C0C0"]
+    ["0px 0px 4px 2px #FFFFFF", "0px 0px 1px 0.5px #C0C0C0"],
+    {
+      clamp: true,
+    }
   );
-  const fillPipe = useTransform(trans, [0.95, 1], ["#FFFFFFFF", "#FFFFFF00"]);
+  const fillPipe = useTransform(trans, [0.95, 1], ["#FFFFFFFF", "#FFFFFF00"], {
+    clamp: true,
+  });
   const bb = useTransform(
     trans,
     [0, 0.95, 1],
-    ["2px solid white", "2px solid white", "0px solid white"]
+    ["2px solid white", "2px solid white", "0px solid white"],
+    {
+      clamp: true,
+    }
   );
-  const scalePipe = useTransform(trans, [0.7, 0.9, 1], ["0%", "100%", "100%"]);
-  const wPipe = useTransform(trans, [0.5, 1], ["0px", "4px"]);
+  const scalePipe = useTransform(trans, [0.7, 0.9, 1], ["0%", "100%", "100%"], {
+    clamp: true,
+  });
+  const wPipe = useTransform(trans, [0.5, 1], ["0px", "4px"], {
+    clamp: true,
+  });
 
   const color = useTransform(
     scrollYPage,
     [0, 0.05, 0.09, 0.2],
-    ["#DDDDDDFF", "#EEEEEEFF", "#DDDDDDFF", "#FFFFFF33"]
+    ["#DDDDDDFF", "#EEEEEEFF", "#DDDDDDFF", "#FFFFFF33"],
+    {
+      clamp: true,
+    }
   );
 
   const locale = useLocale();
-
+  useEffect(() => {
+    if (trans.get() <= 1) {
+      // const hWidth = ((mRect?.width || 0) + (oeRect?.width || 0)) / 2
+      const distCenterM =
+        -(mRect?.left || 0) + window.innerWidth / 2 - (mRect?.width || 0);
+      const distCenterOe = window.innerWidth / 2 - (oeRect?.left || 0);
+      setDist([distCenterM, distCenterOe]);
+    }
+  });
   useMotionValueEvent(trans, "change", () => {
     if (trans.get() <= 1) {
       // const hWidth = ((mRect?.width || 0) + (oeRect?.width || 0)) / 2
