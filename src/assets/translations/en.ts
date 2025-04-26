@@ -7,16 +7,15 @@ If you're looking for an experienced Lead or Senior Frontend/Fullstack Developer
 `;
 
 export const texts = {
-  "texts.senior": "Looking for a senior TypeScript dev?",
-  "texts.discover": "Discover a world of scents.",
-  "texts.formulas": "Formulas",
-  "texts.ingredients": "Ingredients",
-  "texts.lead": "Looking for a lead developer?",
-  "texts.contact": "Contact me",
-  "texts.nature": "I love nature",
-  "texts.languages": "I love languages",
-  "texts.life": "I love life",
-  ingredients: "ingredients",
+  senior: "Looking for a senior TypeScript dev?",
+  discover: "Discover a world of scents.",
+  formulas: "Formulas",
+  ingredients: "Ingredients",
+  lead: "Looking for a lead developer?",
+  contact: "Contact me",
+  nature: "I love nature",
+  languages: "I love languages",
+  life: "I love life",
 };
 
 const about = {
