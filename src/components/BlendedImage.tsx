@@ -1,7 +1,7 @@
 "use client";
 
 import { easeOut, useScroll, useTransform } from "framer-motion";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { sectionCtx } from "@/components/AnimatedSection";
 import { useParallax } from "@/lib/hooks";
 import clsx from "clsx";
@@ -12,6 +12,7 @@ export const DualImages = ({
   className,
   range = [0, 1],
   images,
+  hq,
   moveX = 0,
   xMotion = [
     [0, 1],
@@ -29,6 +30,7 @@ export const DualImages = ({
   className?: string;
   range?: number[];
   images: string[];
+  hq: string[];
   alts: string[];
   invert?: boolean;
   desat?: boolean;
@@ -57,6 +59,13 @@ export const DualImages = ({
   const y2C = useTransform(() => y2.get() + down.get() * 2);
   const reverse = useTransform(trans, [0, 1], [1, 0]);
 
+  const [src, setSrc] = useState(images[0]);
+
+  useEffect(() => {
+    // console.log ("SET SRC", src, hq)
+    if (!hq) return;
+    setSrc(hq[0]);
+  }, [setSrc]);
   return (
     <MotionDiv
       className={clsx(
@@ -66,9 +75,10 @@ export const DualImages = ({
       style={{ filter }}
     >
       <MotionImg
+        key={images[0]}
         src={images[0]}
         alt={alts[0]}
-        loading={lazy?"lazy":"eager"}
+        loading={lazy ? "lazy" : "eager"}
         className="csr absolute w-[100vw] h-[120vh] h-[120lvh]"
         style={{
           opacity: reverse,
@@ -77,6 +87,21 @@ export const DualImages = ({
           y: y,
         }}
       />
+      {hq && (
+        <MotionImg
+          key={hq[0]}
+          src={hq[0]}
+          alt={alts[0]}
+          loading={"lazy"}
+          className="csr absolute w-[100vw] h-[120vh] h-[120lvh]"
+          style={{
+            opacity: reverse,
+            objectPosition: moveX & 1 ? x : undefined,
+            scale: active ? scale : undefined,
+            y: y,
+          }}
+        />
+      )}
       <MotionImg
         src={images[1]}
         alt={alts[1]}

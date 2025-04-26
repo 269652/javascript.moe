@@ -91,6 +91,7 @@ export default function Home() {
         <DualImages
           saturate
           images={["/images/wallpaper/20.webp", "/images/wallpaper/me-ls.webp"]}
+          hq={["/images/wallpaper/22.webp"]}
           moveX={0}
           alts={[
             "A small pond surrounded by trees and wildflowers with sunlight filtering through.",
