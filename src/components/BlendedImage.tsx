@@ -62,11 +62,36 @@ export const DualImages = ({
   const [showHq, setShowHq] = useState(false);
 
   useEffect(() => {
-    // console.log ("SET SRC", src, hq)
-    if (typeof window === "undefined") return;
-    if (!hq) return;
-    setShowHq(true);
-  }, [setShowHq]);
+    if (!hq || typeof window === "undefined") return;
+
+    const lcpObserver = new PerformanceObserver((entryList) => {
+      const entries = entryList.getEntries();
+      const lcpEntry = entries.find(
+        (e) => e.entryType === "largest-contentful-paint"
+      );
+
+      if (lcpEntry) {
+        const loadHq = () => setShowHq(true);
+
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(
+            loadHq,
+            { timeout: 2000 } // Ensure execution within 2s max
+          );
+        } else {
+          // Fallback for Safari and older browsers
+          setTimeout(loadHq, 2000);
+        }
+        lcpObserver.disconnect();
+      }
+    });
+
+    // Start observing LCP entries
+    lcpObserver.observe({ type: "largest-contentful-paint", buffered: true });
+
+    return () => lcpObserver.disconnect();
+  }, [hq]); // Only run if hq prop exists
+
   return (
     <MotionDiv
       className={clsx(
