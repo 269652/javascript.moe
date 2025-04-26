@@ -59,13 +59,14 @@ export const DualImages = ({
   const y2C = useTransform(() => y2.get() + down.get() * 2);
   const reverse = useTransform(trans, [0, 1], [1, 0]);
 
-  const [src, setSrc] = useState(images[0]);
+  const [showHq, setShowHq] = useState(false);
 
   useEffect(() => {
     // console.log ("SET SRC", src, hq)
+    if (typeof window === "undefined") return;
     if (!hq) return;
-    setSrc(hq[0]);
-  }, [setSrc]);
+    setShowHq(true);
+  }, [setShowHq]);
   return (
     <MotionDiv
       className={clsx(
@@ -75,7 +76,7 @@ export const DualImages = ({
       style={{ filter }}
     >
       <MotionImg
-        key={images[0]}
+        key={"img" + images[0]}
         src={images[0]}
         alt={alts[0]}
         loading={lazy ? "lazy" : "eager"}
@@ -87,9 +88,9 @@ export const DualImages = ({
           y: y,
         }}
       />
-      {hq && (
+      {hq && showHq && (
         <MotionImg
-          key={hq[0]}
+          key={"hq" + hq[0]}
           src={hq[0]}
           alt={alts[0]}
           loading={"lazy"}
