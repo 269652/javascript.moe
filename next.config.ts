@@ -1,5 +1,6 @@
 // next.config.ts
 import createNextIntlPlugin from "next-intl/plugin";
+import { NextJsWebpackConfig } from "next/dist/server/config-shared";
 
 const withNextIntl = createNextIntlPlugin(
   // Optional: Custom path to i18n config (default is './src/i18n/request.ts')
@@ -8,9 +9,9 @@ const withNextIntl = createNextIntlPlugin(
 
 const nextConfig = {
   // Your Next.js config options
-  webpack(config) {
+  webpack(config: any) {
     // Find the existing rule that handles SVG imports
-    const fileLoaderRule = config.module.rules.find((rule) =>
+    const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.(".svg")
     );
 

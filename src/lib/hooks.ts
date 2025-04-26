@@ -91,7 +91,7 @@ export function useWindowHeight(): number {
 }
 
 export const useOnClickOutside = (
-  ref: RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement | null>,
   handler: (e: React.MouseEvent) => void,
   active = true,
   event = "mouseup"

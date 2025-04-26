@@ -82,7 +82,7 @@ export const AboutSection = ({ text, locale }: AboutSectionProps) => {
               <MotionP
                 style={{ filter: blur, textShadow: "1px 1px 1px black" }}
               >
-                {t(text)}
+                {text && t(text)}
               </MotionP>
             </MotionDiv>
           </button>

@@ -1,10 +1,7 @@
 "use client";
 
-import { StickySection, sectionCtx } from "@/components/AnimatedSection";
+import { StickySection } from "@/components/AnimatedSection";
 import { ScrollbarTooltip } from "@/components/ScrollbarTooltip";
-// import { AnimatedImageCircle } from "@/components/AnimatedImageCircle";
-// import { Container } from "@/components/Container";
-// import { AppearingText, Bullets, MyName } from "@/components/AnimatedText";
 import TS from "@/assets/ts.svg";
 import PDF from "@/assets/pdf.svg";
 import ReactLogo from "@/assets/react.svg";
@@ -14,21 +11,16 @@ import StackOverflowLogo from "@/assets/stackoverflow.svg";
 import AWSLogo from "@/assets/aws.svg";
 import SQLLogo from "@/assets/sql.svg";
 import NodeJSLogo from "@/assets/node.svg";
-import GermanFlag from "@/assets/logos/germany.png?url";
-import EnglishFlag from "@/assets/logos/usa.png?url";
-import SpanishFlag from "@/assets/logos/chile.png?url";
 import VueJSLogo from "@/assets/vue.svg";
 import DockerLogo from "@/assets/docker.svg";
 import LambdaLogo from "@/assets/lambda.svg";
 import { DualImages } from "@/components/BlendedImage";
 import { Parallax } from "@/components/Parallax";
-// import { FlyOut } from "@/components/anim/FlyOut";
-// import { EnsureLanguage } from "@/components/EnsureLanguage";
 import { Swiper, SwiperSlide, SwiperClass } from "swiper/react";
 import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useHash, useWindowHeight } from "@/lib/hooks";
 import { useTranslations } from "next-intl";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { FlyOut } from "@/components/FlyOut";
 import { Container } from "@/components/Container";
 import { AnimatedImageCircle } from "@/components/AnimatedImageCircle";
@@ -52,7 +44,7 @@ import Image from "next/image";
 // } from "@/components/ScrollbarTooltip";
 // import { SproutingHearts } from "@/components/Sprout";
 
-export default function Home({ params }) {
+export default function Home() {
   const { scrollYProgress } = useScroll();
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
@@ -335,7 +327,9 @@ export default function Home({ params }) {
                 data={[
                   {
                     text: "TypeScript",
-                    logo: (props) => <TS viewBox="0 0 512 512" {...props} />,
+                    logo: (props: any) => (
+                      <TS viewBox="0 0 512 512" {...props} />
+                    ),
                     href: "https://www.typescriptlang.org/",
                   },
                   {

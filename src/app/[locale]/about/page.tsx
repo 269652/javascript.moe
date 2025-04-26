@@ -47,7 +47,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function About({ params }) {
+export default async function About({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   return (
     <StickySection height="150lvh">
