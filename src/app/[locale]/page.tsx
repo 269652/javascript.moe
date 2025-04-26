@@ -510,7 +510,7 @@ export default function Home() {
                     {
                       text: t("texts.formulas"),
                       logo: () => <Icon icon="FaBook" />,
-                      href: `https://perfumery.javascript.moe/${locale}formulas`,
+                      href: `https://perfumery.javascript.moe/${locale}/formulas`,
                     },
                   ]}
                   reverse
