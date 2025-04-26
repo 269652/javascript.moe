@@ -30,7 +30,7 @@ export const DualImages = ({
   className?: string;
   range?: number[];
   images: string[];
-  hq: string[];
+  hq?: string[];
   alts: string[];
   invert?: boolean;
   desat?: boolean;
