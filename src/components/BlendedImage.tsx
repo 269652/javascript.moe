@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { MotionDiv, MotionImg } from "./client/Motion";
 
 export const DualImages = ({
+  lazy,
   className,
   range = [0, 1],
   images,
@@ -34,6 +35,7 @@ export const DualImages = ({
   moveX?: 0 | 1 | 2 | 3;
   active?: boolean;
   saturate?: boolean;
+  lazy?: boolean;
 }) => {
   const { ref: scrollRef } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
@@ -66,6 +68,7 @@ export const DualImages = ({
       <MotionImg
         src={images[0]}
         alt={alts[0]}
+        loading={lazy?"lazy":"eager"}
         className="csr absolute w-[100vw] h-[120vh] h-[120lvh]"
         style={{
           opacity: reverse,
@@ -77,6 +80,7 @@ export const DualImages = ({
       <MotionImg
         src={images[1]}
         alt={alts[1]}
+        loading="lazy"
         className="csr absolute w-[100vw] h-[120vh] h-[120lvh]"
         style={{
           opacity: trans,

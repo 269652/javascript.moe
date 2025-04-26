@@ -75,10 +75,9 @@ export default function Home() {
   }, [swiper]);
 
   useEffect(() => {
-    console.log ("SLIDE TO", activeIndex)
+    console.log("SLIDE TO", activeIndex);
     swiper?.slideTo(activeIndex);
   }, [activeIndex, swiper]);
-
 
   const iOS_1to12 = /iPad|iPhone|iPod/.test("");
   const h = (n: number) => `${n}${iOS_1to12 ? "vh" : "lvh"}`;
@@ -91,7 +90,7 @@ export default function Home() {
                 */}
         <DualImages
           saturate
-          images={["/images/wallpaper/20.webp", "/images/wallpaper/me-ls.jfif"]}
+          images={["/images/wallpaper/20.webp", "/images/wallpaper/me-ls.webp"]}
           moveX={0}
           alts={[
             "A small pond surrounded by trees and wildflowers with sunlight filtering through.",
@@ -103,7 +102,7 @@ export default function Home() {
           <FlyOut range={[0.25, 0.5]}>
             <Container>
               <AnimatedImageCircle
-                images={["/images/profile.jpg", "/images/profile2.webp"]}
+                images={["/images/profile.webp", "/images/profile2.webp"]}
                 alts={[
                   "Selfie of Moritz Roessler",
                   "Selfie of Moritz Roessler with sunglasses",
@@ -159,12 +158,13 @@ export default function Home() {
         >
           <SwiperSlide className="h-full w-full flex justify-center">
             <DualImages
+              lazy
               className="-z-10"
               range={[0, 0.5]}
               images={[
-                "/images/wallpaper/19.jpg",
-                "/images/wallpaper/18.jpg",
-                "/images/wallpaper/8.jpg",
+                "/images/wallpaper/19.webp",
+                "/images/wallpaper/18.webp",
+                "/images/wallpaper/8.webp",
               ]}
               // moveX={3}
               // xMotion={[[0, 1], ["75% 00%", "50% 0%"]]}
@@ -384,9 +384,13 @@ export default function Home() {
 
           <SwiperSlide className="h-full w-full flex justify-center">
             <DualImages
+              lazy
               key={activeIndex}
               range={[0, 0.5]}
-              images={["/images/wallpaper/14.jpg", "/images/wallpaper/15.jpg"]}
+              images={[
+                "/images/wallpaper/14.webp",
+                "/images/wallpaper/15.webp",
+              ]}
               moveX={2}
               alts={[
                 "Modern websites float above a calm sea bordered by a blackwood forest, with tall reeds and sunlight filtering through the trees.",
@@ -400,7 +404,7 @@ export default function Home() {
               texts={["Software Engineer", "Fullstack Dev"]}
               hash="about"
             />
-            <HeartButton setActiveIndex={setActiveIndex}/>
+            <HeartButton setActiveIndex={setActiveIndex} />
             <Parallax
               trans={[0, 0.7]}
               className="absolute w-full flex flex-col items-center gap-2 mt-[50lvh]"
@@ -469,9 +473,10 @@ export default function Home() {
 
           <SwiperSlide className="h-full w-full flex justify-center">
             <DualImages
+              lazy
               className="-z-10"
               range={[0.6, 1]}
-              images={["/images/wallpaper/8.jpg", "/images/wallpaper/9.jpg"]}
+              images={["/images/wallpaper/8.webp", "/images/wallpaper/9.webp"]}
               moveX={2}
               // xMotion={[[0, 1], ["75% 00%", "50% 0%"]]}
               x2Motion={[
@@ -527,7 +532,8 @@ export default function Home() {
 
       <StickySection height={h(400)} hash="contact" block="end">
         <DualImages
-          images={["/images/wallpaper/16.jpg", "/images/wallpaper/17.jpg"]}
+          lazy
+          images={["/images/wallpaper/16.webp", "/images/wallpaper/17.webp"]}
           alts={[
             "A calm sea bordered by sleek blackwood trees reflects a gradient sky, with mist hovering above the water. Tall, futuristic Schilf reeds sway along the shore, and dappled sunlight filters through a sophisticated canopy.",
             "Different angle: A calm sea bordered by sleek blackwood trees reflects a gradient sky, with mist hovering above the water. Tall, futuristic Schilf reeds sway along the shore, and dappled sunlight filters through a sophisticated canopy",

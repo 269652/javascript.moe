@@ -56,7 +56,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Preload LCP Images */}
-        <link rel="preload" as="image" href="/images/profile2.webp" />
+        <link rel="preload" as="image" href="/images/profile.webp" />
         <link
           rel="preload"
           as="image"
@@ -72,9 +72,9 @@ export default function RootLayout({
               "@type": "Person",
               name: "Moritz Roessler",
               url: "https://javascript.moe/",
-              image: "https://javascript.moe/images/profile2.webp",
+              image: "https://javascript.moe/images/profile.webp",
               jobTitle: "Senior Frontend Developer",
-              worksFor: { "@type": "Organization", name: "Freelance" },
+              worksFor: { "@type": "Organization", name: "Digitas" },
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Freiburg im Breisgau",
