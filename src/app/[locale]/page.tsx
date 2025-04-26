@@ -42,7 +42,9 @@ import Image from "next/image";
 //   RisingSun,
 //   ScrollbarTooltip,
 // } from "@/components/ScrollbarTooltip";
-// import { SproutingHearts } from "@/components/Sprout";
+import { SproutingHearts } from "@/components/Sprout";
+import { HeartButton } from "@/components/HeartButton";
+// import { IntersectionAnchor } from "@/components/IntersectionAnchor";
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
@@ -73,18 +75,11 @@ export default function Home() {
   }, [swiper]);
 
   useEffect(() => {
+    console.log ("SLIDE TO", activeIndex)
     swiper?.slideTo(activeIndex);
   }, [activeIndex, swiper]);
 
-  useEffect(() => {
-    if (hash === "#love") setActiveIndex(0);
-    if (hash === "#about") setActiveIndex(1);
-    if (hash === "#perfumery") setActiveIndex(2);
-    // if (!(window as any).noReset) {
-    //   document.documentElement.scrollTo(0, 0);
-    // }
-    // (window as any).noReset = false;
-  }, [hash]);
+
   const iOS_1to12 = /iPad|iPhone|iPod/.test("");
   const h = (n: number) => `${n}${iOS_1to12 ? "vh" : "lvh"}`;
 
@@ -116,6 +111,7 @@ export default function Home() {
               />
               {/* <IntersectionAnchor
                 hash={""}
+                scroll={false}
                 rootMargin={"40%"}
               ></IntersectionAnchor> */}
             </Container>
@@ -132,26 +128,29 @@ export default function Home() {
           hash={"love"}
           block="center"
           noChange
-          scroll
+        //   scroll
           scrollBy={[
-            window.innerHeight * 0.66,
-            window.innerHeight * 0.66,
-            window.innerHeight * 0.75,
+            height * 0.676192,
+            height * 0.6762,
+            // height * 0.66,
+            height * 0.66,
+
+            // height * 0.77,
           ]}
-        ></IntersectionAnchor>
-        <IntersectionAnchor
+        ></IntersectionAnchor> */}
+        {/* <IntersectionAnchor
           hash={"about"}
           block="center"
           noChange
           scroll
-          scrollBy={[window.innerHeight * 0.75, window.innerHeight * 1.5]}
+          scrollBy={[height * 0.75, height * 1.5]}
         ></IntersectionAnchor>
         <IntersectionAnchor
           hash={"perfumery"}
           block="center"
           noChange
           scroll
-          scrollBy={[window.innerHeight * 3.4, 0.1, window.innerHeight * 0.5]}
+          scrollBy={[height * 3.4, 0.1, height * 0.5]}
         ></IntersectionAnchor> */}
         <Swiper
           className="h-[120vh] w-[100vw] sticky top-0 "
@@ -307,8 +306,8 @@ export default function Home() {
                 offset={0.6}
               />
             </Parallax>
-            {/* <SproutingHearts n={24} range={[0, 0.5]} /> */}
-            {/* <Parallax trans={[1, 0.75]} className='absolute w-full flex flex-col items-center gap-2 mt-[50lvh]' distance={window.innerHeight * -0.25} offset={0}>
+            <SproutingHearts n={24} range={[0, 0.5]} />
+            {/* <Parallax trans={[1, 0.75]} className='absolute w-full flex flex-col items-center gap-2 mt-[50lvh]' distance={height * -0.25} offset={0}>
                             <PerfumeLink range={[0.75, 1]} />
                         </Parallax> */}
             <Parallax
@@ -401,7 +400,7 @@ export default function Home() {
               texts={["Software Engineer", "Fullstack Dev"]}
               hash="about"
             />
-            {/* <HeartButton /> */}
+            <HeartButton setActiveIndex={setActiveIndex}/>
             <Parallax
               trans={[0, 0.7]}
               className="absolute w-full flex flex-col items-center gap-2 mt-[50lvh]"

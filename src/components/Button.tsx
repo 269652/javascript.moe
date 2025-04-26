@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { Icon } from "./Icon";
 import ReactDOM from "react-dom";
 import { useRef, useState } from "react";
-import { useOnClickOutside } from "@/lib/hooks";
+import { useBody, useOnClickOutside } from "@/lib/hooks";
 import { PlacesType, Tooltip } from "react-tooltip";
 
 export type ButtonProps = {
@@ -31,6 +31,7 @@ export const Button = ({
   tooltipPlacement,
   ...rest
 }: ReactButton) => {
+  const body = useBody();
   return (
     <>
       <button
@@ -63,17 +64,18 @@ export const Button = ({
       >
         {children}
       </button>
-      {ReactDOM.createPortal(
-        <Tooltip
-          key={tooltip}
-          anchorSelect={"#" + id}
-          place={tooltipPlacement}
-          className="z-[10000]"
-        >
-          {tooltip}
-        </Tooltip>,
-        document.querySelector("dialog[open]") || document.body
-      )}
+      {body &&
+        ReactDOM.createPortal(
+          <Tooltip
+            key={tooltip}
+            anchorSelect={"#" + id}
+            place={tooltipPlacement}
+            className="z-[10000]"
+          >
+            {tooltip}
+          </Tooltip>,
+          body
+        )}
     </>
   );
 };
@@ -134,7 +136,7 @@ export const MenuButton = ({
 }: IconButtonProps) => {
   const [menuOpen, setMenuOpen] = useState<number[] | null>(null);
   const [x, y] = menuOpen || [0, 0];
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(ref, () => {
     setMenuOpen(null);
   });

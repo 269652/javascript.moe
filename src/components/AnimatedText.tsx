@@ -17,6 +17,7 @@ import i18n from "i18next";
 import { MotionDiv, MotionSpan, MotionH1, MotionH2 } from "./client/Motion";
 import Link from "next/link";
 import { useLocale } from "next-intl";
+import { IntersectionAnchor } from "./IntersectionAnchor";
 
 export const AnimatedText = () => {
   const { ref } = useContext(sectionCtx);
