@@ -142,18 +142,18 @@ article ul li::before {
   @apply absolute -translate-x-6;
 }
 
-article h1 {
+article.post h1 {
   @apply mb-1;
 }
 
-article h2 {
+article.post h2 {
   @apply ml-0 my-1 text-[2rem] font-semibold leading-[2rem];
 }
 
-article h3 {
+article.post h3 {
   @apply ml-0 my-1 text-[1.4rem] font-semibold;
 }
 
-article hr {
+article.post hr {
   @apply mb-2;
 }

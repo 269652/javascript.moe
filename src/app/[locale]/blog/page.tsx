@@ -152,7 +152,7 @@ export default async function BlogPage({ params }: any) {
             .map((post: any) => (
               <article
                 key={post.id}
-                className="flex flex-col md:flex-row gap-1 bg-black/40 p-2"
+                className="flex flex-col md:flex-row gap-1 bg-black/40 p-2 teaser"
               >
                 <div className="relative">
                   <Link
@@ -167,7 +167,7 @@ export default async function BlogPage({ params }: any) {
                       className=""
                       objectFit="cover"
                     />
-                    <h2 className="absolute top-4 -translate-y-2  w-full text-center p-1 bg-black/40 backdrop-blur-sm">
+                    <h2 className="absolute top-4 -translate-y-2  w-full text-center p-1 bg-black/40 backdrop-blur-sm font-light">
                       {post.title}
                     </h2>
                   </Link>

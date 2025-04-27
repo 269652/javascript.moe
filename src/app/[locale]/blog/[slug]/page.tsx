@@ -111,7 +111,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
               </h1>
               <article
                 key={post.id}
-                className="bg-black/30 p-2 backdrop-blur-sm"
+                className="bg-black/30 p-2 backdrop-blur-sm post"
               >
                 <p dangerouslySetInnerHTML={{ __html: htmlContent }} />
               </article>
