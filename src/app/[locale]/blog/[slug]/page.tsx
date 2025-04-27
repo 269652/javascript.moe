@@ -21,8 +21,9 @@ async function getBlogPost(id: string, { locale = "en" }: any) {
     const res = await fetch(`${STRAPI_URL}/${id}?populate=*&locale=${locale}`, {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
+        "Cache-Control": "max-age=600, stale-while-revalidate=0", // Cache for 10 minutes and revalidate immediately after
       },
-      cache: "force-cache", // Optional: you can change to revalidate the cache
+      cache: "force-cache",
     });
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`);

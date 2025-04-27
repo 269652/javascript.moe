@@ -13,7 +13,7 @@ async function getBlogPosts({ locale }: any) {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
       },
-      cache: "force-cache", // Optional: you can adjust cache settings as needed
+      // cache: "force-cache", //Optional: you can adjust cache settings as needed
     });
 
     if (!res.ok) {
