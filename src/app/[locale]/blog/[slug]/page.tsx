@@ -41,7 +41,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const [, id] = slug.split("-"); // Assuming the ID is part of the slug after a dash
+  const id = slug.split("-").pop(); // Assuming the ID is part of the slug after a dash
+
+  if (!id) {
+    throw new Error("Invalid ID");
+  }
   const { data: post } = await getBlogPost(id, { locale: "en" });
 
   if (!post || post.length === 0) {
@@ -55,14 +59,14 @@ export async function generateMetadata({
       type: "article",
       title: post.title,
       description: post.excerpt || "Detailed blog post content here.",
-      images: [post.coverImage?.url || "/default-image.png"],
+      images: [post.coverImage?.url || "/images/wallpaper/22.webp"],
       url: `https://javascript.moe/blog/${post.slug}`,
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt || "Detailed blog post content here.",
-      images: [post.coverImage?.url || "/default-image.png"],
+      images: [post.coverImage?.url || "/images/wallpaper/22.webp"],
       site: "@your_twitter_handle", // Replace with your Twitter handle
     },
   };
@@ -74,38 +78,50 @@ interface BlogPageProps {
 
 const BlogPage = async ({ params }: BlogPageProps) => {
   const { slug } = await params;
-  const [, id] = slug.split("-"); // Assuming the ID is part of the slug after a dash
-  const { data: post } = await getBlogPost(id, { locale: "en" });
+  const id = slug.split("-").pop(); // Assuming the ID is part of the slug after a dash
 
-  if (!post) {
+  try {
+    if (!id) {
+      throw new Error("Invalid ID");
+    }
+    
+    const { data: post } = await getBlogPost(id, { locale: "en" });
+
+    if (!post) {
+      notFound(); // Return a 404 if the post doesn't exist
+    }
+
+    const htmlContent = marked(post.content || "");
+
+    return (
+      <>
+        <div className="max-h-screen">
+          <Image
+            src={post.coverImage?.url || "/images/wallpaper/22.webp"}
+            className="w-screen h-screen absolute"
+            width={1024}
+            height={768}
+            alt={post.title || "Blog Post Cover Image"}
+          />
+          <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
+            <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1">
+              <h1 className="mb-4 p-4 pl-2 bg-black/40 w-fit rounded-sm title">
+                {post.title}
+              </h1>
+              <article
+                key={post.id}
+                className="bg-black/30 p-2 backdrop-blur-sm"
+              >
+                <p dangerouslySetInnerHTML={{ __html: htmlContent }} />
+              </article>
+            </main>
+          </div>
+        </div>
+      </>
+    );
+  } catch (e) {
     notFound(); // Return a 404 if the post doesn't exist
   }
-
-  const htmlContent = marked(post.content || "");
-
-  return (
-    <>
-      <div className="max-h-screen">
-        <Image
-          src={post.coverImage?.url || "/default-image.png"}
-          className="w-screen h-screen absolute"
-          width={1024}
-          height={768}
-          alt={post.title || "Blog Post Cover Image"}
-        />
-        <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
-          <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1">
-            <h1 className="mb-4 p-4 pl-2 bg-black/40 w-fit rounded-sm title">
-              {post.title}
-            </h1>
-            <article key={post.id} className="bg-black/30 p-2 backdrop-blur-sm">
-              <p dangerouslySetInnerHTML={{ __html: htmlContent }} />
-            </article>
-          </main>
-        </div>
-      </div>
-    </>
-  );
 };
 
 export default BlogPage;
