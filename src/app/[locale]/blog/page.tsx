@@ -96,35 +96,39 @@ export default async function BlogPage({ params }: any) {
         <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-1">
           <h1 className="mb-4">Blog</h1>
           {posts.length === 0 && <p>No posts found.</p>}
-          {posts.map((post: any) => (
-            <article
-              key={post.id}
-              className="flex flex-col md:flex-row gap-1 bg-black/40 p-2"
-            >
-              <div className="relative">
-                <Link
-                  href={`/blog/${post.slug}-${post.documentId}`}
-                  className="underline"
-                >
-                  <Image
-                    src={post.coverImage.url}
-                    alt={post.title}
-                    width={320}
-                    height={320}
-                    className=""
-                    objectFit="cover"
-                  />
-                  <h2 className="absolute top-1/2 -translate-y-2  md:top-[80px]  w-full text-center p-1 bg-black/30 backdrop-blur-sm">
-                    {post.title}
-                  </h2>
-                </Link>
-              </div>
+          {posts
+            .sort((a: any, b: any) =>
+              b.publishedAt.localeCompare(a.publishedAt)
+            )
+            .map((post: any) => (
+              <article
+                key={post.id}
+                className="flex flex-col md:flex-row gap-1 bg-black/40 p-2"
+              >
+                <div className="relative">
+                  <Link
+                    href={`/blog/${post.slug}-${post.documentId}`}
+                    className="underline"
+                  >
+                    <Image
+                      src={post.coverImage.url}
+                      alt={post.title}
+                      width={320}
+                      height={320}
+                      className=""
+                      objectFit="cover"
+                    />
+                    <h2 className="absolute top-1/2 -translate-y-2  md:top-[80px]  w-full text-center p-1 bg-black/30 backdrop-blur-sm">
+                      {post.title}
+                    </h2>
+                  </Link>
+                </div>
 
-              <div className="flex-1/2">
-                <p>{post.excerpt}</p>
-              </div>
-            </article>
-          ))}
+                <div className="flex-1/2">
+                  <p>{post.excerpt}</p>
+                </div>
+              </article>
+            ))}
         </main>
       </div>
     </div>
