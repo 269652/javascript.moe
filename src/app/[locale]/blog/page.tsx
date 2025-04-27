@@ -118,7 +118,7 @@ export default async function BlogPage({ params }: any) {
                       className=""
                       objectFit="cover"
                     />
-                    <h2 className="absolute top-1/2 -translate-y-2  md:top-[80px]  w-full text-center p-1 bg-black/30 backdrop-blur-sm">
+                    <h2 className="absolute top-4 -translate-y-2  w-full text-center p-1 bg-black/40 backdrop-blur-sm">
                       {post.title}
                     </h2>
                   </Link>
