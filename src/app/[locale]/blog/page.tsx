@@ -1,17 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
+// STRAPI API URL and Token
 const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
+// Function to fetch blog posts from Strapi
 async function getBlogPosts({ locale }: any) {
   try {
     const res = await fetch(STRAPI_URL + "?populate=*&locale=" + locale, {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
       },
-      // cache: "force-cache", // Optional: SSG (default)
-      // next: { revalidate: 0 }, // Optional: ISR every hour
+      cache: "force-cache", // Optional: you can adjust cache settings as needed
     });
 
     if (!res.ok) {
@@ -25,24 +27,73 @@ async function getBlogPosts({ locale }: any) {
   }
 }
 
+// Dynamic Metadata Generation for the Blog Page
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const { locale } = params;
+  const { data: posts } = await getBlogPosts({ locale });
+
+  const description = posts.length
+    ? "Explore the latest blog posts by Moritz Roessler on JavaScript, React, and more."
+    : "No blog posts available.";
+
+  return {
+    title:
+      "Blog | Moritz Roessler | Senior Frontend Developer in Freiburg im Breisgau",
+    description,
+    openGraph: {
+      type: "website",
+      title:
+        "Blog | Moritz Roessler | Senior Frontend Developer in Freiburg im Breisgau",
+      siteName: "Moe's Website",
+      description,
+      images: ["https://javascript.moe/images/blog-preview.png"],
+      url: "https://javascript.moe/blog",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title:
+        "Blog | Moritz Roessler | Senior Frontend Developer in Freiburg im Breisgau",
+      description,
+      images: ["https://javascript.moe/images/blog-preview.png"],
+      site: "@your_twitter_handle", // Replace with your Twitter handle
+    },
+    icons: {
+      icon: [
+        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
+    manifest: "/site.webmanifest",
+    other: {
+      "msapplication-TileColor": "#da532c",
+      "content-language": "en",
+      canonical: "https://javascript.moe/blog",
+    },
+  };
+}
+
+// Blog Page Component
 export default async function BlogPage({ params }: any) {
   const { locale } = await params;
   const { data: posts = [] } = await getBlogPosts({ locale });
-  console.log("POSTS", posts);
+
   return (
-    <div className="max-h-screen ">
+    <div className="max-h-screen">
       <Image
         src={"/images/wallpaper/19.webp"}
         className="w-screen h-screen absolute"
         width={1024}
         height={768}
-        // moveX={3}
-        // xMotion={[[0, 1], ["75% 00%", "50% 0%"]]}
-        // x2Motion={[[0.5, 0.9], ["30% 0%", "48% 0%"]]}
         alt={"Depiction of a forest fragrance"}
       />
       <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
-        <main className=" bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-1">
+        <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-1">
           <h1 className="mb-4">Blog</h1>
           {posts.length === 0 && <p>No posts found.</p>}
           {posts.map((post: any) => (
