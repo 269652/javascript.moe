@@ -16,7 +16,10 @@ async function getBlogPost(id: string, { locale = "en" }: any) {
         // next: { revalidate: 300 }, // Optional: ISR every hour
       }
     );
-console.log ("FETCH RES", STRAPI_URL + "/" + id + "?populate=*&locale=" + locale)
+    console.log(
+      "FETCH RES",
+      STRAPI_URL + "/" + id + "?populate=*&locale=" + locale
+    );
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`);
     }
@@ -46,7 +49,7 @@ export default async function BlogPage({ params }: any) {
         alt={"Depiction of a forest fragrance"}
       />
       <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
-        <main className=" bg-black/40 w-full mx-auto p-4 flex flex-col gap-1">
+        <main className=" bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1">
           <h1 className="mb-4 p-4 pl-2 bg-black/40 w-fit rounded-sm title    ">
             {post.title}
           </h1>
