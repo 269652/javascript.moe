@@ -28,6 +28,7 @@ async function getBlogPosts({ locale }: any) {
 export default async function BlogPage({ params }: any) {
   const { locale } = await params;
   const { data: posts = [] } = await getBlogPosts({ locale });
+  console.log("POSTS", posts);
   return (
     <div className="max-h-screen ">
       <Image
@@ -40,8 +41,8 @@ export default async function BlogPage({ params }: any) {
         // x2Motion={[[0.5, 0.9], ["30% 0%", "48% 0%"]]}
         alt={"Depiction of a forest fragrance"}
       />
-      <div className="block w-full justify-center h-screen overflow-y-auto p-4">
-        <main className=" bg-black/40 w-full mx-auto p-4 drop-shadow-2xl flex flex-col gap-1">
+      <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
+        <main className=" bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-1">
           <h1 className="mb-4">Blog</h1>
           {posts.length === 0 && <p>No posts found.</p>}
           {posts.map((post: any) => (
@@ -49,26 +50,26 @@ export default async function BlogPage({ params }: any) {
               key={post.id}
               className="flex flex-col md:flex-row gap-1 bg-black/40 p-2"
             >
-              <div className="relatives">
-                <Image
-                  src={post.coverImage.url}
-                  alt={post.title}
-                  width={320}
-                  height={320}
-                  className="h-fit"
-                  objectFit="cover"
-                />
-                <h2 className="absolute top-1/2 -translate-y-2  md:top-[80px]   w-[240px] md:w-[320px] text-center p-1 bg-black/30 backdrop-blur-sm">
-                  <Link
-                    href={`/blog/${post.slug}-${post.documentId}`}
-                    className="underline"
-                  >
+              <div className="relative">
+                <Link
+                  href={`/blog/${post.slug}-${post.documentId}`}
+                  className="underline"
+                >
+                  <Image
+                    src={post.coverImage.url}
+                    alt={post.title}
+                    width={320}
+                    height={320}
+                    className=""
+                    objectFit="cover"
+                  />
+                  <h2 className="absolute top-1/2 -translate-y-2  md:top-[80px]  w-full text-center p-1 bg-black/30 backdrop-blur-sm">
                     {post.title}
-                  </Link>
-                </h2>
+                  </h2>
+                </Link>
               </div>
 
-              <div>
+              <div className="flex-1/2">
                 <p>{post.excerpt}</p>
               </div>
             </article>
