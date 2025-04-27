@@ -38,15 +38,15 @@ async function getBlogPost(id: string, { locale = "en" }: any) {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const id = slug.split("-").pop(); // Assuming the ID is part of the slug after a dash
 
   if (!id) {
     throw new Error("Invalid ID");
   }
-  const { data: post } = await getBlogPost(id, { locale: "en" });
+  const { data: post } = await getBlogPost(id, { locale });
 
   if (!post || post.length === 0) {
     return { title: "Blog Post Not Found" }; // Fallback metadata if post doesn't exist
@@ -73,19 +73,19 @@ export async function generateMetadata({
 }
 
 interface BlogPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 const BlogPage = async ({ params }: BlogPageProps) => {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const id = slug.split("-").pop(); // Assuming the ID is part of the slug after a dash
 
   try {
     if (!id) {
       throw new Error("Invalid ID");
     }
-    
-    const { data: post } = await getBlogPost(id, { locale: "en" });
+
+    const { data: post } = await getBlogPost(id, { locale });
 
     if (!post) {
       notFound(); // Return a 404 if the post doesn't exist
