@@ -52,12 +52,12 @@ export default async function BlogPage() {
               <Image
                 src={post.coverImage.url}
                 alt={post.title}
-                width={72}
-                height={72}
+                width={320}
+                height={320}
+                className="h-fit"
                 objectFit="cover"
               />
-              <div>
-                <h2>
+                              <h2 className="absolute top-[80px] w-[320px] text-center p-1 bg-black/30 backdrop-blur-sm">
                   <Link
                     href={`/blog/${post.slug}-${post.documentId}`}
                     className="underline"
@@ -65,6 +65,8 @@ export default async function BlogPage() {
                     {post.title}
                   </Link>
                 </h2>
+              <div>
+
                 <p>{post.excerpt}</p>
               </div>
             </article>
