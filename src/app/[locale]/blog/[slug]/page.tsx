@@ -37,7 +37,7 @@ async function getBlogPost(id: string, { locale = "en" }: any) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const [, id] = slug.split("-"); // Assuming the ID is part of the slug after a dash
