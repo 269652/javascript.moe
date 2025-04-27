@@ -54,7 +54,7 @@ export default async function BlogPage({ params }: any) {
             key={post.id}
             className="flex gap-1 bg-black/30 p-2 backdrop-blur-sm"
           >
-            <p>{post.content}</p>
+            <p dangerouslySetInnerHTML={{ __html: post.content }} />
           </article>
         </main>
       </div>
