@@ -68,11 +68,11 @@ export async function generateMetadata({
 }
 
 interface BlogPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 const BlogPage = async ({ params }: BlogPageProps) => {
-  const { slug } = params;
+  const { slug } = await params;
   const [, id] = slug.split("-"); // Assuming the ID is part of the slug after a dash
   const { data: post } = await getBlogPost(id, { locale: "en" });
 
