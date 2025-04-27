@@ -2,6 +2,7 @@
 import { ReactNode } from "react";
 import { setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { Metadata } from "next";
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "de" }];
