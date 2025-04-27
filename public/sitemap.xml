@@ -8,25 +8,55 @@
     <loc>https://javascript.moe/en</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://javascript.moe/en" />
     <xhtml:link rel="alternate" hreflang="de" href="https://javascript.moe/de" />
-    <lastmod>2025-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-27T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://javascript.moe/de</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://javascript.moe/en" />
     <xhtml:link rel="alternate" hreflang="de" href="https://javascript.moe/de" />
-    <lastmod>2025-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-27T00:00:00+00:00</lastmod>
   </url>
 
   <url>
     <loc>https://javascript.moe/en/about</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://javascript.moe/en/about" />
     <xhtml:link rel="alternate" hreflang="de" href="https://javascript.moe/de/about" />
-    <lastmod>2025-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-27T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://javascript.moe/de/about</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://javascript.moe/en/about" />
     <xhtml:link rel="alternate" hreflang="de" href="https://javascript.moe/de/about" />
-    <lastmod>2025-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-27T00:00:00+00:00</lastmod>
+  </url>
+
+  <url>
+    <loc>https://javascript.moe/en/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://javascript.moe/en/blog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://javascript.moe/de/blog" />
+    <lastmod>2025-04-27T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://javascript.moe/de/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://javascript.moe/en/blog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://javascript.moe/de/blog" />
+    <lastmod>2025-04-27T00:00:00+00:00</lastmod>
+  </url>
+
+  <url>
+    <loc>https://javascript.moe/en/blog/helloworld-kup7n3chi2g8kjtrnt5a5g8u</loc>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://javascript.moe/en/blog/helloworld-kup7n3chi2g8kjtrnt5a5g8u" />
+    <xhtml:link rel="alternate" hreflang="de"
+      href="https://javascript.moe/de/blog/helloworld-kup7n3chi2g8kjtrnt5a5g8u" />
+    <lastmod>2025-04-27T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://javascript.moe/de/blog/helloworld-kup7n3chi2g8kjtrnt5a5g8u</loc>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://javascript.moe/en/blog/helloworld-kup7n3chi2g8kjtrnt5a5g8u" />
+    <xhtml:link rel="alternate" hreflang="de"
+      href="https://javascript.moe/de/blog/helloworld-kup7n3chi2g8kjtrnt5a5g8u" />
+    <lastmod>2025-04-27T00:00:00+00:00</lastmod>
   </url>
 </urlset>
