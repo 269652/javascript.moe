@@ -1,21 +1,8 @@
-// app/[locale]/layout.tsx
-import { ReactNode } from "react";
-import { setRequestLocale } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
+import { Metadata } from "next";
 
-export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "de" }];
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-  const { locale } = await params;
-
-  // Hardcoded metadata for English locale
-  const enMetadata = {
+export const metadata: { en: Metadata; de: Metadata } = {
+  // For English locale
+  en: {
     title:
       "Moritz Roessler | Senior Frontend Developer in Freiburg im Breisgau",
     description:
@@ -54,10 +41,10 @@ export async function generateMetadata({
       "content-language": "en",
       canonical: "https://javascript.moe/",
     },
-  };
+  },
 
-  // Hardcoded metadata for German locale
-  const deMetadata = {
+  // For German locale
+  de: {
     title:
       "Moritz Roessler | Senior Frontend Entwickler in Freiburg im Breisgau",
     description:
@@ -96,32 +83,5 @@ export async function generateMetadata({
       "content-language": "de",
       canonical: "https://javascript.moe/",
     },
-  };
-
-  // Select the metadata based on the locale
-  return locale === "de" ? deMetadata : enMetadata;
-}
-
-export default async function RootLayout({
-  children,
-  params,
-}: {
-  children: ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  // Use `params` directly (no await needed)
-  setRequestLocale(locale);
-  return (
-    // <html lang={locale}>
-    <NextIntlClientProvider
-      messages={
-        (await import(`../../assets/translations/${locale}.ts`)).default
-        // … and provide the relevant messages
-      }
-    >
-      {children}
-    </NextIntlClientProvider>
-    // </html>
-  );
-}
+  },
+};

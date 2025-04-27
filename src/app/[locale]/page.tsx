@@ -29,22 +29,9 @@ import { Icon } from "@/components/Icon";
 import "swiper/css";
 import clsx from "clsx";
 import Image from "next/image";
-// import { Link, useLocation, useParams } from "react-router-dom";
-// import i18n from "i18next";
-// import { useTranslation } from "react-i18next";
-// import ReactDOM from "react-dom";
-// import { Overlay } from "@/components/BurnOverlay";
-// import { Icon } from "@/components/Icon";
-// import { lngLnk } from "@/lib/util";
-// import { IntersectionAnchor } from "@/components/IntersectionAnchor";
-// import {
-//   AutoPlayButton,
-//   RisingSun,
-//   ScrollbarTooltip,
-// } from "@/components/ScrollbarTooltip";
+
 import { SproutingHearts } from "@/components/Sprout";
 import { HeartButton } from "@/components/HeartButton";
-// import { IntersectionAnchor } from "@/components/IntersectionAnchor";
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
@@ -615,53 +602,6 @@ export default function Home() {
           </Parallax>
         </Parallax>
       </StickySection>
-      {/* <IntersectionAnchor
-        hash={"contact"}
-        block={"end"}
-        scroll
-      ></IntersectionAnchor> */}
     </>
   );
 }
-
-// export const PerfumeLink = ({ range }: { range: number[] }) => {
-//   const { ref } = useContext(sectionCtx);
-
-//   const { scrollYProgress } = useScroll({
-//     layoutEffect: false,
-//     target: ref || undefined,
-//     offset: ["start start", "end end"],
-//   });
-//   const trans = useTransform(scrollYProgress, range, [0, 1]);
-//   const { t } = useTranslation();
-
-//   return (
-//     <Link
-//       to={"/" + i18n.language + "/perfumes"}
-//       className="underline text-[#EEEEEE]"
-//     >
-//       <motion.h2 style={{ opacity: trans }}>{t("texts.discover")}</motion.h2>
-//     </Link>
-//   );
-// };
-
-// export const FormulaLink = ({ range }: { range: number[] }) => {
-//   const { ref } = useContext(sectionCtx);
-
-//   const { scrollYProgress } = useScroll({
-//     layoutEffect: false,
-//     target: ref || undefined,
-//     offset: ["start start", "end end"],
-//   });
-//   const trans = useTransform(scrollYProgress, range, [0, 1]);
-//   const { t } = useTranslation();
-
-//   return (
-//     <Link
-//       to={"/" + i18n.language + "/perfumes"}
-//       className="underline text-[#EEEEEE]"
-//     >
-//       <motion.h2 style={{ opacity: trans }}>{t("texts.formulas")}</motion.h2>
-//     </Link>
-//   );
-// };
