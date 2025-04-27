@@ -110,3 +110,28 @@ article p {
   font-weight: 100;
   font-size: 1.2rem;
 }
+
+article p p {
+  margin-bottom: 1rem;
+  @apply overflow-x-auto max-w-full;
+}
+
+article p pre {
+  margin-bottom: 1rem;
+  @apply overflow-x-auto max-w-full;
+}
+
+article ul li {
+  margin-bottom: 1rem;
+  @apply ml-6;
+}
+
+article ul li::before {
+  content: "—"; /* em dash */
+  margin-right: 0.5rem;
+  top: 0px;
+  color: #FFF; /* or whatever fits your theme */
+  font-weight: bold;
+  @apply absolute -translate-x-6;
+}
+
