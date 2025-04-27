@@ -92,3 +92,13 @@ dialog .shadow {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+
+strong {
+  font-weight: 700;
+}
+
+h1.title {
+  font-size: 3rem;
+  font-weight: 400;
+}

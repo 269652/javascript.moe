@@ -1,12 +1,8 @@
-import { StickySection } from "@/components/AnimatedSection";
-import { BackgroundImage } from "@/components/BackgroundImage";
-import { DualImages } from "@/components/BlendedImage";
-import { useWindowWidth } from "@/lib/hooks";
 import Image from "next/image";
-import Link from "next/link";
+import { marked } from "marked";
 
 const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
-const STRAPI_TOKEN = process.env.STRAPI_TOKEN
+const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
 async function getBlogPost(id: string) {
   try {
@@ -33,6 +29,7 @@ export default async function BlogPage({ params }: any) {
   const { slug } = await params;
   const [, id] = slug.split("-");
   const { data: post = {} } = await getBlogPost(id);
+  const htmlContent = marked(post.content || "");
   return (
     <div className="max-h-screen ">
       <Image
@@ -47,14 +44,11 @@ export default async function BlogPage({ params }: any) {
       />
       <div className="block w-full justify-center h-screen overflow-y-auto p-4">
         <main className=" bg-black/40 w-full mx-auto p-4 flex flex-col gap-1">
-          <h1 className="mb-4 p-1 bg-black/40 w-fit rounded-sm">
+          <h1 className="mb-4 p-4 pl-2 bg-black/40 w-fit rounded-sm title    ">
             {post.title}
           </h1>
-          <article
-            key={post.id}
-            className="flex gap-1 bg-black/30 p-2 backdrop-blur-sm"
-          >
-            <p dangerouslySetInnerHTML={{ __html: post.content }} />
+          <article key={post.id} className="bg-black/30 p-2 backdrop-blur-sm">
+            <p dangerouslySetInnerHTML={{ __html: htmlContent }} />
           </article>
         </main>
       </div>
