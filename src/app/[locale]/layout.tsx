@@ -18,15 +18,15 @@ export default async function RootLayout({
   // Use `params` directly (no await needed)
   setRequestLocale(locale);
   return (
-    <html lang={locale}>
-      <NextIntlClientProvider
-        messages={
-          (await import(`../../assets/translations/${locale}.ts`)).default
-          // … and provide the relevant messages
-        }
-      >
-        {children}
-      </NextIntlClientProvider>
-    </html>
+    // <html lang={locale}>
+    <NextIntlClientProvider
+      messages={
+        (await import(`../../assets/translations/${locale}.ts`)).default
+        // … and provide the relevant messages
+      }
+    >
+      {children}
+    </NextIntlClientProvider>
+    // </html>
   );
 }

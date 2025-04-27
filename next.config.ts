@@ -9,6 +9,9 @@ const withNextIntl = createNextIntlPlugin(
 
 const nextConfig = {
   // Your Next.js config options
+  images: {
+    remotePatterns: [new URL('https://delightful-vitality-345cdd2fe4.media.strapiapp.com/*')],
+  },
   webpack(config: any) {
     // Find the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule: any) =>

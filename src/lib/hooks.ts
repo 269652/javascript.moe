@@ -42,8 +42,8 @@ export function useHash() {
  * useWindowWidth
  * Returns the current window width (or undefined on SSR).
  */
-export function useWindowWidth(): number {
-  const [width, setWidth] = useState<number>(1024);
+export function useWindowWidth(def: number = 1024): number {
+  const [width, setWidth] = useState<number>(def);
 
   useEffect(() => {
     // Handler to call on window resize
@@ -68,8 +68,8 @@ export function useWindowWidth(): number {
  * useWindowWidth
  * Returns the current window width (or undefined on SSR).
  */
-export function useWindowHeight(): number {
-  const [height, setHeight] = useState<number>(788);
+export function useWindowHeight(def: number = 788): number {
+  const [height, setHeight] = useState<number>(def);
 
   useEffect(() => {
     // Handler to call on window resize
