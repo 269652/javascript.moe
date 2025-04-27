@@ -24,6 +24,7 @@ async function getBlogPost(id: string, { locale = "en" }: any) {
         "Cache-Control": "max-age=600, stale-while-revalidate=0", // Cache for 10 minutes and revalidate immediately after
       },
       cache: "force-cache",
+      next: { revalidate: 120 }, // Revalidate every 30 seconds
     });
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`);
