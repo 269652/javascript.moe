@@ -15,7 +15,7 @@ async function getBlogPost(id: string) {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
       },
       // cache: "force-cache", // Optional: SSG (default)
-      next: { revalidate: 3600 }, // Optional: ISR every hour
+      next: { revalidate: 300 }, // Optional: ISR every hour
     });
 
     if (!res.ok) {
