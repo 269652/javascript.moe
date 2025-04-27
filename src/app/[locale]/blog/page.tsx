@@ -94,7 +94,7 @@ export default async function BlogPage({ params }: any) {
       />
       <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
         <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-1">
-          <h1 className="mb-4">Blog</h1>
+          <h1 className="mb-4">Mo's Blog</h1>
           {posts.length === 0 && <p>No posts found.</p>}
           {posts
             .sort((a: any, b: any) =>
