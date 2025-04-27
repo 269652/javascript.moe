@@ -84,21 +84,29 @@ dialog::backdrop {
 }
 
 dialog .shadow {
-  box-shadow: 0px 0px 4px 0px #FFF;
+  box-shadow: 0px 0px 4px 0px #fff;
 }
-
 
 .page {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-
-strong {
+article p strong {
   font-weight: 700;
+  font-size: 1.4rem;
 }
 
-h1.title {
-  font-size: 3rem;
-  font-weight: 400;
+@media screen and (min-width: 768px) {
+  /* Styles for tablet and larger devices */
+
+  h1.title {
+    font-size: 3rem;
+    font-weight: 400;
+  }
+}
+
+article p {
+  font-weight: 100;
+  font-size: 1.2rem;
 }

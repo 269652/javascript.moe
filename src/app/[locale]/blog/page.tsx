@@ -1,16 +1,12 @@
-import { StickySection } from "@/components/AnimatedSection";
-import { BackgroundImage } from "@/components/BackgroundImage";
-import { DualImages } from "@/components/BlendedImage";
-import { useWindowWidth } from "@/lib/hooks";
 import Image from "next/image";
 import Link from "next/link";
 
-const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts?populate=*";
+const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
-async function getBlogPosts() {
+async function getBlogPosts({ locale }: any) {
   try {
-    const res = await fetch(STRAPI_URL, {
+    const res = await fetch(STRAPI_URL + "?populate=*&locale=" + locale, {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
       },
@@ -29,8 +25,9 @@ async function getBlogPosts() {
   }
 }
 
-export default async function BlogPage() {
-  const { data: posts = [] } = await getBlogPosts();
+export default async function BlogPage({ params }: any) {
+  const { locale } = await params;
+  const { data: posts = [] } = await getBlogPosts({ locale });
   return (
     <div className="max-h-screen ">
       <Image
@@ -48,16 +45,20 @@ export default async function BlogPage() {
           <h1 className="mb-4">Blog</h1>
           {posts.length === 0 && <p>No posts found.</p>}
           {posts.map((post: any) => (
-            <article key={post.id} className="flex gap-1 bg-black/40 p-2">
-              <Image
-                src={post.coverImage.url}
-                alt={post.title}
-                width={320}
-                height={320}
-                className="h-fit"
-                objectFit="cover"
-              />
-                              <h2 className="absolute top-[80px] w-[320px] text-center p-1 bg-black/30 backdrop-blur-sm">
+            <article
+              key={post.id}
+              className="flex flex-col md:flex-row gap-1 bg-black/40 p-2"
+            >
+              <div className="relatives">
+                <Image
+                  src={post.coverImage.url}
+                  alt={post.title}
+                  width={320}
+                  height={320}
+                  className="h-fit"
+                  objectFit="cover"
+                />
+                <h2 className="absolute top-1/2 -translate-y-2  md:top-[80px]   w-[240px] md:w-[320px] text-center p-1 bg-black/30 backdrop-blur-sm">
                   <Link
                     href={`/blog/${post.slug}-${post.documentId}`}
                     className="underline"
@@ -65,8 +66,9 @@ export default async function BlogPage() {
                     {post.title}
                   </Link>
                 </h2>
-              <div>
+              </div>
 
+              <div>
                 <p>{post.excerpt}</p>
               </div>
             </article>
