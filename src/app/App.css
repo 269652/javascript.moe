@@ -162,3 +162,7 @@ article.post hr {
 div .category~.category {
   @apply border-l-[2px] border-white;
 }
+
+a[href] {
+  @apply underline
+}
