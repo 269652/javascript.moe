@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { getBlogPosts, getCategories, getLabels } from "@/lib/api";
 import { marked } from "marked";
+import { Labels } from "@/container/Labels";
 
 // Dynamic Metadata Generation for the Blog Page
 export async function generateMetadata({
@@ -136,32 +137,14 @@ export default async function BlogPage({ params }: any) {
           <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
 
           {/* Labels */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {labels.map((cat: any) => {
-              const active = labelNames.includes(cat.slug);
-              const newLabelNames = active
-                ? labelNames.filter((l) => l !== cat.slug)
-                : [...labelNames, cat.slug];
-              const href =
-                newLabelNames.length > 0
-                  ? `/blog/labels/${newLabelNames.join(",")}`
-                  : "/blog";
+          <Labels
+            labels={labels}
+            labelNames={labelNames}
+            className="flex md:hidden"
+          />
 
-              return (
-                <Link
-                  key={cat.id}
-                  href={href}
-                  className={`p-2 px-3 rounded-full text-sm ${
-                    active
-                      ? "bg-purple-600 hover:bg-purple-400"
-                      : "bg-gray-700 hover:bg-purple-500"
-                  } text-white transition`}
-                >
-                  {cat.displayName}
-                </Link>
-              );
-            })}
-          </div>
+          <div className="flex justify-between h-fit">
+              
           {/* Categories */}
           <div className="flex border-b-2 border-gray-500 overflow-x-auto">
             {categories.map((cat: any) => {
@@ -182,6 +165,13 @@ export default async function BlogPage({ params }: any) {
                 </Link>
               );
             })}
+          </div>
+
+          <Labels
+            labels={labels}
+            labelNames={labelNames}
+            className="hidden md:flex"
+          />
           </div>
 
           {/* Posts */}
