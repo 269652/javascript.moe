@@ -200,7 +200,7 @@ export const MyName = () => {
         borderBottom: bb,
       }}
     >
-      <Link href={"/" + locale + `/about`}>
+      <Link href={"/" + locale + `/about`} className="!no-underline">
         <span ref={mRef}>
           <MotionSpan
             style={{ x: mX, display: "inline-block", scaleX: scale, color }}
