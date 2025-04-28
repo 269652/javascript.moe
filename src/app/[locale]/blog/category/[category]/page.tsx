@@ -242,3 +242,4 @@ export default async function BlogPage({ params }: any) {
 }
 
 export const revalidate = 30; // seconds
+export const dynamicParams = true
