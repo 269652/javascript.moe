@@ -240,3 +240,5 @@ export default async function BlogPage({ params }: any) {
     </div>
   );
 }
+
+export const revalidate = 30; // seconds
