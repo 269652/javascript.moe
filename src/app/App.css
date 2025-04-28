@@ -157,3 +157,8 @@ article.post h3 {
 article.post hr {
   @apply mb-2;
 }
+
+
+div .category~.category {
+  @apply border-l-[2px] border-white;
+}
