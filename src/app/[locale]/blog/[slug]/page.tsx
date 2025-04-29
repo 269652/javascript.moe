@@ -2,6 +2,7 @@ import Image from "next/image";
 import { marked } from "marked";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import BlogPostStructuredData from "@/components/BlogStructuredData";
 
 // Define the type for the blog post data
 interface BlogPost {
@@ -99,6 +100,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
 
     return (
       <>
+        <BlogPostStructuredData post={post} />
         <div className="max-h-screen">
           <Image
             src={post.coverImage?.url || "/images/wallpaper/22.webp"}
