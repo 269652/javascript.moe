@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { getBlogPosts, getCategories, getLabels } from "@/lib/api";
 import { marked } from "marked";
 import { Labels } from "@/container/Labels";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 // Dynamic Metadata Generation for the Blog Page
 export async function generateMetadata({
@@ -124,7 +125,9 @@ export default async function BlogPage({ params }: any) {
   const { data: labels = [] } = await getLabels({ locale });
 
   return (
-    <div className="max-h-screen">
+    <div className="max-h-screen relative">
+      {/* Language Flags */}
+
       <Image
         src="/images/wallpaper/19.webp"
         className="w-screen h-screen absolute"
@@ -134,7 +137,10 @@ export default async function BlogPage({ params }: any) {
       />
       <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
         <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-4">
-          <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
+          <div className="flex justify-between">
+            <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
+            <LanguageSwitcher />
+          </div>
 
           {/* Labels */}
           <Labels
@@ -144,34 +150,33 @@ export default async function BlogPage({ params }: any) {
           />
 
           <div className="flex justify-between h-fit">
-              
-          {/* Categories */}
-          <div className="flex border-b-2 border-gray-500 overflow-x-auto">
-            {categories.map((cat: any) => {
-              const active = categoryName === cat.slug;
-              const href = active ? "/blog" : `/blog/category/${cat.slug}`;
+            {/* Categories */}
+            <div className="flex border-b-2 border-gray-500 overflow-x-auto">
+              {categories.map((cat: any) => {
+                const active = categoryName === cat.slug;
+                const href = active ? "/blog" : `/blog/category/${cat.slug}`;
 
-              return (
-                <Link
-                  key={cat.id}
-                  href={href}
-                  className={`category whitespace-nowrap p-2 px-3 text-sm transition ${
-                    active
-                      ? "bg-yellow-600 hover:bg-yellow-400"
-                      : "bg-gray-700 hover:bg-yellow-500"
-                  } text-white`}
-                >
-                  {cat.name}
-                </Link>
-              );
-            })}
-          </div>
+                return (
+                  <Link
+                    key={cat.id}
+                    href={href}
+                    className={`category whitespace-nowrap p-2 px-3 text-sm transition ${
+                      active
+                        ? "bg-yellow-600 hover:bg-yellow-400"
+                        : "bg-gray-700 hover:bg-yellow-500"
+                    } text-white`}
+                  >
+                    {cat.name}
+                  </Link>
+                );
+              })}
+            </div>
 
-          <Labels
-            labels={labels}
-            labelNames={labelNames}
-            className="hidden md:flex"
-          />
+            <Labels
+              labels={labels}
+              labelNames={labelNames}
+              className="hidden md:flex"
+            />
           </div>
 
           {/* Posts */}
@@ -205,11 +210,9 @@ export default async function BlogPage({ params }: any) {
                         </Link>
                       </div>
                       <div className="flex-1 p-4 flex flex-col justify-between">
-                        <div>
-                          <div
-                            dangerouslySetInnerHTML={{ __html: htmlExcerpt }}
-                          />
-                        </div>
+                        <div
+                          dangerouslySetInnerHTML={{ __html: htmlExcerpt }}
+                        />
                         <div className="flex gap-2 mt-4 flex-wrap">
                           {post.category && (
                             <Link

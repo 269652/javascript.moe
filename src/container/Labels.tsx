@@ -1,7 +1,11 @@
+"use client";
+
 import clsx from "clsx";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 export const Labels = ({ labels, labelNames, className }: any) => {
+  const { locale } = useParams();
   return (
     <div className={clsx("flex-wrap gap-1", className)}>
       {labels.map((cat: any) => {
@@ -11,8 +15,8 @@ export const Labels = ({ labels, labelNames, className }: any) => {
           : [...labelNames, cat.slug];
         const href =
           newLabelNames.length > 0
-            ? `/blog/labels/${newLabelNames.join(",")}`
-            : "/blog";
+            ? `/${locale}/blog/labels/${newLabelNames.join(",")}`
+            : `/${locale}/blog`;
 
         return (
           <Link
