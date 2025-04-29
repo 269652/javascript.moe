@@ -16,7 +16,7 @@ interface BlogPost {
 const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
-async function getBlogPost(id: string, { locale = "en" }: any) {
+async function getBlogPost(id: string, { locale = "en" }: { locale?: string }) {
   try {
     const res = await fetch(`${STRAPI_URL}/${id}?populate=*&locale=${locale}`, {
       headers: {
@@ -24,15 +24,17 @@ async function getBlogPost(id: string, { locale = "en" }: any) {
         "Cache-Control": "max-age=600, stale-while-revalidate=0", // Cache for 10 minutes and revalidate immediately after
       },
       cache: "force-cache",
-      next: { revalidate: 120 }, // Revalidate every 30 seconds
+      next: { revalidate: 120 }, // Revalidate every 2 minutes
     });
+
     if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`);
+      throw new Error(`Failed to fetch blog post: ${res.status}`);
     }
+
     return res.json();
-  } catch (e) {
-    console.error("Fetch error:", e);
-    return { data: [] }; // Fallback to empty array
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return { data: [] }; // Fallback to empty array if fetching fails
   }
 }
 
@@ -47,6 +49,7 @@ export async function generateMetadata({
   if (!id) {
     throw new Error("Invalid ID");
   }
+
   const { data: post } = await getBlogPost(id, { locale });
 
   if (!post || post.length === 0) {
@@ -109,10 +112,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
               <h1 className="mb-4 p-4 pl-2 bg-black/40 w-fit rounded-sm title">
                 {post.title}
               </h1>
-              <article
-                key={post.id}
-                className="bg-black/30 p-2 backdrop-blur-sm post"
-              >
+              <article key={post.id} className="bg-black/30 p-2 post">
                 <p dangerouslySetInnerHTML={{ __html: htmlContent }} />
               </article>
             </main>
@@ -120,8 +120,9 @@ const BlogPage = async ({ params }: BlogPageProps) => {
         </div>
       </>
     );
-  } catch (e) {
-    notFound(); // Return a 404 if the post doesn't exist
+  } catch (error) {
+    console.error("Error while rendering blog post:", error);
+    notFound(); // Return a 404 if the post doesn't exist or another error occurs
   }
 };
 
