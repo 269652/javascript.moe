@@ -422,7 +422,7 @@ export const Bullets = ({
       : useTransform(
           trans2,
           [step * (i + 1), 1],
-          [randomUp ? -(8*2) * i : 8, 8],
+          [randomUp ? -(8 * 4) * (1 + Math.abs(i - 2.5)) : 8, 8],
           {
             clamp: true,
           }
