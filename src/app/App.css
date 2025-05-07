@@ -129,7 +129,7 @@ article p pre {
 }
 
 article ul li {
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   @apply ml-6;
 }
 
