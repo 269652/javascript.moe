@@ -114,6 +114,7 @@ h1.title {
 }
 
 article p {
+  margin-bottom: 1rem;
   font-weight: 200;
   font-size: 1.4rem;
 }
