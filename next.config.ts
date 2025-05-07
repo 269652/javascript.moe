@@ -17,6 +17,12 @@ const nextConfig = {
         // Optional: Restrict to specific paths
         // pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "js-moe-strapi-uploads.s3.eu-central-1.amazonaws.com",
+        // Optional: Restrict to specific paths
+        // pathname: "/uploads/**",
+      },
     ],
   },
   webpack(config: any) {
