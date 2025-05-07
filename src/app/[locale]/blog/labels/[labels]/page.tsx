@@ -144,7 +144,7 @@ export default async function BlogPage({ params }: any) {
           <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-4">
             <div className="flex justify-between">
               <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
-              <LanguageSwitcher availableLocales={supportedLocales}/>
+              <LanguageSwitcher availableLocales={supportedLocales} />
             </div>
 
             {/* Labels */}

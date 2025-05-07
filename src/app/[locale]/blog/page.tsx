@@ -7,6 +7,7 @@ import { Labels } from "@/container/Labels";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { BlogOverviewStructuredData } from "@/components/BlogOverviewStructuredData";
 import { img } from "@/lib/path";
+import supportedLocales from "@/lib/locales";
 
 // Dynamic Metadata Generation for the Blog Page
 export async function generateMetadata({
@@ -143,7 +144,7 @@ export default async function BlogPage({ params }: any) {
           <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-4">
             <div className="flex justify-between">
               <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
-              <LanguageSwitcher />
+              <LanguageSwitcher availableLocales={supportedLocales}/>
             </div>
 
             {/* Labels */}
