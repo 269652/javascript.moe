@@ -18,8 +18,8 @@ const LanguageSwitcher = ({ availableLocales, href, showCurrent }: any) => {
       {supportedLocales
         .filter(
           (loc) =>
-            showCurrent ||
-            (loc !== currentLocale && availableLocales?.includes(loc))
+            (loc !== currentLocale || showCurrent) &&
+            availableLocales?.includes(loc)
         )
         .map((loc) => {
           const path = href ? href : pathname;

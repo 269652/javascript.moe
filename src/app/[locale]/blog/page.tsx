@@ -200,6 +200,9 @@ export default async function BlogPage({ params }: any) {
                     const availableLocales = post.localizations?.map(
                       (p: any) => p.locale
                     );
+
+                    if (!availableLocales.includes(locale))
+                      availableLocales.unshift(locale);
                     return (
                       <article
                         key={post.id}
@@ -243,6 +246,7 @@ export default async function BlogPage({ params }: any) {
                             ))}
                             <div className="ml-auto">
                               <LanguageSwitcher
+                                key={post.id}
                                 showCurrent
                                 availableLocales={availableLocales}
                                 href={`/${locale}/blog/${post.slug}-${post.documentId}`}

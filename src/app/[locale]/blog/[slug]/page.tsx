@@ -57,6 +57,8 @@ export async function generateMetadata({
 
   const { data: post } = await getBlogPost(id, { locale });
 
+  console.log("POST", post);
+
   if (!post || post.length === 0) {
     return { title: "Blog Post Not Found" }; // Fallback metadata if post doesn't exist
   }
@@ -121,7 +123,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
           />
           <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
             <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1">
-            <div className="flex gap-1 items-center">
+              <div className="flex gap-1 items-center">
                 <Link href={`/${locale}/blog`}>
                   <IconButton icon="FaHome" />
                 </Link>
