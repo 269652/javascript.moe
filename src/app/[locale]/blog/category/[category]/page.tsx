@@ -158,7 +158,9 @@ export default async function BlogPage({ params }: any) {
               <div className="flex border-b-2 border-gray-500 overflow-x-auto">
                 {categories.map((cat: any) => {
                   const active = categoryName === cat.slug;
-                  const href = active ? "/blog" : `/blog/category/${cat.slug}`;
+                  const href = active
+                    ? `/${locale}/blog`
+                    : `/${locale}/blog/category/${cat.slug}`;
 
                   return (
                     <Link

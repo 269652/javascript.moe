@@ -230,6 +230,7 @@ export default function Home() {
                   data={[
                     {
                       text: "German (C2)",
+                      href: "https://javascript.moe/de",
                       logo: () => (
                         <Image
                           src={"/images/logos/germany.png"}
@@ -243,6 +244,8 @@ export default function Home() {
                     },
                     {
                       text: "English (C1)",
+                      href: "https://javascript.moe/en",
+
                       logo: () => (
                         <Image
                           src={"/images/logos/usa.png"}
@@ -257,6 +260,8 @@ export default function Home() {
                     },
                     {
                       text: "Spanish (B2)",
+                      href: "https://javascript.moe/es",
+
                       logo: () => (
                         <Image
                           src={"/images/logos/chile.png"}
