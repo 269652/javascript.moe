@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import BlogPostStructuredData from "@/components/BlogStructuredData";
 import { img } from "@/lib/path";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { IconButton } from "@/components/Button";
+import Link from "next/link";
 
 // Define the type for the blog post data
 interface BlogPost {
@@ -92,7 +95,9 @@ const BlogPage = async ({ params }: BlogPageProps) => {
     }
 
     const { data: post } = await getBlogPost(id, { locale });
+    const { localizations = [] } = post;
 
+    const availableLocales = localizations.map((ele: any) => ele.locale);
     if (!post) {
       notFound(); // Return a 404 if the post doesn't exist
     }
@@ -116,9 +121,16 @@ const BlogPage = async ({ params }: BlogPageProps) => {
           />
           <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
             <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1">
-              <h1 className="mb-4 p-4 pl-2 bg-black/40 w-fit rounded-sm title">
+            <div className="flex gap-1 items-center">
+                <Link href={`/${locale}/blog`}>
+                  <IconButton icon="FaHome" />
+                </Link>
+                <LanguageSwitcher availableLocales={availableLocales} />
+              </div>
+              <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title">
                 {post.title}
               </h1>
+
               <article key={post.id} className="bg-black/30 p-2 post">
                 <p dangerouslySetInnerHTML={{ __html: htmlContent }} />
               </article>

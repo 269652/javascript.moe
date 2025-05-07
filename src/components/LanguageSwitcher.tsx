@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import supportedLocales from "@/lib/locales"; // Adjust path as needed
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ availableLocales }: any) => {
   const { locale } = useParams();
   const pathname = usePathname();
 
@@ -16,7 +16,9 @@ const LanguageSwitcher = () => {
   return (
     <div className="top-4 right-8 flex gap-2 z-10">
       {supportedLocales
-        .filter((loc) => loc !== currentLocale)
+        .filter(
+          (loc) => loc !== currentLocale && availableLocales?.includes(loc)
+        )
         .map((loc) => {
           const newUrl = pathname.replace(`/${currentLocale}`, `/${loc}`);
 
