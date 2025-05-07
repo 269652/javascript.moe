@@ -72,6 +72,62 @@ export async function GET(): Promise<Response> {
         { hreflang: "de", href: "https://javascript.moe/de/blog" },
       ],
     },
+    {
+      loc: "https://javascript.moe/en/inventory",
+      lastmod: "2025-04-27",
+      alternates: [
+        {
+          hreflang: "en",
+          href: "https://perfumery.javascript.moe/en/inventory",
+        },
+        {
+          hreflang: "de",
+          href: "https://perfumery.javascript.moe/de/inventory",
+        },
+      ],
+    },
+    {
+      loc: "https://javascript.moe/de/inventory",
+      lastmod: "2025-04-27",
+      alternates: [
+        {
+          hreflang: "en",
+          href: "https://perfumery.javascript.moe/en/inventory",
+        },
+        {
+          hreflang: "de",
+          href: "https://perfumery.javascript.moe/de/inventory",
+        },
+      ],
+    },
+    {
+      loc: "https://javascript.moe/en/formulas",
+      lastmod: "2025-04-27",
+      alternates: [
+        {
+          hreflang: "en",
+          href: "https://perfumery.javascript.moe/en/formulas",
+        },
+        {
+          hreflang: "de",
+          href: "https://perfumery.javascript.moe/de/formulas",
+        },
+      ],
+    },
+    {
+      loc: "https://javascript.moe/de/formulas",
+      lastmod: "2025-04-27",
+      alternates: [
+        {
+          hreflang: "en",
+          href: "https://perfumery.javascript.moe/en/formulas",
+        },
+        {
+          hreflang: "de",
+          href: "https://perfumery.javascript.moe/de/formulas",
+        },
+      ],
+    },
   ];
 
   const posts = await fetchBlogPosts();
