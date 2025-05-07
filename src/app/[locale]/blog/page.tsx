@@ -6,6 +6,7 @@ import { marked } from "marked";
 import { Labels } from "@/container/Labels";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { BlogOverviewStructuredData } from "@/components/BlogOverviewStructuredData";
+import { img } from "@/lib/path";
 
 // Dynamic Metadata Generation for the Blog Page
 export async function generateMetadata({
@@ -201,7 +202,7 @@ export default async function BlogPage({ params }: any) {
                         <div className="relative w-full md:w-1/3">
                           <Link href={`/blog/${post.slug}-${post.documentId}`}>
                             <Image
-                              src={post.coverImage.url}
+                              src={img`${post.coverImage.url}`}
                               alt={post.title}
                               width={400}
                               height={250}

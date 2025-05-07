@@ -10,7 +10,14 @@ const withNextIntl = createNextIntlPlugin(
 const nextConfig = {
   // Your Next.js config options
   images: {
-    remotePatterns: [new URL('https://determined-fellowship-713fab99a5.media.strapiapp.com/*')],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "strapi.javascript.moe",
+        // Optional: Restrict to specific paths
+        // pathname: "/uploads/**",
+      },
+    ],
   },
   webpack(config: any) {
     // Find the existing rule that handles SVG imports
@@ -61,4 +68,4 @@ const nextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withNextIntl(nextConfig as any);
