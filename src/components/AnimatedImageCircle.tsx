@@ -51,7 +51,7 @@ export const AnimatedImageCircle = ({
     [0, 0.25],
     ["saturate(100%)", "saturate(30%)"]
   );
-  const opacity = useTransform(scrollYProgress, [0.2, 0.27], ["80%", "10%"], {
+  const opacity = useTransform(scrollYProgress, [0.2, 0.27], ["100%", "10%"], {
     ease: easeOut,
   });
   const reverse = useTransform(scrollYProgress, [0.21, 0.33], ["0%", "100%"], {
