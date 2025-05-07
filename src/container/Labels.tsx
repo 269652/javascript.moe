@@ -28,7 +28,7 @@ export const Labels = ({ labels, labelNames, className }: any) => {
                 : "bg-gray-700 hover:bg-purple-500"
             } text-white transition`}
           >
-            {cat.displayName}
+            {cat.name}
           </Link>
         );
       })}
