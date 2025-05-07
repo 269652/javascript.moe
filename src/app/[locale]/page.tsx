@@ -313,76 +313,6 @@ export default function Home() {
             {/* <Parallax trans={[1, 0.75]} className='absolute w-full flex flex-col items-center gap-2 mt-[50lvh]' distance={height * -0.25} offset={0}>
                             <PerfumeLink range={[0.75, 1]} />
                         </Parallax> */}
-            <Parallax
-              trans={[0, 0.25]}
-              className={clsx(
-                "absolute w-full flex flex-col items-center gap-2 mt-[50lvh]",
-                {
-                  hidden: activeIndex !== 1,
-                }
-              )}
-              distance={64}
-              offset={-64}
-            >
-              <Bullets
-                key={activeIndex}
-                range={[0, 0.25]}
-                data={[
-                  {
-                    text: "TypeScript",
-                    logo: (props: any) => (
-                      <TS viewBox="0 0 512 512" {...props} />
-                    ),
-                    href: "https://www.typescriptlang.org/",
-                  },
-                  {
-                    text: "React",
-                    logo: ReactLogo,
-                    href: "https://react.dev/",
-                  },
-                ]}
-                offset={0.6}
-              />
-              <Parallax trans={[0.25, 0]} distance={64} offset={-64}>
-                <Bullets
-                  range={[0, 0.25]}
-                  data={[
-                    {
-                      text: "SQL",
-                      logo: SQLLogo,
-                      href: "https://www.postgresql.org/",
-                    },
-                    {
-                      text: "AWS",
-                      logo: AWSLogo,
-                      href: "https://aws.amazon.com/de/console/",
-                    },
-                    {
-                      text: "Node.js",
-                      logo: NodeJSLogo,
-                      href: "https://nodejs.org/en",
-                    },
-                    {
-                      text: "Vue.js",
-                      logo: VueJSLogo,
-                      href: "https://vuejs.org/",
-                    },
-                    {
-                      text: "Docker",
-                      logo: DockerLogo,
-                      href: "https://www.docker.com/",
-                    },
-                    {
-                      text: "Lambda",
-                      logo: LambdaLogo,
-                      href: "https://aws.amazon.com/de/lambda/",
-                    },
-                  ]}
-                  className="!flex-row"
-                  offset={0.75}
-                ></Bullets>
-              </Parallax>
-            </Parallax>
           </SwiperSlide>
 
           <SwiperSlide className="h-full w-full flex justify-center">
@@ -432,6 +362,7 @@ export default function Home() {
               />
               <Parallax trans={[0.5, 0]} distance={64} offset={-64}>
                 <Bullets
+                  randomUp
                   range={[0, 0.5]}
                   l={3}
                   gapTiming={-2}

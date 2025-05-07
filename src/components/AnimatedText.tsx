@@ -360,8 +360,10 @@ export type BulletsProps = {
   r?: boolean;
   l?: number;
   gapTiming?: -2 | -1;
+  randomUp?: boolean;
 };
 export const Bullets = ({
+  randomUp = false,
   range = [0.5, 1],
   data,
   className,
@@ -414,6 +416,19 @@ export const Bullets = ({
         });
   });
 
+  const y = [...new Array(n)].map((_, i) => {
+    return typeof window === "undefined"
+      ? new MotionValue(0)
+      : useTransform(
+          trans2,
+          [step * (i + 1), 1],
+          [randomUp ? -(8*2) * i : 8, 8],
+          {
+            clamp: true,
+          }
+        );
+  });
+
   const filter = useTransform(
     scrollYProgress,
     [0.5, 0.9, 1],
@@ -454,7 +469,7 @@ export const Bullets = ({
 
               backdropFilter: filter,
 
-              y: 8,
+              y: y[ele],
             }}
           >
             <Link href={e.href || "#"} target={e.target} download={e.download}>
