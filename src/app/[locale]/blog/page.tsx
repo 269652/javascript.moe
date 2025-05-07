@@ -144,7 +144,7 @@ export default async function BlogPage({ params }: any) {
           <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-4">
             <div className="flex justify-between">
               <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
-              <LanguageSwitcher availableLocales={supportedLocales}/>
+              <LanguageSwitcher availableLocales={supportedLocales} />
             </div>
 
             {/* Labels */}
@@ -197,12 +197,17 @@ export default async function BlogPage({ params }: any) {
                   )
                   .map((post: any) => {
                     const htmlExcerpt = marked(post.excerpt);
+                    const availableLocales = post.localizations?.map(
+                      (p: any) => p.locale
+                    );
+
+                    // if (post.locale) availableLocales.unshift(post.locale);
                     return (
                       <article
                         key={post.id}
                         className="flex flex-col md:flex-row bg-black/50 rounded-md overflow-hidden shadow-lg"
                       >
-                        <div className="relative w-full md:w-1/3">
+                        <div className="relative w-full md:w-1/3 justify-between">
                           <Link href={`/blog/${post.slug}-${post.documentId}`}>
                             <Image
                               src={img`${post.coverImage.url}`}
@@ -238,6 +243,13 @@ export default async function BlogPage({ params }: any) {
                                 {label.name}
                               </Link>
                             ))}
+                            <div className="ml-auto">
+                              <LanguageSwitcher
+                                showCurrent
+                                availableLocales={availableLocales}
+                                href={`/${locale}/blog/${post.slug}-${post.documentId}`}
+                              />
+                            </div>
                           </div>
                         </div>
                       </article>
