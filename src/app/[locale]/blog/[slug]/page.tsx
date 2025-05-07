@@ -3,6 +3,7 @@ import { marked } from "marked";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import BlogPostStructuredData from "@/components/BlogStructuredData";
+import { img } from "@/lib/path";
 
 // Define the type for the blog post data
 interface BlogPost {
@@ -103,7 +104,11 @@ const BlogPage = async ({ params }: BlogPageProps) => {
         <BlogPostStructuredData post={post} />
         <div className="max-h-screen">
           <Image
-            src={post.coverImage?.url || "/images/wallpaper/22.webp"}
+            src={
+              post.coverImage
+                ? img`${post.coverImage?.url}`
+                : "/images/wallpaper/22.webp"
+            }
             className="w-screen h-screen absolute"
             width={1024}
             height={768}
