@@ -133,6 +133,14 @@ article ul li {
   @apply ml-6;
 }
 
+article h2 {
+  @apply !mt-4 !mb-1;
+}
+
+article hr {
+  @apply my-4;
+}
+
 article ul li::before {
   content: "—"; /* em dash */
   margin-right: 0.5rem;

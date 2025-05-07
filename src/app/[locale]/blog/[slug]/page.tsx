@@ -57,8 +57,6 @@ export async function generateMetadata({
 
   const { data: post } = await getBlogPost(id, { locale });
 
-  console.log("POST", post);
-
   if (!post || post.length === 0) {
     return { title: "Blog Post Not Found" }; // Fallback metadata if post doesn't exist
   }
