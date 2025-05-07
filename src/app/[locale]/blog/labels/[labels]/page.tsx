@@ -197,12 +197,15 @@ export default async function BlogPage({ params }: any) {
                   )
                   .map((post: any) => {
                     const htmlExcerpt = marked(post.excerpt);
+                    const availableLocales = post.localizations?.map(
+                      (p: any) => p.locale
+                    );
                     return (
                       <article
                         key={post.id}
                         className="flex flex-col md:flex-row bg-black/50 rounded-md overflow-hidden shadow-lg"
                       >
-                        <div className="relative w-full md:w-1/3">
+                        <div className="relative w-full md:w-1/3 justify-between">
                           <Link href={`/blog/${post.slug}-${post.documentId}`}>
                             <Image
                               src={img`${post.coverImage.url}`}
@@ -238,6 +241,13 @@ export default async function BlogPage({ params }: any) {
                                 {label.name}
                               </Link>
                             ))}
+                            <div className="ml-auto">
+                              <LanguageSwitcher
+                                showCurrent
+                                availableLocales={availableLocales}
+                                href={`/${locale}/blog/${post.slug}-${post.documentId}`}
+                              />
+                            </div>
                           </div>
                         </div>
                       </article>

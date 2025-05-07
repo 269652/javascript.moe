@@ -200,8 +200,6 @@ export default async function BlogPage({ params }: any) {
                     const availableLocales = post.localizations?.map(
                       (p: any) => p.locale
                     );
-
-                    // if (post.locale) availableLocales.unshift(post.locale);
                     return (
                       <article
                         key={post.id}
