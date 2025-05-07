@@ -87,9 +87,14 @@ img {
 }
 
 p {
-  font-size: 24px;
+  font-weight: 200;
+  font-size: 1.4rem;
   color: var(--text-color);
-  font-weight: 300;
+}
+
+li {
+  font-weight: 200;
+  font-size: 1.4rem;
 }
 
 .bullet:hover {
@@ -130,7 +135,6 @@ dialog:not([open]) {
   position: relative;
 }
 
-
 img.csr {
   animation: sat 400ms forwards ease-in;
 }
@@ -148,9 +152,7 @@ img.csr {
   opacity: 0;
 
   animation: fadein 400ms 800ms forwards ease-in;
-
 }
-
 
 @keyframes fadein {
   0% {
@@ -160,7 +162,6 @@ img.csr {
 
   100% {
     opacity: 1;
-    scale:1;
-
+    scale: 1;
   }
 }

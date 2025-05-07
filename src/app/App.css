@@ -114,8 +114,8 @@ h1.title {
 }
 
 article p {
-  font-weight: 100;
-  font-size: 1.2rem;
+  font-weight: 200;
+  font-size: 1.4rem;
 }
 
 article p p {
@@ -130,7 +130,7 @@ article p pre {
 
 article ul li {
   /* margin-bottom: 1rem; */
-  @apply ml-6;
+  @apply ml-8;
 }
 
 article h2 {
@@ -143,11 +143,11 @@ article hr {
 
 article ul li::before {
   content: "—"; /* em dash */
-  margin-right: 0.5rem;
+
   top: 0px;
   color: #fff; /* or whatever fits your theme */
   font-weight: bold;
-  @apply absolute -translate-x-6;
+  @apply absolute -translate-x-8;
 }
 
 article.post h1 {
@@ -166,11 +166,10 @@ article.post hr {
   @apply mb-2;
 }
 
-
-div .category~.category {
+div .category ~ .category {
   @apply border-l-[2px] border-white;
 }
 
 a[href] {
-  @apply underline
+  @apply underline;
 }
