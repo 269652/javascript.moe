@@ -209,7 +209,9 @@ export default async function BlogPage({ params }: any) {
                         className="flex flex-col md:flex-row bg-black/50 rounded-md overflow-hidden shadow-lg"
                       >
                         <div className="relative w-full md:w-1/3 justify-between">
-                          <Link href={`/blog/${post.slug}-${post.documentId}`}>
+                          <Link
+                            href={`${locale}/blog/${post.slug}-${post.documentId}`}
+                          >
                             <Image
                               src={img`${post.coverImage.url}`}
                               alt={post.title}
