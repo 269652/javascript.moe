@@ -349,22 +349,29 @@ export default function Home() {
               distance={64}
               offset={-64}
             >
-              <Bullets
-                range={[0, 0.5]}
-                data={[
-                  {
-                    text: "TypeScript",
-                    logo: TS,
-                    href: "https://www.typescriptlang.org/",
-                  },
-                  {
-                    text: "React",
-                    logo: ReactLogo,
-                    href: "https://react.dev/",
-                  },
-                ]}
-                offset={0.6}
-              />
+              <Parallax
+                trans={[ 0, 0.5]}
+                className="absolute w-full flex flex-col items-center gap-2"
+                distance={64 * 2}
+                offset={64 * 3}
+              >
+                <Bullets
+                  range={[0, 0.5]}
+                  data={[
+                    {
+                      text: "TypeScript",
+                      logo: TS,
+                      href: "https://www.typescriptlang.org/",
+                    },
+                    {
+                      text: "React",
+                      logo: ReactLogo,
+                      href: "https://react.dev/",
+                    },
+                  ]}
+                  offset={0.6}
+                />
+              </Parallax>
               <Parallax trans={[0.5, 0]} distance={64} offset={-64}>
                 <Bullets
                   randomUp

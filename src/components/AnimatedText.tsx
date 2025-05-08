@@ -268,24 +268,33 @@ export const AppearingText = ({
     target: ref || undefined,
     offset: ["start start", "end end"],
   });
-  const trans = useTransform(scrollYProgress, range, [0, 1]);
+
+  const transHook = useTransform(scrollYProgress, range, [0, 1], {
+    clamp: true,
+  });
+  const trans = typeof window === "undefined" ? new MotionValue(1) : transHook;
   const dist = 110;
   const height = useWindowHeight();
 
   const off = dist - height * 0.25;
   const y = useParallax(trans, dist, off, easeInOut);
-  const t2 = useTransform(trans, [0, 1], [1, texts.length + 1]);
+  const t22 = useTransform(trans, [0, 1], [1, texts.length + 1], {
+    clamp: true,
+  });
+  const t2 = typeof window === "undefined" ? new MotionValue(1) : t22;
+  const opacity = useTransform(trans, [0, 0.1], [0, 1], { clamp: true });
   const boxShadow = useTransform(
     trans,
     [0, 1],
-    ["0px 0px 0px black", "0px 0px 12px black"]
+    ["0px 0px 0px black", "0px 0px 12px black"],
+    { clamp: true }
   );
 
   const [text, setText] = useState(["", ""]);
-  const [, setRerender] = useState(0);
+  const [, setRerender] = useState(2);
   const startMultiplier = 2;
-  useMotionValueEvent(y, "change", () => {
-    const totalProgress = t2.get();
+  const onChange = () => {
+    const totalProgress = t2.get() || 1;
     const curText = Math.min(texts.length - 1, Math.floor(totalProgress - 1));
     const curProgress = totalProgress % 1;
     const it = texts[curText];
@@ -325,13 +334,15 @@ export const AppearingText = ({
     } else if (curProgress < 0.5) {
       setRerender(0);
     }
-  });
+  };
+  useMotionValueEvent(y, "change", onChange);
+  useEffect(onChange, [t2.get()]);
   return (
     <Component
       className={clsx("absolute text-center w-full", className, {
         "break-all": t2.get() % 1 < 1 / startMultiplier,
       })}
-      style={{ y, zIndex: 100, textShadow: boxShadow }}
+      style={{ y, zIndex: 100, textShadow: boxShadow, opacity }}
     >
       {/* {hash && (
         <IntersectionAnchor hash={hash} block={"start"}></IntersectionAnchor>

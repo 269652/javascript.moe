@@ -9,9 +9,7 @@ const LanguageSwitcher = ({ availableLocales, href, showCurrent }: any) => {
   const { locale } = useParams<{ locale: string }>();
   const pathname = usePathname();
 
-  const currentLocale = supportedLocales.includes(locale as string)
-    ? locale
-    : "en";
+  const currentLocale = supportedLocales.includes(locale) ? locale : "en";
 
   return (
     <div className="top-4 right-8 flex gap-2 z-10">

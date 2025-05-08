@@ -13,7 +13,7 @@ export const Labels = ({ labels, labelNames, className }: any) => {
         const active = labelNames.includes(cat.slug);
         const newLabelNames = active
           ? labelNames.filter((l: string) => l !== cat.slug)
-          : [...labelNames, cat.slug];
+          : [...labelNames, cat.slug].sort();
         const href =
           newLabelNames.length > 0
             ? `/${locale}/blog/labels/${newLabelNames.join(",")}`
