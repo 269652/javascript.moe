@@ -1,11 +1,12 @@
 "use client";
 
 import clsx from "clsx";
-import { useLocale } from "next-intl";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 export const Labels = ({ labels, labelNames, className }: any) => {
-  const locale = useLocale();
+  const { locale } = useParams<{ locale: string }>();
+
   return (
     <div className={clsx("flex-wrap gap-1", className)}>
       {labels.map((cat: any) => {

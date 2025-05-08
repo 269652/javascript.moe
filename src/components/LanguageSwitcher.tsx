@@ -1,13 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import supportedLocales from "@/lib/locales"; // Adjust path as needed
-import { useLocale } from "next-intl";
 
 const LanguageSwitcher = ({ availableLocales, href, showCurrent }: any) => {
-  const locale = useLocale();
+  const { locale } = useParams<{ locale: string }>();
   const pathname = usePathname();
 
   const currentLocale = supportedLocales.includes(locale as string)
