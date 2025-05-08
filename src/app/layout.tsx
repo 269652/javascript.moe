@@ -8,6 +8,14 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
+const gtag = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-DK3755CZQN');
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -48,6 +56,12 @@ export default function RootLayout({
             }),
           }}
         />
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-DK3755CZQN"
+        ></script>
+        <script>{gtag}</script>
       </head>
       <body style={{ margin: 0, overflowX: "hidden" }}>
         <div id="root">
