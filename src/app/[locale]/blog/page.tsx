@@ -8,6 +8,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { BlogOverviewStructuredData } from "@/components/BlogOverviewStructuredData";
 import { img } from "@/lib/path";
 import supportedLocales from "@/lib/locales";
+import { blogCategoryLink, blogLink, blogPostLink } from "@/lib/links";
 
 // Dynamic Metadata Generation for the Blog Page
 export async function generateMetadata({
@@ -157,15 +158,15 @@ export default async function BlogPage({ params }: any) {
             <div className="flex justify-between h-fit">
               {/* Categories */}
               <div className="flex border-b-2 border-gray-500 overflow-x-auto">
-                {categories.map((cat: any) => {
-                  const active = categoryName === cat.slug;
+                {categories.map((category: any) => {
+                  const active = categoryName === category.slug;
                   const href = active
-                    ? `/${locale}/blog`
-                    : `/${locale}/blog/category/${cat.slug}`;
+                    ? blogLink({ locale })
+                    : blogCategoryLink({ locale, category });
 
                   return (
                     <Link
-                      key={cat.id}
+                      key={category.id}
                       href={href}
                       className={`category whitespace-nowrap p-2 px-3 text-sm transition ${
                         active
@@ -173,7 +174,7 @@ export default async function BlogPage({ params }: any) {
                           : "bg-gray-700 hover:bg-yellow-500"
                       } text-white`}
                     >
-                      {cat.name}
+                      {category.name}
                     </Link>
                   );
                 })}
@@ -209,9 +210,7 @@ export default async function BlogPage({ params }: any) {
                         className="flex flex-col md:flex-row bg-black/50 rounded-md overflow-hidden shadow-lg"
                       >
                         <div className="relative w-full md:w-1/3 justify-between">
-                          <Link
-                            href={`${locale}/blog/${post.slug}-${post.documentId}`}
-                          >
+                          <Link href={blogPostLink({ locale, post })}>
                             <Image
                               src={img`${post.coverImage.url}`}
                               alt={post.title}
@@ -251,7 +250,7 @@ export default async function BlogPage({ params }: any) {
                                 key={post.id}
                                 showCurrent
                                 availableLocales={availableLocales}
-                                href={`/${locale}/blog/${post.slug}-${post.documentId}`}
+                                href={blogPostLink({ locale, post })}
                               />
                             </div>
                           </div>
