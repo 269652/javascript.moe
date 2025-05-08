@@ -1,5 +1,8 @@
-export type BlogPost = {
+export interface BlogPost {
   documentId: string;
-  locale: string;
+  title: string;
+  content: string;
+  excerpt: string;
   slug: string;
-};
+  coverImage: { url: string };
+}

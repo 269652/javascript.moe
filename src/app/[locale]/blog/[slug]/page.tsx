@@ -3,20 +3,12 @@ import { marked } from "marked";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import BlogPostStructuredData from "@/components/BlogStructuredData";
-import { img } from "@/lib/path";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { IconButton } from "@/components/Button";
 import Link from "next/link";
+import { coverImageLink } from "@/lib/links";
 
 // Define the type for the blog post data
-interface BlogPost {
-  id: string;
-  title: string;
-  content: string;
-  excerpt: string;
-  slug: string;
-  coverImage: { url: string };
-}
 
 const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
@@ -111,7 +103,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
           <Image
             src={
               post.coverImage
-                ? img`${post.coverImage?.url}`
+                ? coverImageLink({ post })
                 : "/images/wallpaper/22.webp"
             }
             className="w-screen h-screen absolute"

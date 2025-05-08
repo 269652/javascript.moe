@@ -22,7 +22,7 @@ export const l =
   };
 
 export const blogPostLink = ({ locale, post }: BlogPostLinksParams) => {
-  return `${locale}/blog/${post.slug}-${post.documentId}`;
+  return `/${locale}/blog/${post.slug}-${post.documentId}`;
 };
 
 export const coverImageLink = ({ post }: { post: BlogPost }) => {

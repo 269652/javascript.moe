@@ -9,7 +9,6 @@ import {
   coverImageLink,
 } from "@/lib/links";
 import supportedLocales from "@/lib/locales";
-import { img } from "@/lib/path";
 import { marked } from "marked";
 import Image from "next/image";
 import Link from "next/link";
