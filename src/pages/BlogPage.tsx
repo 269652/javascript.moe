@@ -1,112 +1,18 @@
+import { BlogOverviewStructuredData } from "@/components/BlogOverviewStructuredData";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Labels } from "@/container/Labels";
+import { getBlogPosts, getCategories, getLabels } from "@/lib/api";
+import {
+  blogCategoryLink,
+  blogLink,
+  blogPostLink,
+  coverImageLink,
+} from "@/lib/links";
+import supportedLocales from "@/lib/locales";
+import { img } from "@/lib/path";
+import { marked } from "marked";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
-import { getBlogPosts, getCategories, getLabels } from "@/lib/api";
-import { marked } from "marked";
-import { Labels } from "@/container/Labels";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { BlogOverviewStructuredData } from "@/components/BlogOverviewStructuredData";
-import { img } from "@/lib/path";
-import supportedLocales from "@/lib/locales";
-import { blogCategoryLink, blogLink, blogPostLink } from "@/lib/links";
-
-// Dynamic Metadata Generation for the Blog Page
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const { data: posts } = await getBlogPosts({ locale });
-
-  const enMetadata = {
-    title:
-      "Blog | Moritz Roessler | Senior Frontend Developer in Freiburg im Breisgau",
-    description: posts.length
-      ? "Explore the latest blog posts by Moritz Roessler on JavaScript, React, and more."
-      : "No blog posts available.",
-    openGraph: {
-      type: "website",
-      title:
-        "Blog | Moritz Roessler | Senior Frontend Developer in Freiburg im Breisgau",
-      siteName: "Moe's Website",
-      description: posts.length
-        ? "Explore the latest blog posts by Moritz Roessler on JavaScript, React, and more."
-        : "No blog posts available.",
-      images: ["https://javascript.moe/images/blog-preview.png"],
-      url: "https://javascript.moe/blog",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title:
-        "Blog | Moritz Roessler | Senior Frontend Developer in Freiburg im Breisgau",
-      description: posts.length
-        ? "Explore the latest blog posts by Moritz Roessler on JavaScript, React, and more."
-        : "No blog posts available.",
-      images: ["https://javascript.moe/images/blog-preview.png"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
-    },
-    icons: {
-      icon: [
-        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-      ],
-      apple: "/apple-touch-icon.png",
-    },
-    manifest: "/site.webmanifest",
-    other: {
-      "msapplication-TileColor": "#da532c",
-      "content-language": "en",
-      canonical: "https://javascript.moe/blog",
-    },
-  };
-
-  const deMetadata = {
-    title:
-      "Blog | Moritz Roessler | Senior Frontend Entwickler in Freiburg im Breisgau",
-    description: posts.length
-      ? "Entdecke die neuesten Blogbeiträge von Moritz Roessler zu JavaScript, React und mehr."
-      : "Keine Blogbeiträge verfügbar.",
-    openGraph: {
-      type: "website",
-      title:
-        "Blog | Moritz Roessler | Senior Frontend Entwickler in Freiburg im Breisgau",
-      siteName: "Moe's Website",
-      description: posts.length
-        ? "Entdecke die neuesten Blogbeiträge von Moritz Roessler zu JavaScript, React und mehr."
-        : "Keine Blogbeiträge verfügbar.",
-      images: ["https://javascript.moe/images/blog-preview.png"],
-      url: "https://javascript.moe/blog",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title:
-        "Blog | Moritz Roessler | Senior Frontend Entwickler in Freiburg im Breisgau",
-      description: posts.length
-        ? "Entdecke die neuesten Blogbeiträge von Moritz Roessler zu JavaScript, React und mehr."
-        : "Keine Blogbeiträge verfügbar.",
-      images: ["https://javascript.moe/images/blog-preview.png"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
-    },
-    icons: {
-      icon: [
-        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-      ],
-      apple: "/apple-touch-icon.png",
-    },
-    manifest: "/site.webmanifest",
-    other: {
-      "msapplication-TileColor": "#da532c",
-      "content-language": "de",
-      canonical: "https://javascript.moe/blog",
-    },
-  };
-
-  return locale === "de" ? deMetadata : enMetadata;
-}
 
 // Blog Page Component
 export default async function BlogPage({ params }: any) {
@@ -211,7 +117,7 @@ export default async function BlogPage({ params }: any) {
                         <div className="relative w-full md:w-1/3 justify-between">
                           <Link href={blogPostLink({ locale, post })}>
                             <Image
-                              src={img`${post.coverImage.url}`}
+                              src={coverImageLink({ post })}
                               alt={post.title}
                               width={400}
                               height={250}

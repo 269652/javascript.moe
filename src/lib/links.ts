@@ -25,6 +25,13 @@ export const blogPostLink = ({ locale, post }: BlogPostLinksParams) => {
   return `${locale}/blog/${post.slug}-${post.documentId}`;
 };
 
+export const coverImageLink = ({ post }: { post: BlogPost }) => {
+  const relativeOrAbsoluteUrl = post.coverImage.url;
+  return relativeOrAbsoluteUrl?.startsWith("http")
+    ? relativeOrAbsoluteUrl
+    : `${process.env.STRAPI_BASE}${relativeOrAbsoluteUrl}`;
+};
+
 export const blogCategoryLink = ({
   locale,
   category,
