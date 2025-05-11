@@ -47,7 +47,7 @@ export default async function BlogPage({ params }: any) {
           alt="Depiction of a forest fragrance"
         />
         <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4">
-          <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col gap-4">
+          <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col">
             <div className="flex justify-between">
               <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
               <LanguageSwitcher availableLocales={supportedLocales} />
@@ -60,8 +60,8 @@ export default async function BlogPage({ params }: any) {
               className="flex md:hidden"
             />
 
-            <div className="flex justify-between h-fit">
-              <div className="flex border-b-2 border-gray-500 overflow-x-auto">
+            <div className="flex justify-between h-fit items-end">
+              <div className="flex border-b-2 border-gray-500 overflow-x-auto flex-1 mr-auto max-w-fit">
                 {categories.map((category: any) => {
                   const active = categoryName === category.slug;
                   const href = active
