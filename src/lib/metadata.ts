@@ -22,7 +22,7 @@ export function blogMetadata({
         ? "Explore the latest blog posts by Moritz Roessler on JavaScript, React, and more."
         : "No blog posts available.",
       images: ["https://javascript.moe/images/blog-preview.png"],
-      url: "https://javascript.moe/blog",
+      url: "https://javascript.moe/en/blog",
     },
     twitter: {
       card: "summary_large_image",
@@ -32,7 +32,7 @@ export function blogMetadata({
         ? "Explore the latest blog posts by Moritz Roessler on JavaScript, React, and more."
         : "No blog posts available.",
       images: ["https://javascript.moe/images/blog-preview.png"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
+      site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
     icons: {
       icon: [
@@ -46,7 +46,7 @@ export function blogMetadata({
     other: {
       "msapplication-TileColor": "#da532c",
       "content-language": "en",
-      canonical: "https://javascript.moe/blog",
+      canonical: "https://javascript.moe/en/blog",
     },
   };
 
@@ -65,7 +65,7 @@ export function blogMetadata({
         ? "Entdecke die neuesten Blogbeiträge von Moritz Roessler zu JavaScript, React und mehr."
         : "Keine Blogbeiträge verfügbar.",
       images: ["https://javascript.moe/images/blog-preview.png"],
-      url: "https://javascript.moe/blog",
+      url: "https://javascript.moe/de/blog",
     },
     twitter: {
       card: "summary_large_image",
@@ -75,7 +75,7 @@ export function blogMetadata({
         ? "Entdecke die neuesten Blogbeiträge von Moritz Roessler zu JavaScript, React und mehr."
         : "Keine Blogbeiträge verfügbar.",
       images: ["https://javascript.moe/images/blog-preview.png"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
+      site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
     icons: {
       icon: [
@@ -89,7 +89,7 @@ export function blogMetadata({
     other: {
       "msapplication-TileColor": "#da532c",
       "content-language": "de",
-      canonical: "https://javascript.moe/blog",
+      canonical: "https://javascript.moe/de/blog",
     },
   };
 

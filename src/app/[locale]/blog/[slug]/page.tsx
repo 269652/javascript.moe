@@ -68,7 +68,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt || "Detailed blog post content here.",
       images: [post.coverImage?.url || "/images/wallpaper/22.webp"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
+      site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
   };
 }

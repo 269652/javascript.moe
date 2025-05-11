@@ -30,7 +30,7 @@ export async function generateMetadata({
       description:
         "Moritz Roessler is a Senior Frontend Developer based in Freiburg im Breisgau. Specialized in JavaScript, TypeScript, React, Node.js, SQL, AWS, and Serverless.",
       images: ["https://javascript.moe/images/previews/hello.png"],
-      url: "https://javascript.moe/",
+      url: "https://javascript.moe/en",
     },
     twitter: {
       card: "summary_large_image",
@@ -39,7 +39,7 @@ export async function generateMetadata({
       description:
         "Moritz Roessler is a Senior Frontend Developer based in Freiburg im Breisgau. Specialized in JavaScript, TypeScript, React, Node.js, SQL, AWS, and Serverless.",
       images: ["https://javascript.moe/images/previews/hello.png"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
+      site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
     icons: {
       icon: [
@@ -53,7 +53,7 @@ export async function generateMetadata({
     other: {
       "msapplication-TileColor": "#da532c",
       "content-language": "en",
-      canonical: "https://javascript.moe/",
+      canonical: "https://javascript.moe/en",
     },
   };
 
@@ -72,7 +72,7 @@ export async function generateMetadata({
       description:
         "Moritz Roessler ist ein Senior Frontend Entwickler mit Sitz in Freiburg im Breisgau. Spezialisiert auf JavaScript, TypeScript, React, Node.js, SQL, AWS und Serverless.",
       images: ["https://javascript.moe/images/previews/hello.png"],
-      url: "https://javascript.moe/",
+      url: "https://javascript.moe/de",
     },
     twitter: {
       card: "summary_large_image",
@@ -81,7 +81,7 @@ export async function generateMetadata({
       description:
         "Moritz Roessler ist ein Senior Frontend Entwickler mit Sitz in Freiburg im Breisgau. Spezialisiert auf JavaScript, TypeScript, React, Node.js, SQL, AWS und Serverless.",
       images: ["https://javascript.moe/images/previews/hello.png"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
+      site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
     icons: {
       icon: [
@@ -95,7 +95,7 @@ export async function generateMetadata({
     other: {
       "msapplication-TileColor": "#da532c",
       "content-language": "de",
-      canonical: "https://javascript.moe/",
+      canonical: "https://javascript.moe/de",
     },
   };
 

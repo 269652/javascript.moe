@@ -25,7 +25,7 @@ export const metadata: { en: Metadata; de: Metadata } = {
       description:
         "Moritz Roessler is a Senior Frontend Developer based in Freiburg im Breisgau. Specialized in JavaScript, TypeScript, React, Node.js, SQL, AWS, and Serverless.",
       images: ["https://javascript.moe/images/previews/hello.png"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
+      site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
     icons: {
       icon: [
@@ -67,7 +67,7 @@ export const metadata: { en: Metadata; de: Metadata } = {
       description:
         "Moritz Roessler ist ein Senior Frontend Entwickler mit Sitz in Freiburg im Breisgau. Spezialisiert auf JavaScript, TypeScript, React, Node.js, SQL, AWS und Serverless.",
       images: ["https://javascript.moe/images/previews/hello.png"],
-      site: "@your_twitter_handle", // Replace with your Twitter handle
+      site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
     icons: {
       icon: [
