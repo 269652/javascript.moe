@@ -350,7 +350,7 @@ export default function Home() {
               offset={-64}
             >
               <Parallax
-                trans={[ 0, 0.5]}
+                trans={[0, 0.5]}
                 className="absolute w-full flex flex-col items-center gap-2"
                 distance={64 * 2}
                 offset={64 * 3}
@@ -374,7 +374,6 @@ export default function Home() {
               </Parallax>
               <Parallax trans={[0.5, 0]} distance={64} offset={-64}>
                 <Bullets
-                  randomUp
                   range={[0, 0.5]}
                   l={3}
                   gapTiming={-2}
