@@ -124,7 +124,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
                   <IconButton icon="FaHome" />
                 </Link>
                 <LanguageSwitcher availableLocales={availableLocales} />
-                <ViewCounter post={post} className="!ml-auto" />
+                <ViewCounter post={post} className="!ml-auto" increment/>
               </div>
               <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title">
                 {post.title}

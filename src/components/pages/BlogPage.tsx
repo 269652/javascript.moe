@@ -14,6 +14,7 @@ import { marked } from "marked";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { ViewCounter } from "../ViewCounter";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams }: any) {
@@ -161,11 +162,7 @@ export default async function BlogPage({ params, searchParams }: any) {
                                 availableLocales={availableLocales}
                                 href={blogPostLink({ locale, post })}
                               />
-                              <div className="ml-4 p-2 flex gap-2 bg-white/20 rounded-md items-center font-semibold text-lg">
-                                <Icon icon="FaEye" className="!h-6 !w-6"></Icon>
-
-                                {post.views || "0"}
-                              </div>
+                              <ViewCounter post={post} />
                             </div>
                           </div>
                         </div>
