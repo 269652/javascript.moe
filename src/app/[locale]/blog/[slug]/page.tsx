@@ -7,11 +7,15 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { IconButton } from "@/components/Button";
 import Link from "next/link";
 import { coverImageLink } from "@/lib/links";
+import footnote from 'marked-footnote';
+
 
 // Define the type for the blog post data
 
 const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
+
+marked.use(footnote());
 
 async function getBlogPost(id: string, { locale = "en" }: { locale?: string }) {
   try {
