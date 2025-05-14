@@ -1,4 +1,5 @@
 import { BlogOverviewStructuredData } from "@/components/BlogOverviewStructuredData";
+import { Icon } from "@/components/Icon";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Labels } from "@/container/Labels";
 import { getBlogPosts, getCategories, getLabels } from "@/lib/api";
@@ -135,7 +136,7 @@ export default async function BlogPage({ params, searchParams }: any) {
                           <div
                             dangerouslySetInnerHTML={{ __html: htmlExcerpt }}
                           />
-                          <div className="flex gap-2 mt-4 flex-wrap">
+                          <div className="flex gap-2 mt-4 flex-wrap items-center h-fit">
                             {post.category && (
                               <Link
                                 href={`/blog/category/${post.category.slug}`}
@@ -153,13 +154,18 @@ export default async function BlogPage({ params, searchParams }: any) {
                                 {label.name}
                               </Link>
                             ))}
-                            <div className="ml-auto">
+                            <div className="ml-auto flex items-center">
                               <LanguageSwitcher
                                 key={post.id}
                                 showCurrent
                                 availableLocales={availableLocales}
                                 href={blogPostLink({ locale, post })}
                               />
+                              <div className="ml-4 p-2 flex gap-2 bg-white/20 rounded-md items-center font-semibold text-lg">
+                                <Icon icon="FaEye" className="!h-6 !w-6"></Icon>
+
+                                {post.views || "0"}
+                              </div>
                             </div>
                           </div>
                         </div>

@@ -7,9 +7,11 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { IconButton } from "@/components/Button";
 import Link from "next/link";
 import { coverImageLink } from "@/lib/links";
-import footnote from 'marked-footnote';
-
-
+import footnote from "marked-footnote";
+import { useEffect } from "react";
+import { useLocalStorage } from "@/lib/useLocalStorage";
+import { Icon } from "@/components/Icon";
+import { ViewCounter } from "@/components/ViewCounter";
 // Define the type for the blog post data
 
 const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
@@ -122,6 +124,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
                   <IconButton icon="FaHome" />
                 </Link>
                 <LanguageSwitcher availableLocales={availableLocales} />
+                <ViewCounter post={post} className="!ml-auto" />
               </div>
               <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title">
                 {post.title}
