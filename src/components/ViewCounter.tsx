@@ -4,6 +4,7 @@ import { useLocalStorage } from "@/lib/useLocalStorage";
 import { useEffect, useRef } from "react";
 import { Icon } from "./Icon";
 import clsx from "clsx";
+import { useLocale } from "next-intl";
 
 export const ViewCounter = ({ post, className }: any) => {
   const [incremented, setIncremented] = useLocalStorage(
@@ -17,7 +18,7 @@ export const ViewCounter = ({ post, className }: any) => {
       if (!incremented && !sem.current) {
         sem.current = true;
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_BASE}/api/blog-posts/${post.documentId}/increment-views`,
+          `${process.env.NEXT_PUBLIC_STRAPI_BASE}/api/blog-posts/${post.documentId}/increment-views?locale=${post.locale}`,
           {
             method: "POST",
           }
