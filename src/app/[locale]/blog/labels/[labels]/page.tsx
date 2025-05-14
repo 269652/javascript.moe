@@ -9,7 +9,7 @@ export async function generateMetadata({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: { c: string };
+  searchParams: Promise<{ c: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
 
