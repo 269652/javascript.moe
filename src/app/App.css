@@ -113,18 +113,18 @@ h1.title {
   }
 }
 
-article p {
+article > p {
   margin-bottom: 1rem;
   font-weight: 200;
   font-size: 1.4rem;
 }
 
-article p p {
+article > p > p {
   margin-bottom: 1rem;
   @apply overflow-x-auto max-w-full;
 }
 
-article p pre {
+article p > pre {
   margin-bottom: 1rem;
   @apply overflow-x-auto max-w-full;
 }
