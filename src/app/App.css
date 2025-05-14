@@ -178,3 +178,20 @@ div .category ~ .category {
 a[href] {
   @apply underline;
 }
+
+th,
+td {
+  @apply p-2;
+}
+
+tr:nth-child(2n) {
+  @apply bg-white/10;
+}
+
+thead tr {
+  @apply border-b-[2px] border-sky-400;
+}
+
+table {
+  @apply my-4;
+}
