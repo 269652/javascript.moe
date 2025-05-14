@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocalStorage } from "@/lib/useLocalStorage";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "./Icon";
 import clsx from "clsx";
 import { useLocale } from "next-intl";
@@ -11,7 +11,9 @@ export const ViewCounter = ({ post, className }: any) => {
     false,
     "viewed." + post.documentId
   );
+  const [views, setViews] = useState(post.views);
   const sem = useRef(false);
+  const sem2 = useRef(false);
   // In your frontend (e.g., Next.js)
   useEffect(() => {
     (async () => {
@@ -31,6 +33,24 @@ export const ViewCounter = ({ post, className }: any) => {
     })();
   }, [post.documentId, incremented, sem.current]);
 
+  useEffect(() => {
+    if (!post.documentId) return;
+    (async () => {
+      if (!sem2.current) {
+        sem2.current = true;
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_BASE}/api/blog-posts/${post.documentId}/views?locale=${post.locale}`,
+          {
+            method: "GET",
+          }
+        );
+        const json = await res.json();
+        console.log ("VIEWS", json.views)
+        setViews(json.views);
+      }
+    })();
+  }, [post.documentId]);
+
   return (
     <div
       className={clsx(
@@ -39,7 +59,7 @@ export const ViewCounter = ({ post, className }: any) => {
       )}
     >
       <Icon icon="FaEye" className="!h-6 !w-6"></Icon>
-      {post.views || "0"}
+      {views || "0"}
     </div>
   );
 };
