@@ -135,7 +135,7 @@ article ul li {
 }
 
 ul {
-  @apply mb-8;
+  @apply mb-4;
 }
 
 article h2 {
