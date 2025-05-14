@@ -8,7 +8,7 @@ import clsx from "clsx";
 export const ViewCounter = ({ post, className, increment }: any) => {
   const [incremented, setIncremented] = useLocalStorage(
     false,
-    "viewed." + post.documentId
+    `viewed.${post.locale}.${post.documentId}`
   );
   const [views, setViews] = useState(post.views);
   const hasFetched = useRef(false);
