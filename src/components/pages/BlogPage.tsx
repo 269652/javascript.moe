@@ -12,9 +12,10 @@ import supportedLocales from "@/lib/locales";
 import { marked } from "marked";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 // Blog Page Component
-export default async function BlogPage({ params }: any) {
+export default async function BlogPage({ params, searchParams }: any) {
   const {
     locale,
     category: categoryName,
@@ -25,10 +26,13 @@ export default async function BlogPage({ params }: any) {
     .split(",")
     .filter(Boolean);
 
+  const isAndCon = (await searchParams).c !== "OR";
+
   const { data: posts = [] } = await getBlogPosts({
     locale,
     categoryName,
     labelNames,
+    join: isAndCon ? "AND" : "OR",
   });
   const { data: categories = [] } = await getCategories({ locale });
   const { data: labels = [] } = await getLabels({ locale });

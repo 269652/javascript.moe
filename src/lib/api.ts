@@ -48,10 +48,12 @@ export async function getBlogPosts({
   locale,
   categoryName: categoryName,
   labelNames,
+  join,
 }: {
   locale: string;
   categoryName?: string;
   labelNames?: string[]; // Accepts an array of label names
+  join: "AND" | "OR";
 }) {
   try {
     let filterQuery = "";
@@ -62,13 +64,17 @@ export async function getBlogPosts({
     }
 
     // Filter by label if provided
-    if (labelNames && labelNames.length > 0) {
+    if (join === "OR" && labelNames && labelNames.length > 0) {
       const labelFilter = labelNames
         .map((label, i) => `filters[$or][${i}][tags][slug][$eq]=${label}`)
         .join("&");
       filterQuery += (filterQuery ? "&" : "") + labelFilter;
+    } else if (labelNames && labelNames.length > 0) {
+      const labelFilter = labelNames
+        .map((label, i) => `filters[$and][${i}][tags][slug][$eq]=${label}`)
+        .join("&");
+      filterQuery += (filterQuery ? "&" : "") + labelFilter;
     }
-
     console.log(
       "FETCH",
       `${STRAPI_URL}/blog-posts?populate=*&locale=${locale}&${filterQuery}`

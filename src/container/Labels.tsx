@@ -2,10 +2,12 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 export const Labels = ({ labels, labelNames, className }: any) => {
   const { locale } = useParams<{ locale: string }>();
+  const search = useSearchParams();
+  const isAndCon = search.get("c") !== "OR";
 
   return (
     <div
@@ -21,7 +23,9 @@ export const Labels = ({ labels, labelNames, className }: any) => {
           : [...labelNames, cat.slug].sort();
         const href =
           newLabelNames.length > 0
-            ? `/${locale}/blog/labels/${newLabelNames.join(",")}`
+            ? `/${locale}/blog/labels/${newLabelNames.join(",")}${
+                !isAndCon ? "?c=OR" : ""
+              }`
             : `/${locale}/blog`;
 
         return (
@@ -38,6 +42,19 @@ export const Labels = ({ labels, labelNames, className }: any) => {
           </Link>
         );
       })}
+      {labelNames.length > 1 && (
+        <Link
+          className={clsx("absolute top-1 right-1 p-2  rounded-full min-w-11 text-center",{
+            "bg-amber-500 hover:bg-amber-400": isAndCon,
+            "bg-sky-500 hover:bg-sky-400  ": !isAndCon,
+          })}
+          href={`/${locale}/blog/labels/${labelNames.join(",")}${
+            isAndCon ? "?c=OR" : ""
+          }`}
+        >
+          {isAndCon ? "AND" : "OR"}
+        </Link>
+      )}
     </div>
   );
 };
