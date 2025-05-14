@@ -26,7 +26,7 @@ export default async function BlogPage({ params, searchParams }: any) {
     .split(",")
     .filter(Boolean);
 
-  const isAndCon = (await searchParams).c !== "OR";
+  const isAndCon = (await searchParams).c === "AND";
 
   const { data: posts = [] } = await getBlogPosts({
     locale,

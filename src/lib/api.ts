@@ -64,12 +64,12 @@ export async function getBlogPosts({
     }
 
     // Filter by label if provided
-    if (join === "OR" && labelNames && labelNames.length > 0) {
+    if (join !== "AND" && labelNames && labelNames.length > 0) {
       const labelFilter = labelNames
         .map((label, i) => `filters[$or][${i}][tags][slug][$eq]=${label}`)
         .join("&");
       filterQuery += (filterQuery ? "&" : "") + labelFilter;
-    } else if (labelNames && labelNames.length > 0) {
+    } else if (join === "AND" && labelNames && labelNames.length > 0) {
       const labelFilter = labelNames
         .map((label, i) => `filters[$and][${i}][tags][slug][$eq]=${label}`)
         .join("&");

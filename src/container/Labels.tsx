@@ -7,7 +7,7 @@ import { useParams, useSearchParams } from "next/navigation";
 export const Labels = ({ labels, labelNames, className }: any) => {
   const { locale } = useParams<{ locale: string }>();
   const search = useSearchParams();
-  const isAndCon = search.get("c") !== "OR";
+  const isAndCon = search.get("c") === "AND";
 
   return (
     <div
@@ -44,12 +44,15 @@ export const Labels = ({ labels, labelNames, className }: any) => {
       })}
       {labelNames.length > 1 && (
         <Link
-          className={clsx("absolute top-1 right-1 p-2  rounded-full min-w-11 text-center",{
-            "bg-amber-500 hover:bg-amber-400": isAndCon,
-            "bg-sky-500 hover:bg-sky-400  ": !isAndCon,
-          })}
+          className={clsx(
+            "absolute top-1 right-1 p-2  rounded-full min-w-11 text-center",
+            {
+              "bg-amber-500 hover:bg-amber-400": isAndCon,
+              "bg-sky-500 hover:bg-sky-400  ": !isAndCon,
+            }
+          )}
           href={`/${locale}/blog/labels/${labelNames.join(",")}${
-            isAndCon ? "?c=OR" : ""
+            isAndCon ? "" : "?c=AND"
           }`}
         >
           {isAndCon ? "AND" : "OR"}
