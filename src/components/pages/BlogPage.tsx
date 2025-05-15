@@ -8,6 +8,7 @@ import { Categories } from "../../container/Categories";
 import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import { BlogPost } from "../BlogPost";
 import { useLocale } from "next-intl";
+import { Suspense } from "react";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams }: any) {
@@ -53,7 +54,9 @@ export default async function BlogPage({ params, searchParams }: any) {
             <div className="flex flex-col gap-2">
               <div className="flex justify-between">
                 <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
-                <LanguageSwitcher availableLocales={supportedLocales} />
+                <Suspense>
+                  <LanguageSwitcher availableLocales={supportedLocales} />
+                </Suspense>
               </div>
 
               {/* Labels */}

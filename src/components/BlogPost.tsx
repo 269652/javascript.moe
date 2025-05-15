@@ -6,6 +6,7 @@ import { blogPostLink, coverImageLink } from "@/lib/links";
 import Link from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export const BlogPost = ({
   post,
@@ -76,12 +77,14 @@ export const BlogPost = ({
             </Link>
           ))}
           <div className="ml-auto flex items-center">
-            <LanguageSwitcher
-              key={post.id}
-              showCurrent
-              availableLocales={availableLocales}
-              href={blogPostLink({ locale, post })}
-            />
+            <Suspense>
+              <LanguageSwitcher
+                key={post.id}
+                showCurrent
+                availableLocales={availableLocales}
+                href={blogPostLink({ locale, post })}
+              />
+            </Suspense>
             <ViewCounter post={post} />
           </div>
         </div>

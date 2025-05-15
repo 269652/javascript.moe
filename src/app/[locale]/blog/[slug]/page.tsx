@@ -8,7 +8,7 @@ import { IconButton } from "@/components/Button";
 import Link from "next/link";
 import { coverImageLink } from "@/lib/links";
 import footnote from "marked-footnote";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useLocalStorage } from "@/lib/useLocalStorage";
 import { Icon } from "@/components/Icon";
 import { ViewCounter } from "@/components/ViewCounter";
@@ -19,7 +19,6 @@ const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
 marked.use(footnote());
-
 
 export async function generateMetadata({
   params,
@@ -79,7 +78,10 @@ const BlogPage = async ({ params }: BlogPageProps) => {
 
   const { localizations = [] } = post;
 
-  const availableLocales = [post.locale, ...localizations.map((ele: any) => ele.locale)];
+  const availableLocales = [
+    post.locale,
+    ...localizations.map((ele: any) => ele.locale),
+  ];
 
   const htmlContent = marked(post.content || "");
 
@@ -104,7 +106,9 @@ const BlogPage = async ({ params }: BlogPageProps) => {
               <Link href={`/${locale}/blog`}>
                 <IconButton icon="FaHome" />
               </Link>
-              <LanguageSwitcher availableLocales={availableLocales} />
+              <Suspense>
+                <LanguageSwitcher availableLocales={availableLocales} />
+              </Suspense>
               <ViewCounter post={post} className="!ml-auto" increment />
             </div>
             <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title">
