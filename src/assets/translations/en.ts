@@ -26,9 +26,14 @@ const home = {
   texts,
 };
 
-const translationsDe = {
-  about,
-  home,
+const notFound = {
+  "404": "Not found",
 };
 
-export default translationsDe;
+const translationsEn = {
+  about,
+  home,
+  notFound,
+};
+
+export default translationsEn;

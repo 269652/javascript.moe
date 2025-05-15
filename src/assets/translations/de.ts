@@ -7,15 +7,15 @@ Wenn du auf der Suche nach einem erfahrenen Lead- oder Senior Frontend-/Fullstac
 `;
 
 export const texts = {
-  "senior": "Suchst du einen Senior TypeScript-Entwickler?",
-  "discover": "Entdecke eine Welt der Düfte",
-  "ingredients": "Zutaten",
-  "formulas": "Formeln",
-  "lead": "Suchst du einen Lead-Entwickler?",
-  "contact": "Kontaktiere mich",
-  "nature": "Ich liebe die Natur",
-  "languages": "Ich liebe Sprachen",
-  "life": "Ich liebe das Leben",
+  senior: "Suchst du einen Senior TypeScript-Entwickler?",
+  discover: "Entdecke eine Welt der Düfte",
+  ingredients: "Zutaten",
+  formulas: "Formeln",
+  lead: "Suchst du einen Lead-Entwickler?",
+  contact: "Kontaktiere mich",
+  nature: "Ich liebe die Natur",
+  languages: "Ich liebe Sprachen",
+  life: "Ich liebe das Leben",
 };
 
 const about = {
@@ -23,12 +23,18 @@ const about = {
 };
 
 const home = {
-    texts
+  texts,
+};
+
+const notFound = {
+  "404": "Inhalt nicht verfügbar",
+  differentLocale: "Versuche eine andere Sprache",
 };
 
 const translationsDe = {
   about,
   home,
+  notFound,
 };
 
 export default translationsDe;

@@ -4,6 +4,9 @@
   -webkit-appearance: none;
 }
 
+body {
+  @apply bg-black;
+}
 label {
   position: relative;
 }
