@@ -16,12 +16,13 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ViewCounter } from "../ViewCounter";
 import { Categories } from "../../container/Categories";
+import clsx from "clsx";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams }: any) {
   const {
     locale,
-    category: categoryName,
+    category: categorySlug,
     labels: labelNamesStr = "",
   } = await params;
 
@@ -33,7 +34,7 @@ export default async function BlogPage({ params, searchParams }: any) {
 
   const { data: posts = [] } = await getBlogPosts({
     locale,
-    categoryName,
+    categoryName: categorySlug,
     labelNames,
     join: isAndCon ? "AND" : "OR",
   });
@@ -67,7 +68,7 @@ export default async function BlogPage({ params, searchParams }: any) {
               className="flex md:hidden"
             />
             <div className="flex justify-between h-fit items-end">
-              <Categories categories={categories} activeSlug={categoryName} />
+              <Categories categories={categories} activeSlug={categorySlug} />
               <Labels
                 labels={labels}
                 labelNames={labelNames}
@@ -118,7 +119,13 @@ export default async function BlogPage({ params, searchParams }: any) {
                             {post.category && (
                               <Link
                                 href={`/blog/category/${post.category.slug}`}
-                                className="bg-yellow-600 p-1 px-2 rounded-full text-sm text-white"
+                                className={clsx(
+                                  "bg-amber-600 p-1 px-2 rounded-full text-sm text-white border-transparent hover:border-white/80 border-2",
+                                  {
+                                    "border-white":
+                                    post.category.slug === categorySlug,
+                                  }
+                                )}
                               >
                                 {post.category.name}
                               </Link>
@@ -127,7 +134,13 @@ export default async function BlogPage({ params, searchParams }: any) {
                               <Link
                                 key={label.id}
                                 href={`/blog/labels/${label.slug}`}
-                                className="bg-purple-600 p-1 px-2 rounded-full text-sm text-white"
+                                className={clsx(
+                                  "bg-purple-600 p-1 px-2 rounded-full text-sm text-white border-transparent hover:border-white/80 border-2",
+                                  {
+                                    "border-white":
+                                      labelNamesStr.includes(label.slug),
+                                  }
+                                )}
                               >
                                 {label.name}
                               </Link>
