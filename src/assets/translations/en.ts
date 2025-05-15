@@ -26,6 +26,10 @@ const home = {
   texts,
 };
 
+const blog = {
+  noPostsFound: 'No posts found.'
+}
+
 const notFound = {
   "404": "Not found",
 };
@@ -33,6 +37,7 @@ const notFound = {
 const translationsEn = {
   about,
   home,
+  blog,
   notFound,
 };
 

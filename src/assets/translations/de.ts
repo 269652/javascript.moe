@@ -26,6 +26,10 @@ const home = {
   texts,
 };
 
+const blog = {
+  noPostsFound: 'Keine Posts vorhanden.'
+}
+
 const notFound = {
   "404": "Inhalt nicht verfügbar",
   differentLocale: "Versuche eine andere Sprache",
@@ -34,6 +38,7 @@ const notFound = {
 const translationsDe = {
   about,
   home,
+  blog,
   notFound,
 };
 

@@ -1,10 +1,14 @@
-export interface BlogPost {
+import { Category } from "./Category";
+
+export interface BlogPostProps {
+  id: number;
   documentId: string;
   title: string;
   content: string;
   excerpt: string;
   slug: string;
   locale: string;
-  localizations: BlogPost[];
+  localizations: BlogPostProps[];
   coverImage: { url: string };
+  category: Category
 }

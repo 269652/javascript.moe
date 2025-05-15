@@ -1,10 +1,10 @@
-import { BlogPost } from "@/types/BlogPost";
+import { BlogPostProps } from "@/types/BlogPost";
 
 export function blogMetadata({
   posts,
   locale,
 }: {
-  posts: BlogPost[];
+  posts: BlogPostProps[];
   locale: string;
 }) {
   const enMetadata = {

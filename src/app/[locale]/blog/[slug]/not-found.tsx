@@ -2,7 +2,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { getBlogPost } from "@/lib/api";
 import { getNotFoundContext } from "@/lib/context";
 import { blogPostLink } from "@/lib/links";
-import { BlogPost } from "@/types/BlogPost";
+import { BlogPostProps } from "@/types/BlogPost";
 import { notFound } from "next/navigation";
 
 export default async function NotFound() {
@@ -35,7 +35,7 @@ export default async function NotFound() {
         href={blogPostLink({ locale, post })}
         availableLocales={[
           post.locale,
-          ...post.localizations?.map((p: BlogPost) => p.locale),
+          ...post.localizations?.map((p: BlogPostProps) => p.locale),
         ]}
       ></LanguageSwitcher>
     </div>

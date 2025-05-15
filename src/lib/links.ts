@@ -1,11 +1,11 @@
 import { BlogCategory } from "@/types/BlogCategory";
-import { BlogPost } from "@/types/BlogPost";
+import { BlogPostProps } from "@/types/BlogPost";
 
 export type BlogPostLinksParams = {
   // The locale obtained by useLocale()
   locale: string;
   // The blog post object from getBlogPost();
-  post: BlogPost;
+  post: BlogPostProps;
 };
 
 export type BlogCategoryLinksParams = {
@@ -25,7 +25,7 @@ export const blogPostLink = ({ locale, post }: BlogPostLinksParams) => {
   return `/${locale}/blog/${post.slug}-${post.documentId}`;
 };
 
-export const coverImageLink = ({ post }: { post: BlogPost }) => {
+export const coverImageLink = ({ post }: { post: BlogPostProps }) => {
   const relativeOrAbsoluteUrl = post.coverImage.url;
   return relativeOrAbsoluteUrl?.startsWith("http")
     ? relativeOrAbsoluteUrl
