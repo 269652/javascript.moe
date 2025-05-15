@@ -26,9 +26,15 @@ const home = {
   texts,
 };
 
+const notFound = {
+  "404": "Inhalt nicht verfügbar",
+  differentLocale: "Versuche eine andere Sprache",
+};
+
 const translationsEs = {
   about,
   home,
+  notFound,
 };
 
 export default translationsEs;
