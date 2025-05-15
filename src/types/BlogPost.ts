@@ -4,5 +4,7 @@ export interface BlogPost {
   content: string;
   excerpt: string;
   slug: string;
+  locale: string;
+  localizations: BlogPost[];
   coverImage: { url: string };
 }
