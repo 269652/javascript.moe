@@ -10,7 +10,7 @@ export default async function NotFound() {
   const { slug, locale = "en" } = params || {};
 
   const translations = (
-    await import(`../../../../assets/translations/${locale}.ts`)
+    await import(`@/assets/translations/${locale}.ts`)
   ).default.notFound;
   const t = (key: string) => translations[key] || key;
 

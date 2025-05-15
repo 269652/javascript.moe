@@ -52,8 +52,8 @@ export default async function BlogPage({ params, searchParams }: any) {
           height={768}
           alt="Depiction of a forest fragrance"
         />
-        <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4 max-w-7xl mx-auto">
-          <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col">
+        <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4 mx-auto">
+          <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col max-w-7xl">
             <div className="flex justify-between">
               <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
               <LanguageSwitcher availableLocales={supportedLocales} />
