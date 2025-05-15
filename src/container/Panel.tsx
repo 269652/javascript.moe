@@ -18,7 +18,7 @@ export const Panel = ({
   return (
     <div
       className={clsx(
-        "flex p-2  bg-black/20 rounded-t-md",
+        "flex p-2 bg-black/30 rounded-t-md shadow-[0_0px_2px_1px_black] mx-[1px]",
         {
           "overflow-x-auto": scrollDir === "x",
           "overflow-y-auto flex-wrap basis-1/2 justify-start max-h-[98px] gap-1 ":

@@ -12,7 +12,7 @@ const LanguageSwitcher = ({ availableLocales, href, showCurrent }: any) => {
   const currentLocale = supportedLocales.includes(locale) ? locale : "en";
 
   return (
-    <div className="top-4 right-8 flex gap-2 z-10">
+    <div className="top-4 right-8 flex gap-2 z-10 h-fit">
       {supportedLocales
         .filter(
           (loc) =>
