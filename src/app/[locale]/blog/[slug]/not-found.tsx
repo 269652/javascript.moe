@@ -12,7 +12,7 @@ export default async function NotFound() {
   const translations = (
     await import(`@/assets/translations/${locale}.ts`)
   ).default.notFound;
-  const t = (key: string) => translations[key] || key;
+  const t = (key: string) => translations?.[key] || key;
 
   const id = (slug as string)?.split("-").pop();
   if (!id || !slug?.includes("-") || id.length < 23) return notFound();
