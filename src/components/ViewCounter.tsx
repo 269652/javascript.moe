@@ -37,7 +37,10 @@ export const ViewCounter = ({ post, className, increment }: any) => {
                 { method: "POST" }
               );
               const incJson = await resInc.json();
-              if (incJson.success) setIncremented(true);
+              if (incJson.success) {
+                setViews(json.views + 1);
+                setIncremented(true);
+              }
             }
           } catch (err) {
             console.error("Error fetching/incrementing views", err);
