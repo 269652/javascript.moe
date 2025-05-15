@@ -66,7 +66,7 @@ export default async function BlogPage({ params, searchParams }: any) {
                 className="flex md:hidden"
               />
               <div className="flex justify-between h-fit items-end">
-                <Categories categories={categories} activeSlug={categorySlug} />
+                <Categories categories={categories} activeSlug={categorySlug} locale={locale}/>
                 <Labels
                   labels={labels}
                   labelNames={labelNames}

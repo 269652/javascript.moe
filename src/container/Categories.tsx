@@ -1,5 +1,4 @@
 import { blogCategoryLink, blogLink } from "@/lib/links";
-import { useLocale } from "next-intl";
 import Link from "next/link";
 import { Panel } from "./Panel";
 import { Category } from "@/types/Category";
@@ -7,11 +6,12 @@ import { Category } from "@/types/Category";
 export const Categories = ({
   categories,
   activeSlug,
+  locale,
 }: {
   categories: Category[];
   activeSlug: string;
+  locale: string;
 }) => {
-  const locale = useLocale();
   return (
     <Panel scrollDir="x" stretch="grow" hasBottomBorder>
       {categories

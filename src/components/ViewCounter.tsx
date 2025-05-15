@@ -38,7 +38,7 @@ export const ViewCounter = ({ post, className, increment }: any) => {
               );
               const incJson = await resInc.json();
               if (incJson.success) {
-                setViews(json.views + 1);
+                setViews(json.views);
                 setIncremented(true);
               }
             }
