@@ -27,8 +27,8 @@ const home = {
 };
 
 const blog = {
-  noPostsFound: 'Keine Posts vorhanden.'
-}
+  noPostsFound: "Keine Posts vorhanden.",
+};
 
 const notFound = {
   "404": "Inhalt nicht verfügbar",

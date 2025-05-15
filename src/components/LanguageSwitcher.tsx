@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import supportedLocales from "@/lib/locales"; // Adjust path as needed
@@ -12,6 +12,7 @@ const LanguageSwitcher = ({
   showCurrent = true,
 }: any) => {
   const { locale } = useParams<{ locale: string }>();
+  const search = useSearchParams();
   const pathname = usePathname();
 
   const currentLocale = supportedLocales.includes(locale) ? locale : "en";
@@ -26,7 +27,8 @@ const LanguageSwitcher = ({
         )
         .map((loc) => {
           const path = href ? href : pathname;
-          const newUrl = path.replace(`/${currentLocale}`, `/${loc}`);
+          let newUrl = path.replace(`/${currentLocale}`, `/${loc}`);
+          if (search.get("c") === "AND") newUrl += "?c=AND";
 
           return (
             <Link key={loc} href={newUrl}>

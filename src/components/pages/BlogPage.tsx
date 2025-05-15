@@ -1,26 +1,13 @@
 import { BlogOverviewStructuredData } from "@/components/BlogOverviewStructuredData";
-import { Icon } from "@/components/Icon";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Labels } from "@/container/Labels";
 import { getBlogPosts, getCategories, getLabels } from "@/lib/api";
-import {
-  blogCategoryLink,
-  blogLink,
-  blogPostLink,
-  coverImageLink,
-} from "@/lib/links";
 import supportedLocales from "@/lib/locales";
-import { marked } from "marked";
 import Image from "next/image";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { ViewCounter } from "../ViewCounter";
 import { Categories } from "../../container/Categories";
-import clsx from "clsx";
-import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
-import { Panel } from "@/container/Panel";
+import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import { BlogPost } from "../BlogPost";
+import { useLocale } from "next-intl";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams }: any) {
@@ -29,7 +16,7 @@ export default async function BlogPage({ params, searchParams }: any) {
     category: categorySlug,
     labels: labelNamesStr = "",
   } = await params;
-
+  await setRequestLocale(locale);
   const labelNames = decodeURIComponent(labelNamesStr)
     .split(",")
     .filter(Boolean);
@@ -44,7 +31,9 @@ export default async function BlogPage({ params, searchParams }: any) {
   });
   const { data: categories = [] } = await getCategories({ locale });
   const { data: labels = [] } = await getLabels({ locale });
-  const t = await getTranslations("blog");
+  const translations = (await import(`@/assets/translations/${locale}.ts`))
+    .default.blog;
+  const t = (key: string) => translations?.[key] || key;
 
   return (
     <>
