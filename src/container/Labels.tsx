@@ -48,7 +48,7 @@ export const Labels = ({ labels, labelNames, className }: LabelsProps) => {
       {labelNames.length > 1 && (
         <Link
           className={clsx(
-            "absolute top-1 right-1 p-2  rounded-full min-w-11 text-center",
+            "absolute top-0 right-0 p-2  rounded-bl-lg min-w-11 text-center shadow-[0px_0px_2px_1px_black]",
             {
               "bg-amber-500 hover:bg-amber-400": isAndCon,
               "bg-sky-500 hover:bg-sky-400  ": !isAndCon,
