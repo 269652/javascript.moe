@@ -10,9 +10,16 @@ export const ViewCounter = ({ post, className, increment }: any) => {
     false,
     `viewed.${post.locale}.${post.documentId}`
   );
-  const [views, setViews] = useState(post.views);
+  const [views, setViews] = useLocalStorage(
+    post.views,
+    `views.${post.locale}.${post.documentId}`
+  );
   const hasFetched = useRef(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (post.views > views) setViews(post.views);
+  }, [post.views, views]);
 
   useEffect(() => {
     if (!ref.current) return;
