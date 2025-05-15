@@ -10,9 +10,9 @@ const LanguageSwitcher = ({
   availableLocales,
   href,
   showCurrent = true,
+  searchParams = {}
 }: any) => {
   const { locale } = useParams<{ locale: string }>();
-  const search = useSearchParams();
   const pathname = usePathname();
 
   const currentLocale = supportedLocales.includes(locale) ? locale : "en";
@@ -28,7 +28,7 @@ const LanguageSwitcher = ({
         .map((loc) => {
           const path = href ? href : pathname;
           let newUrl = path.replace(`/${currentLocale}`, `/${loc}`);
-          if (search.get("c") === "AND") newUrl += "?c=AND";
+          if (searchParams.c === "AND") newUrl += "?c=AND";
 
           return (
             <Link key={loc} href={newUrl}>

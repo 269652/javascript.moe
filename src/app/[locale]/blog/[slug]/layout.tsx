@@ -4,15 +4,29 @@ import { setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Metadata } from "next";
 import { setNotFoundContext } from "@/lib/context";
+import { getBlogPosts } from "@/lib/api";
+import supportedLocales from "@/lib/locales";
 
-export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "de" }];
+export async function generateStaticParams({ params }: any) {
+  const allParams: { locale: string; slug: string }[] = [];
+
+  for (const locale of supportedLocales) {
+    const { data: posts } = await getBlogPosts({ locale });
+    posts.forEach((post: any) => {
+      allParams.push({
+        locale,
+        slug: `${post.slug}-${post.id}`, // join slug and id
+      });
+    });
+  }
+
+  return allParams;
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string, slug: string}>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
 
@@ -109,10 +123,10 @@ export default async function RootLayout({
   params,
 }: {
   children: ReactNode;
-  params: Promise<{ locale: string, slug: string}>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale } = await params;
-	setNotFoundContext({...(await params)});
+  setNotFoundContext({ ...(await params) });
   // Use `params` directly (no await needed)
   setRequestLocale(locale);
   return (
