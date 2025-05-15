@@ -120,10 +120,12 @@ export default async function BlogPage({ params, searchParams }: any) {
                               <Link
                                 href={`/blog/category/${post.category.slug}`}
                                 className={clsx(
-                                  "bg-amber-600 p-1 px-2 rounded-full text-sm text-white border-transparent hover:border-white/80 border-2",
+                                  "bg-amber-600 p-1 px-2 rounded-full text-sm text-white border-transparent border-2",
                                   {
-                                    "border-white":
-                                    post.category.slug === categorySlug,
+                                    "border-white hover:border-white cursor-default":
+                                      post.category.slug === categorySlug,
+                                    "hover:border-white/80":
+                                      post.category.slug !== categorySlug,
                                   }
                                 )}
                               >
@@ -135,10 +137,12 @@ export default async function BlogPage({ params, searchParams }: any) {
                                 key={label.id}
                                 href={`/blog/labels/${label.slug}`}
                                 className={clsx(
-                                  "bg-purple-600 p-1 px-2 rounded-full text-sm text-white border-transparent hover:border-white/80 border-2",
+                                  "bg-purple-600 p-1 px-2 rounded-full text-sm text-white border-transparent  border-2",
                                   {
-                                    "border-white":
+                                    "border-white hover:border-white cursor-default":
                                       labelNamesStr.includes(label.slug),
+                                    "hover:border-white/80":
+                                      !labelNamesStr.includes(label.slug),
                                   }
                                 )}
                               >
