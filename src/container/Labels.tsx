@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
+import { Panel } from "./Panel";
 
 export const Labels = ({ labels, labelNames, className }: any) => {
   const { locale } = useParams<{ locale: string }>();
@@ -10,11 +11,12 @@ export const Labels = ({ labels, labelNames, className }: any) => {
   const isAndCon = search.get("c") === "AND";
 
   return (
-    <div
-      className={clsx(
-        "flex-wrap gap-1  basis-1/2 shrink justify-start ml-auto p-2  rounded-md rounded-bl-none bg-black/20 max-h-[98px] overflow-y-auto ",
-        className
-      )}
+    <Panel
+      scrollDir="y"
+      stretch="shrink"
+      hasBottomBorder
+      hasBottomPadding
+      className={className}
     >
       {labels.map((cat: any) => {
         const active = labelNames.includes(cat.slug);
@@ -32,7 +34,7 @@ export const Labels = ({ labels, labelNames, className }: any) => {
           <Link
             key={cat.id}
             href={href}
-            className={`p-2 px-3 rounded-full text-sm ${
+            className={`p-2 px-3 rounded-full  text-sm ${
               active
                 ? "bg-purple-600 hover:bg-purple-400"
                 : "bg-gray-700 hover:bg-purple-500"
@@ -58,6 +60,6 @@ export const Labels = ({ labels, labelNames, className }: any) => {
           {isAndCon ? "AND" : "OR"}
         </Link>
       )}
-    </div>
+    </Panel>
   );
 };

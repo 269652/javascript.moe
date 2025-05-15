@@ -15,6 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ViewCounter } from "../ViewCounter";
+import { Categories } from "../../container/Categories";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams }: any) {
@@ -65,31 +66,8 @@ export default async function BlogPage({ params, searchParams }: any) {
               labelNames={labelNames}
               className="flex md:hidden"
             />
-
             <div className="flex justify-between h-fit items-end">
-              <div className="flex border-b-2 border-gray-500 overflow-x-auto flex-1 mr-auto max-w-fit">
-                {categories.map((category: any) => {
-                  const active = categoryName === category.slug;
-                  const href = active
-                    ? blogLink({ locale })
-                    : blogCategoryLink({ locale, category });
-
-                  return (
-                    <Link
-                      key={category.id}
-                      href={href}
-                      className={`category whitespace-nowrap p-2 px-3 text-sm transition ${
-                        active
-                          ? "bg-yellow-600 hover:bg-yellow-400"
-                          : "bg-gray-700 hover:bg-yellow-500"
-                      } text-white`}
-                    >
-                      {category.name}
-                    </Link>
-                  );
-                })}
-              </div>
-
+              <Categories categories={categories} activeSlug={categoryName} />
               <Labels
                 labels={labels}
                 labelNames={labelNames}
@@ -97,7 +75,6 @@ export default async function BlogPage({ params, searchParams }: any) {
               />
             </div>
 
-            {/* Posts */}
             {posts.length === 0 ? (
               <p className="text-center text-gray-400">No posts found.</p>
             ) : (
@@ -117,7 +94,7 @@ export default async function BlogPage({ params, searchParams }: any) {
                     return (
                       <article
                         key={post.id}
-                        className="flex flex-col md:flex-row bg-black/50 rounded-md overflow-hidden shadow-lg"
+                        className="flex flex-col md:flex-row bg-black/50 rounded- md first:rounded-tr-none overflow-hidden shadow-lg"
                       >
                         <div className="relative w-full md:w-1/3 justify-between">
                           <Link href={blogPostLink({ locale, post })}>
