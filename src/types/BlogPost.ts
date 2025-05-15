@@ -11,4 +11,5 @@ export interface BlogPostProps {
   localizations: BlogPostProps[];
   coverImage: { url: string };
   category: Category
+  tags: Category[]
 }
