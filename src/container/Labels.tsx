@@ -4,8 +4,9 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { Panel } from "./Panel";
+import { LabelsProps } from "@/types/Labels";
 
-export const Labels = ({ labels, labelNames, className }: any) => {
+export const Labels = ({ labels, labelNames, className }: LabelsProps) => {
   const { locale } = useParams<{ locale: string }>();
   const search = useSearchParams();
   const isAndCon = search.get("c") === "AND";
@@ -18,7 +19,7 @@ export const Labels = ({ labels, labelNames, className }: any) => {
       hasBottomPadding
       className={className}
     >
-      {labels.map((cat: any) => {
+      {labels.sort((a,b) => a.name.localeCompare(b.name)).map((cat: any) => {
         const active = labelNames.includes(cat.slug);
         const newLabelNames = active
           ? labelNames.filter((l: string) => l !== cat.slug)
