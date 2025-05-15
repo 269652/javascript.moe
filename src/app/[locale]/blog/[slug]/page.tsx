@@ -79,7 +79,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
 
   const { localizations = [] } = post;
 
-  const availableLocales = localizations.map((ele: any) => ele.locale);
+  const availableLocales = [post.locale, ...localizations.map((ele: any) => ele.locale)];
 
   const htmlContent = marked(post.content || "");
 
@@ -99,7 +99,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
           alt={post.title || "Blog Post Cover Image"}
         />
         <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4 mx-auto">
-          <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1 max-w-6xl">
+          <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1 max-w-6xl  ">
             <div className="flex gap-1 items-center">
               <Link href={`/${locale}/blog`}>
                 <IconButton icon="FaHome" />
