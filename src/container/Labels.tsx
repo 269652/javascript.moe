@@ -26,7 +26,7 @@ export const Labels = ({ labels, labelNames, className }: any) => {
         const href =
           newLabelNames.length > 0
             ? `/${locale}/blog/labels/${newLabelNames.join(",")}${
-                !isAndCon ? "?c=OR" : ""
+                isAndCon ? "?c=AND" : ""
               }`
             : `/${locale}/blog`;
 
