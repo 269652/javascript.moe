@@ -51,9 +51,9 @@ const translations: Record<
 
 const interpolateTitle = (title: string, { author, role, location }: any) => {
   return title
-    .replace(/$author/g, author)
-    .replace(/$role/g, role)
-    .replace(/$location/, location);
+    .replace(/\$author/g, author)
+    .replace(/\$role/g, role)
+    .replace(/\$location/, location);
 };
 
 export function blogMetadata({
