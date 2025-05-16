@@ -38,7 +38,7 @@ const LanguageSwitcher = ({
                 width={30}
                 height={20}
                 className={clsx("cursor-pointer min-w-[48px] p-2 hover:bg-white/10", {
-                  "cursor-default  bg-white/15 shadow-[0px_0px_3px_1px_black_inset]": currentLocale === loc,
+                  "!cursor-default  bg-white/15 shadow-[0px_0px_3px_1px_black_inset]": currentLocale === loc,
                 })}
               />
             </Link>
