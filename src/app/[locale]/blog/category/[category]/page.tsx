@@ -1,6 +1,7 @@
 import BlogPage from "@/components/pages/BlogPage";
 import { getBlogPosts, getCategory } from "@/lib/api";
 import { blogCategoryMetadata, blogMetadata } from "@/lib/metadata";
+import { Locale } from "@/types/Locale";
 import { Metadata } from "next";
 
 // Dynamic Metadata Generation for the Blog Page
@@ -8,7 +9,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: {
-  params: Promise<{ locale: string; category: string }>;
+  params: Promise<{ locale: Locale; category: string }>;
   searchParams: Promise<{ c: string }>;
 }): Promise<Metadata> {
   const { locale, category: categorySlug } = await params;

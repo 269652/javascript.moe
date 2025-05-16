@@ -1,7 +1,7 @@
 import { BlogPostProps } from "@/types/BlogPost";
 import { Category } from "@/types/Category";
+import { Locale } from "@/types/Locale";
 
-type Locale = "de" | "en" | "es";
 
 const translations: Record<
   Locale,
