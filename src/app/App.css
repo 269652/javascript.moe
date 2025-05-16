@@ -123,8 +123,7 @@ article > p {
 }
 
 article > p > p {
-  margin-bottom: 1rem;
-  @apply overflow-x-auto max-w-full;
+  @apply overflow-x-auto max-w-full my-4;
 }
 
 article p > pre {
@@ -138,12 +137,9 @@ article ul li {
 }
 
 ul {
-  @apply mb-4;
+  @apply mb-7 mt-4;
 }
 
-article h2 {
-  @apply !mt-4 !mb-1;
-}
 
 article hr {
   @apply my-4;
@@ -159,23 +155,23 @@ article ul li::before {
 }
 
 article.post h1 {
-  @apply mb-1;
+  @apply mb-4;
 }
 
 article.post h2 {
-  @apply ml-0 my-1 text-[2rem] font-semibold leading-[2rem];
+  @apply ml-0 my-7 text-[2rem] font-semibold leading-[2rem];
 }
 
 article.post h3 {
-  @apply ml-0 my-1 text-[1.4rem] font-semibold;
+  @apply ml-0 my-3 text-[1.4rem] font-semibold;
 }
 
 article.post h4 {
-  @apply ml-0 my-1 text-[1.2rem] font-semibold;
+  @apply ml-0 my-2 text-[1.2rem] font-semibold;
 }
 
 article.post hr {
-  @apply mb-2;
+  @apply my-12;
 }
 
 div .category ~ .category {
