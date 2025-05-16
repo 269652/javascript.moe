@@ -21,7 +21,6 @@ export const BlogPost = ({
 }) => {
   const htmlExcerpt = marked(post.excerpt);
   const availableLocales = post.localizations?.map((p: any) => p.locale);
-
   if (!availableLocales.includes(locale)) availableLocales.unshift(locale);
   return (
     <article

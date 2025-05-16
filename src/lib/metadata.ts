@@ -22,7 +22,7 @@ export function blogMetadata({
       description: posts.length
         ? "Explore the latest blog posts by Moritz Roessler on JavaScript, React, and more."
         : "No blog posts available.",
-      images: ["https://javascript.moe/images/blog-preview.png"],
+      images: ["https://javascript.moe/images/wallpaper/19.webp"],
       url: "https://javascript.moe/en/blog",
     },
     twitter: {
@@ -32,7 +32,7 @@ export function blogMetadata({
       description: posts.length
         ? "Explore the latest blog posts by Moritz Roessler on JavaScript, React, and more."
         : "No blog posts available.",
-      images: ["https://javascript.moe/images/blog-preview.png"],
+      images: ["https://javascript.moe/images/wallpaper/19.webp"],
       site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
     icons: {
@@ -65,7 +65,7 @@ export function blogMetadata({
       description: posts.length
         ? "Entdecke die neuesten Blogbeiträge von Moritz Roessler zu JavaScript, React und mehr."
         : "Keine Blogbeiträge verfügbar.",
-      images: ["https://javascript.moe/images/blog-preview.png"],
+      images: ["https://javascript.moe/images/wallpaper/19.webp"],
       url: "https://javascript.moe/de/blog",
     },
     twitter: {
@@ -75,7 +75,7 @@ export function blogMetadata({
       description: posts.length
         ? "Entdecke die neuesten Blogbeiträge von Moritz Roessler zu JavaScript, React und mehr."
         : "Keine Blogbeiträge verfügbar.",
-      images: ["https://javascript.moe/images/blog-preview.png"],
+      images: ["https://javascript.moe/images/wallpaper/19.webp"],
       site: "@Moritz_Roessler", // Replace with your Twitter handle
     },
     icons: {
@@ -120,7 +120,7 @@ export function blogCategoryMetadata({
         : "Keine Blogbeiträge verfügbar.",
       images: [
         category?.coverImage?.url ||
-          "https://javascript.moe/images/blog-preview.png",
+          "https://javascript.moe/images/wallpaper/19.webp",
       ],
       url: `https://javascript.moe/de/blog${
         category ? `/category/${category.slug}` : ""
@@ -134,7 +134,7 @@ export function blogCategoryMetadata({
         : "Keine Blogbeiträge verfügbar.",
       images: [
         category?.coverImage?.url ||
-          "https://javascript.moe/images/blog-preview.png",
+          "https://javascript.moe/images/wallpaper/19.webp",
       ],
       site: "@Moritz_Roessler",
     },
@@ -170,7 +170,7 @@ export function blogCategoryMetadata({
         : "No blog posts available.",
       images: [
         category?.coverImage?.url ||
-          "https://javascript.moe/images/blog-preview.png",
+          "https://javascript.moe/images/wallpaper/19.webp",
       ],
       url: `https://javascript.moe/en/blog${
         category ? `/category/${category.slug}` : ""
@@ -184,7 +184,7 @@ export function blogCategoryMetadata({
         : "No blog posts available.",
       images: [
         category?.coverImage?.url ||
-          "https://javascript.moe/images/blog-preview.png",
+          "https://javascript.moe/images/wallpaper/19.webp",
       ],
       site: "@Moritz_Roessler",
     },
