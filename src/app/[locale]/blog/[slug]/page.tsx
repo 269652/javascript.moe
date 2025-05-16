@@ -102,7 +102,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
           alt={post.title || "Blog Post Cover Image"}
         />
         <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4 mx-auto">
-          <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1 max-w-[100ch]  ">
+          <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1 max-w-[110ch]  ">
             <div className="flex gap-1 items-center">
               <Link href={`/${locale}/blog`}>
                 <IconButton icon="FaHome" />
@@ -121,7 +121,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
             <article key={post.id} className="bg-black/30 p-2 md:p-4 post ">
               <p
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
-                className="max-w-[70ch] mx-auto"
+                className="max-w-[80ch] mx-auto"
               />
             </article>
           </main>
