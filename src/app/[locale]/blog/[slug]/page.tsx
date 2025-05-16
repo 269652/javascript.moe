@@ -113,7 +113,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
               <ViewCounter post={post} className="!ml-auto" increment />
             </div>
             <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title flex flex-col mx-auto">
-              {post.title.split(":").map((p,i) => (
+              {post.title.split(":").map((p: string,i:number) => (
                 <span>{p}{i===0?':':''  }</span>
               ))}
             </h1>
