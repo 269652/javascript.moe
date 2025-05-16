@@ -49,7 +49,7 @@ const translations: Record<
   },
 };
 
-const interpolateTitle = (title, { author, role, location }) => {
+const interpolateTitle = (title: string, { author, role, location }: any) => {
   return title
     .replace(/$author/g, author)
     .replace(/$role/g, role)
@@ -73,6 +73,9 @@ export function blogMetadata({
   const title =
     interpolateTitle(config?.title, { author, role, location }) ||
     `Blog | Moritz Roessler | ${role}`;
+  const metaTitle =
+    interpolateTitle(config?.metaTitle, { author, role, location }) ||
+    `Blog | Moritz Roessler | ${role}`;
   const description = hasPosts
     ? config.description || t.generalBlogDescription
     : t.noPosts;
@@ -82,12 +85,12 @@ export function blogMetadata({
     "https://javascript.moe/images/wallpaper/19.webp";
 
   return {
-    title,
+    title: metaTitle,
     description,
     authors: [{ name: author }],
     openGraph: {
       type: "website",
-      title,
+      title: metaTitle,
       siteName: t.siteName,
       description,
       images: [image],
@@ -95,7 +98,7 @@ export function blogMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: metaTitle,
       description,
       images: [image],
       site: "@Moritz_Roessler",
