@@ -39,15 +39,18 @@ export default async function BlogPage({ params, searchParams }: any) {
     (await getBlogConfig({ locale })) ?? {};
   const { url: coverImageUrl = "/images/wallpaper/19.webp" } = coverImage ?? {};
 
+  const translations = (await import(`@/assets/translations/${locale}.ts`))
+  .default.blog;
+  const config = await getBlogConfig({ locale });
+  
   const { data: categories = [] } = await getCategories({ locale });
   const { data: labels = [] } = await getLabels({ locale });
-  const translations = (await import(`@/assets/translations/${locale}.ts`))
-    .default.blog;
+
   const t = (key: string) => translations?.[key] || key;
 
   return (
     <>
-      <BlogOverviewStructuredData posts={posts} />
+      <BlogOverviewStructuredData posts={posts} config={config} />
       <div className="max-h-screen relative">
         {/* Language Flags */}
 
