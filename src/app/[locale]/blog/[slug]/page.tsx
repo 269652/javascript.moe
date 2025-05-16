@@ -13,6 +13,7 @@ import { useLocalStorage } from "@/lib/useLocalStorage";
 import { Icon } from "@/components/Icon";
 import { ViewCounter } from "@/components/ViewCounter";
 import { getBlogPost } from "@/lib/api";
+import { t } from "i18next";
 // Define the type for the blog post data
 
 const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
@@ -101,7 +102,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
           alt={post.title || "Blog Post Cover Image"}
         />
         <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4 mx-auto">
-          <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1 max-w-6xl  ">
+          <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1 max-w-[100ch]  ">
             <div className="flex gap-1 items-center">
               <Link href={`/${locale}/blog`}>
                 <IconButton icon="FaHome" />
@@ -111,12 +112,17 @@ const BlogPage = async ({ params }: BlogPageProps) => {
               </Suspense>
               <ViewCounter post={post} className="!ml-auto" increment />
             </div>
-            <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title">
-              {post.title}
+            <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title flex flex-col mx-auto">
+              {post.title.split(":").map((p,i) => (
+                <span>{p}{i===0?':':''  }</span>
+              ))}
             </h1>
 
             <article key={post.id} className="bg-black/30 p-2 md:p-4 post ">
-              <p dangerouslySetInnerHTML={{ __html: htmlContent }} className="max-w-[70ch] mx-auto" />
+              <p
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+                className="max-w-[70ch] mx-auto"
+              />
             </article>
           </main>
         </div>
