@@ -115,8 +115,8 @@ const BlogPage = async ({ params }: BlogPageProps) => {
               {post.title}
             </h1>
 
-            <article key={post.id} className="bg-black/30 p-2 md:p-4 post max-w-[70ch] mx-auto">
-              <p dangerouslySetInnerHTML={{ __html: htmlContent }} />
+            <article key={post.id} className="bg-black/30 p-2 md:p-4 post ">
+              <p dangerouslySetInnerHTML={{ __html: htmlContent }} className="max-w-[70ch] mx-auto" />
             </article>
           </main>
         </div>
