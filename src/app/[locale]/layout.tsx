@@ -111,7 +111,6 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  console.log("LOCALE", locale);
   // Use `params` directly (no await needed)
   setRequestLocale(locale);
   return (
