@@ -1,5 +1,5 @@
 import BlogPage from "@/components/pages/BlogPage";
-import { getBlogPosts } from "@/lib/api";
+import { getBlogConfig, getBlogPosts } from "@/lib/api";
 import { blogMetadata } from "@/lib/metadata";
 import { Locale } from "@/types/Locale";
 import { Metadata } from "next";
@@ -19,12 +19,14 @@ export async function generateMetadata({
     locale,
     join: isAndCon ? "AND" : "OR",
   });
+  const config = await getBlogConfig({ locale });
+
   return {
     robots: {
       index: false,
       follow: true,
     },
-    ...blogMetadata({ locale, posts }),
+    ...blogMetadata({ locale, posts, config }),
   };
 }
 

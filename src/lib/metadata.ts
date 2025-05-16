@@ -2,7 +2,6 @@ import { BlogPostProps } from "@/types/BlogPost";
 import { Category } from "@/types/Category";
 import { Locale } from "@/types/Locale";
 
-
 const translations: Record<
   Locale,
   {
@@ -53,17 +52,21 @@ const translations: Record<
 export function blogMetadata({
   posts,
   locale,
+  config,
 }: {
   posts: BlogPostProps[];
   locale: Locale;
+  config: any;
 }) {
   const t = translations[locale];
   const hasPosts = posts.length > 0;
 
-  const title = `Blog | Moritz Roessler | ${t.role}`;
+  const title = config?.title || `Blog | Moritz Roessler | ${t.role}`;
   const description = hasPosts ? t.generalBlogDescription : t.noPosts;
   const url = `https://javascript.moe/${locale}/blog`;
-  const image = "https://javascript.moe/images/wallpaper/19.webp";
+  const image =
+    config?.coverImage?.url ||
+    "https://javascript.moe/images/wallpaper/19.webp";
 
   return {
     title,

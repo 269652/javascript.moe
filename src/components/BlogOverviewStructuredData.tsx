@@ -1,10 +1,10 @@
-export function BlogOverviewStructuredData({ posts }: { posts: any[] }) {
+export function BlogOverviewStructuredData({ posts, config }: { posts: any[], config: any }) {
   if (!posts.length) return null;
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "Mo's Blog",
+    name: config?.title || "Mo's Blog",
     url: "https://javascript.moe/blog",
     description:
       "Explore blog posts by Moritz Roessler on JavaScript, React, and more.",

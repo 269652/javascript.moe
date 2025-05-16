@@ -154,3 +154,29 @@ export async function getCategory(
     return { data: [] }; // Fallback to empty array if fetching fails
   }
 }
+
+
+export async function getBlogConfig({ locale }: { locale?: string }) {
+  try {
+    let url = `${STRAPI_URL}/blog-config?populate=*`;
+    if (locale) url += `&locale=${locale}`;
+
+    const res = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${STRAPI_TOKEN}`,
+        "Cache-Control": "max-age=600, stale-while-revalidate=0", // Cache for 10 minutes and revalidate immediately after
+      },
+      cache: "force-cache",
+      next: { revalidate: 120 }, // Revalidate every 2 minutes
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    return (await res.json()).data;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return { data: [] }; // Fallback to empty array if fetching fails
+  }
+}

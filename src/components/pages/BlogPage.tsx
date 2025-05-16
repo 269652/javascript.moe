@@ -1,7 +1,12 @@
 import { BlogOverviewStructuredData } from "@/components/BlogOverviewStructuredData";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Labels } from "@/container/Labels";
-import { getBlogPosts, getCategories, getLabels } from "@/lib/api";
+import {
+  getBlogConfig,
+  getBlogPosts,
+  getCategories,
+  getLabels,
+} from "@/lib/api";
 import supportedLocales from "@/lib/locales";
 import Image from "next/image";
 import { Categories } from "../../container/Categories";
@@ -30,6 +35,10 @@ export default async function BlogPage({ params, searchParams }: any) {
     labelNames,
     join: isAndCon ? "AND" : "OR",
   });
+  const { title = "Mo's Blog", coverImage } =
+    (await getBlogConfig({ locale })) ?? {};
+  const { url: coverImageUrl = "/images/wallpaper/19.webp" } = coverImage ?? {};
+
   const { data: categories = [] } = await getCategories({ locale });
   const { data: labels = [] } = await getLabels({ locale });
   const translations = (await import(`@/assets/translations/${locale}.ts`))
@@ -43,7 +52,7 @@ export default async function BlogPage({ params, searchParams }: any) {
         {/* Language Flags */}
 
         <Image
-          src="/images/wallpaper/19.webp"
+          src={coverImageUrl}
           className="w-screen h-screen absolute"
           width={1024}
           height={768}
@@ -53,20 +62,22 @@ export default async function BlogPage({ params, searchParams }: any) {
           <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col max-w-7xl">
             <div className="flex flex-col gap-2">
               <div className="flex justify-between">
-                <h1 className="mb-4 text-3xl font-bold">Mo's Blog</h1>
+                <h1 className="mb-4 text-3xl font-bold">{title}</h1>
                 <Suspense>
                   <LanguageSwitcher availableLocales={supportedLocales} />
                 </Suspense>
               </div>
-
-              {/* Labels */}
               <Labels
                 labels={labels}
                 labelNames={labelNames}
                 className="flex md:hidden"
               />
               <div className="flex justify-between h-fit items-end">
-                <Categories categories={categories} activeSlug={categorySlug} locale={locale}/>
+                <Categories
+                  categories={categories}
+                  activeSlug={categorySlug}
+                  locale={locale}
+                />
                 <Labels
                   labels={labels}
                   labelNames={labelNames}
