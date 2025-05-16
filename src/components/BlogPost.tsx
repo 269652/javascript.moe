@@ -59,22 +59,24 @@ export const BlogPost = ({
               {post.category.name}
             </Link>
           )}
-          {post.tags?.map((label: any) => (
-            <Link
-              key={label.id}
-              href={`/blog/labels/${label.slug}`}
-              className={clsx(
-                "bg-purple-600 p-1 px-2 rounded-full text-sm text-white border-transparent  border-2",
-                {
-                  "border-white hover:border-white cursor-default":
-                    labelsSlug.includes(label.slug),
-                  "hover:border-white/80": !labelsSlug.includes(label.slug),
-                }
-              )}
-            >
-              {label.name}
-            </Link>
-          ))}
+          {post.tags
+            ?.sort((a, b) => a.name.localeCompare(b.name))
+            .map((label: any) => (
+              <Link
+                key={label.id}
+                href={`/blog/labels/${label.slug}`}
+                className={clsx(
+                  "bg-purple-600 p-1 px-2 rounded-full text-sm text-white border-transparent  border-2",
+                  {
+                    "border-white hover:border-white cursor-default":
+                      labelsSlug.includes(label.slug),
+                    "hover:border-white/80": !labelsSlug.includes(label.slug),
+                  }
+                )}
+              >
+                {label.name}
+              </Link>
+            ))}
           <div className="ml-auto flex items-center">
             <Suspense>
               <LanguageSwitcher
