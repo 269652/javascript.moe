@@ -21,7 +21,7 @@ export async function generateMetadata({
       "Moritz Roessler | Senior Frontend Developer in Freiburg im Breisgau",
     description:
       "Moritz Roessler is a Senior Frontend Developer based in Freiburg im Breisgau. Specialized in JavaScript, TypeScript, React, Node.js, SQL, AWS, and Serverless. Explore portfolio, experience, and contact information.",
-    authors: [{ name: "Moritz Roessler" }],
+    authors: [{ name: "Moritz Roessler r" }],
     openGraph: {
       type: "website",
       title:

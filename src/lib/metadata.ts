@@ -49,6 +49,13 @@ const translations: Record<
   },
 };
 
+const interpolateTitle = (title, { author, role, location }) => {
+  return title
+    .replace(/$author/g, author)
+    .replace(/$role/g, role)
+    .replace(/$location/, location);
+};
+
 export function blogMetadata({
   posts,
   locale,
@@ -60,10 +67,16 @@ export function blogMetadata({
 }) {
   const t = translations[locale];
   const hasPosts = posts.length > 0;
-
-  const title = config?.title || `Blog | Moritz Roessler | ${t.role}`;
-  const description = hasPosts ? t.generalBlogDescription : t.noPosts;
-  const url = `https://javascript.moe/${locale}/blog`;
+  const author = config.author || "Moritz Roessler";
+  const role = config.role || t.role;
+  const location = config?.location || "Freiburg im Breisgau";
+  const title =
+    interpolateTitle(config?.title, { author, role, location }) ||
+    `Blog | Moritz Roessler | ${role}`;
+  const description = hasPosts
+    ? config.description || t.generalBlogDescription
+    : t.noPosts;
+  const url = config?.url || `https://javascript.moe/${locale}/blog`;
   const image =
     config?.coverImage?.url ||
     "https://javascript.moe/images/wallpaper/19.webp";
@@ -71,6 +84,7 @@ export function blogMetadata({
   return {
     title,
     description,
+    authors: [{ name: author }],
     openGraph: {
       type: "website",
       title,

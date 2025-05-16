@@ -4,7 +4,6 @@ import { blogMetadata } from "@/lib/metadata";
 import { Locale } from "@/types/Locale";
 import { Metadata } from "next";
 
-// Dynamic Metadata Generation for the Blog Page
 export async function generateMetadata({
   params,
   searchParams,

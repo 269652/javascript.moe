@@ -35,14 +35,14 @@ export default async function BlogPage({ params, searchParams }: any) {
     labelNames,
     join: isAndCon ? "AND" : "OR",
   });
-  const { title = "Mo's Blog", coverImage } =
-    (await getBlogConfig({ locale })) ?? {};
-  const { url: coverImageUrl = "/images/wallpaper/19.webp" } = coverImage ?? {};
+  const config = (await getBlogConfig({ locale })) ?? {};
+
+  const title = config?.title;
+  const coverImageUrl = config?.coverImage?.url || "/images/wallpaper/19.webp";
 
   const translations = (await import(`@/assets/translations/${locale}.ts`))
-  .default.blog;
-  const config = await getBlogConfig({ locale });
-  
+    .default.blog;
+
   const { data: categories = [] } = await getCategories({ locale });
   const { data: labels = [] } = await getLabels({ locale });
 
