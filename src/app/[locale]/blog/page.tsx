@@ -29,6 +29,6 @@ export async function generateMetadata({
   };
 }
 
-export default (props: any) => (
-  <BlogPage {...props} path={`${props.params?.locale}/blog`} />
+export default async (props: any) => (
+  <BlogPage {...props} path={`${(await props.params)?.locale}/blog`} />
 );
