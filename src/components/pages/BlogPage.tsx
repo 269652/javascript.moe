@@ -66,13 +66,15 @@ export default async function BlogPage({ params, searchParams, path }: any) {
         <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4 mx-auto">
           <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col max-w-7xl">
             <div className="flex flex-col gap-2">
-              <div className="flex justify-between">
+              <div className="flex flex-wrap-reverse gap-1 justify-between">
                 <h1 className="mb-4 text-3xl font-bold">{title}</h1>
-                <div className="flex gap-1">
+                <div className="flex gap-1 justify-end flex-1">
                   <Suspense>
                     <LanguageSwitcher availableLocales={supportedLocales} />
                   </Suspense>
                   <IconButton
+                  iconClsn="min-w-8 "
+                  className="min-w-[48px] min-h-[48px]"
                     href={`/${path}/rss.xml`}
                     icon="FaRss"
                   ></IconButton>
