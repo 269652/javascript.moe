@@ -46,12 +46,12 @@ export async function getCategories({ locale }: any) {
 
 export async function getBlogPosts({
   locale,
-  categoryName: categoryName,
+  categorySlug,
   labelNames,
   join,
 }: {
   locale?: string;
-  categoryName?: string;
+  categorySlug?: string;
   labelNames?: string[]; // Accepts an array of label names
   join?: "AND" | "OR";
 }) {
@@ -59,8 +59,8 @@ export async function getBlogPosts({
     let filterQuery = "";
 
     // Filter by category if provided
-    if (categoryName) {
-      filterQuery += `filters[category][slug][$eq]=${categoryName}`;
+    if (categorySlug) {
+      filterQuery += `filters[category][slug][$eq]=${categorySlug}`;
     }
 
     // Filter by label if provided
@@ -154,7 +154,6 @@ export async function getCategory(
     return { data: [] }; // Fallback to empty array if fetching fails
   }
 }
-
 
 export async function getBlogConfig({ locale }: { locale?: string }) {
   try {

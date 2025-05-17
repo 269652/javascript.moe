@@ -31,7 +31,7 @@ export default async function BlogPage({ params, searchParams }: any) {
 
   const { data: posts = [] } = await getBlogPosts({
     locale,
-    categoryName: categorySlug,
+    categorySlug: categorySlug,
     labelNames,
     join: isAndCon ? "AND" : "OR",
   });
