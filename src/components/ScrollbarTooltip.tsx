@@ -1,3 +1,5 @@
+"use client"
+
 import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Tooltip } from "react-tooltip";

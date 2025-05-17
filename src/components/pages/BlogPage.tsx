@@ -24,7 +24,6 @@ export default async function BlogPage({ params, searchParams, path }: any) {
     category: categorySlug,
     labels: labelNamesStr = "",
   } = await params;
-  await setRequestLocale(locale);
   const labelNames = decodeURIComponent(labelNamesStr)
     .split(",")
     .filter(Boolean);

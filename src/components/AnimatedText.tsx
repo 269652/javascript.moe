@@ -176,7 +176,7 @@ export const MyName = () => {
       const distCenterOe = window.innerWidth / 2 - (oeRect?.left || 0);
       setDist([distCenterM, distCenterOe]);
     }
-  });
+  }, []);
   useMotionValueEvent(trans, "change", () => {
     if (trans.get() <= 1) {
       // const hWidth = ((mRect?.width || 0) + (oeRect?.width || 0)) / 2

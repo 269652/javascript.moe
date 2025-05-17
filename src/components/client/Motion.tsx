@@ -1,5 +1,5 @@
-// components/client/Motion.tsx
 "use client";
+
 import { motion, type HTMLMotionProps } from "framer-motion";
 
 export const MotionDiv = (props: HTMLMotionProps<"div">) => (
