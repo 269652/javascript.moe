@@ -23,7 +23,7 @@ export async function generateMetadata({
   
   return {
     robots: {
-      index: false,
+      index: true,
       follow: true,
     },
     ...blogCategoryMetadata({ category, locale, posts }),
