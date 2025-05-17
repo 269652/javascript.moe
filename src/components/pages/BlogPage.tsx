@@ -63,7 +63,13 @@ export default async function BlogPage({ params, searchParams, path }: any) {
           <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col max-w-7xl">
             <div className="flex flex-col gap-2">
               <div className="flex flex-wrap-reverse gap-1 justify-between">
-                <h1 className="mb-4 text-3xl font-bold">{title}</h1>
+                <div className="flex gap-1 items-center">
+                  <IconButton
+                    icon="FaHome"
+                    href={`/${locale}`}
+                  />
+                  <h1 className="text-3xl font-bold">{title}</h1>
+                </div>
                 <div className="flex gap-1 justify-end flex-1">
                   <Suspense>
                     <LanguageSwitcher availableLocales={supportedLocales} />
