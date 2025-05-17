@@ -130,7 +130,7 @@ export default async function Home({ params }: any) {
         </NoScript>
       </StickySection>
       <StickySection height={h(100)}>
-        <BlogPage params={params} searchParams={{}} />
+        <BlogPage params={params} searchParams={{}} path={`/${locale}/blog`} />
       </StickySection>
       <NoScript className="absolute top-0 left-0 w-screen h-screen">
         <div
