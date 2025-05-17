@@ -79,7 +79,9 @@ export default function RootLayout({
         <script>{gtag}</script>
       </head>
       <body style={{ margin: 0, overflowX: "hidden" }}>
-        <div id="root">{children}</div>
+        <div id="root">
+          {children}
+        </div>
       </body>
       <script>{`
           if (typeof window !== "undefined") {

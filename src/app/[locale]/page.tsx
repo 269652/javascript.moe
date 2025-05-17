@@ -29,7 +29,7 @@ export default async function Home({ params }: any) {
   const h = (n: number) => `${n}${iOS_1to12 ? "vh" : "lvh"}`;
 
   return (
-    <>
+    <div>
       <StickySection height={h(275)}>
         <SectionTop />
       </StickySection>
@@ -132,6 +132,24 @@ export default async function Home({ params }: any) {
       <StickySection height={h(100)}>
         <BlogPage params={params} searchParams={{}} />
       </StickySection>
-    </>
+      <NoScript className="absolute top-0 left-0 w-screen h-screen">
+        <div
+          className="bg-black/40 backdrop-blur-sm"
+          style={{
+            position: "absolute",
+            top: 0,
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            textShadow: "1px 1px 1px #333333",
+          }}
+        >
+          <h1>This site requires JavaScript in order to work properly.</h1>
+        </div>
+      </NoScript>
+    </div>
   );
 }
