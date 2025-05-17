@@ -10,7 +10,6 @@ export const Labels = ({ labels, labelNames, className }: LabelsProps) => {
   const { locale } = useParams<{ locale: string }>();
   const search = useSearchParams();
   const isAndCon = search.get("c") === "AND";
-
   return (
     <Panel
       scrollDir="y"
@@ -19,32 +18,39 @@ export const Labels = ({ labels, labelNames, className }: LabelsProps) => {
       hasBottomPadding
       className={className}
     >
-      {labels.sort((a,b) => a.name.localeCompare(b.name)).map((cat: any) => {
-        const active = labelNames.includes(cat.slug);
-        const newLabelNames = active
-          ? labelNames.filter((l: string) => l !== cat.slug)
-          : [...labelNames, cat.slug].sort();
-        const href =
-          newLabelNames.length > 0
-            ? `/${locale}/blog/labels/${newLabelNames.join(",")}${
-                isAndCon ? "?c=AND" : ""
-              }`
-            : `/${locale}/blog`;
+      {labels
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((cat: any) => {
+          const active = labelNames.includes(cat.slug);
+          const disabled = labelNames.length > 4 && !active;
 
-        return (
-          <Link
-            key={cat.id}
-            href={href}
-            className={`p-2 px-3 rounded-full  text-sm ${
-              active
-                ? "bg-purple-600 hover:bg-purple-400"
-                : "bg-gray-700 hover:bg-purple-500"
-            } text-white transition`}
-          >
-            {cat.name}
-          </Link>
-        );
-      })}
+          const newLabelNames = active
+            ? labelNames.filter((l: string) => l !== cat.slug)
+            : [...labelNames, cat.slug].sort();
+          const href =
+            newLabelNames.length > 0
+              ? `/${locale}/blog/labels/${newLabelNames.join(",")}${
+                  isAndCon ? "?c=AND" : ""
+                }`
+              : `/${locale}/blog`;
+
+          return (
+            <Link
+              key={cat.id}
+              href={disabled ? "" : href}
+              className={clsx(
+                `p-2 px-3 rounded-full  text-sm text-white transition`,
+                {
+                  "bg-purple-600 hover:bg-purple-500": active,
+                  "bg-gray-700 hover:bg-purple-500": !active,
+                  "!bg-gray-400/40 !hover:bg-purple-500 cursor-default !text-gray-100": disabled,
+                }
+              )}
+            >
+              {cat.name}
+            </Link>
+          );
+        })}
       {labelNames.length > 1 && (
         <Link
           className={clsx(

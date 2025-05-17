@@ -8,16 +8,9 @@ import { IconButton } from "@/components/Button";
 import Link from "next/link";
 import { coverImageLink } from "@/lib/links";
 import footnote from "marked-footnote";
-import { Suspense, useEffect } from "react";
-import { useLocalStorage } from "@/lib/useLocalStorage";
-import { Icon } from "@/components/Icon";
+import { Suspense } from "react";
 import { ViewCounter } from "@/components/ViewCounter";
 import { getBlogPost } from "@/lib/api";
-import { t } from "i18next";
-// Define the type for the blog post data
-
-const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts";
-const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
 marked.use(footnote());
 
@@ -113,8 +106,11 @@ const BlogPage = async ({ params }: BlogPageProps) => {
               <ViewCounter post={post} className="!ml-auto" increment />
             </div>
             <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title flex flex-col mx-auto">
-              {post.title.split(":").map((p: string,i:number) => (
-                <span>{p}{i===0?':':''  }</span>
+              {post.title.split(":").map((p: string, i: number) => (
+                <span>
+                  {p}
+                  {i === 0 && post.title.includes(":") ? ":" : ""}
+                </span>
               ))}
             </h1>
 
