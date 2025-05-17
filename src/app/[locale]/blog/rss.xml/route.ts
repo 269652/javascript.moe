@@ -21,8 +21,8 @@ export async function GET(req: NextRequest, { params }: any) {
       return `
       <item>
         <title><![CDATA[${post.title}]]></title>
-        <link>${SITE_URL}/${slug}</link>
-        <guid>${SITE_URL}/${slug}</guid>
+        <link>${SITE_URL}/${slug}-${post.documentId}</link>
+        <guid>${SITE_URL}/${slug}-${post.documentId}</guid>
         <pubDate>${pubDate}</pubDate>
         <description><![CDATA[<img src="${post.coverImage?.url}" alt="Cover Image" />${excerpt}]]></description>
       </item>
