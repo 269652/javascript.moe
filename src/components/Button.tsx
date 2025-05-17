@@ -45,9 +45,9 @@ export const Button = ({
         title={rest.title}
         onClick={(e) => {
           if (disabled && allowDisabledClick) {
-            onDisabledClick?.(e);
+            onDisabledClick?.(e as any);
           } else {
-            onClick?.(e);
+            onClick?.(e as any);
           }
         }}
         className={clsx(
