@@ -79,27 +79,7 @@ export default function RootLayout({
         <script>{gtag}</script>
       </head>
       <body style={{ margin: 0, overflowX: "hidden" }}>
-        <div id="root">
-          {children}
-          <NoScript className="fixed top-0">
-            <div
-              className="bg-black/40 backdrop-blur-sm"
-              style={{
-                position: "absolute",
-                top: 0,
-                width: "100vw",
-                height: "100vh",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-                textShadow: "1px 1px 1px #333333",
-              }}
-            >
-              <h1>This site requires JavaScript in order to work properly.</h1>
-            </div>
-          </NoScript>
-        </div>
+        <div id="root">{children}</div>
       </body>
       <script>{`
           if (typeof window !== "undefined") {
