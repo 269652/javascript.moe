@@ -73,7 +73,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                     <LanguageSwitcher availableLocales={supportedLocales} />
                   </Suspense>
                   <IconButton
-                    href={`${path}/rss.xml`}
+                    href={`/${path}/rss.xml`}
                     icon="FaRss"
                   ></IconButton>
                 </div>
