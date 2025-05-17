@@ -12,6 +12,7 @@ import { Bullets } from "@/components/AnimatedText";
 import { Icon } from "@/components/Icon";
 import TS from "@/assets/ts.svg";
 import { BulletsServer } from "@/components/BulletsServer";
+import { NoScript } from "@/components/NoScript";
 
 export default async function Home({ params }: any) {
   const { locale } = await params;
@@ -34,7 +35,7 @@ export default async function Home({ params }: any) {
       </StickySection>
       <StickySection height={h(700)} fullScreen>
         <SectionMid locale={locale} />
-        <noscript className="fixed z-10 flex flex-row top-0 left-0 w-screen h-screen justify-center items-center">
+        <NoScript className="fixed z-10 flex flex-row top-0 left-0 w-screen h-screen justify-center items-center">
           <div className="flex flex-col gap-4 text-center">
             <h2 className="!text-7xl">Software Engineer</h2>
             <div className="flex flex-col gap-2">
@@ -80,11 +81,11 @@ export default async function Home({ params }: any) {
               />
             </div>
           </div>
-        </noscript>
+        </NoScript>
       </StickySection>
       <StickySection height={h(400)}>
         <SectionBot />
-        <noscript className="fixed z-10 flex flex-row top-0 left-0 w-screen h-screen justify-center items-center">
+        <NoScript className="fixed z-10 flex flex-row top-0 left-0 w-screen h-screen justify-center items-center">
           <div className="flex flex-col gap-4 text-center">
             <h2 className="!text-7xl">Contact Me</h2>
             <div className="flex flex-col gap-2">
@@ -126,7 +127,7 @@ export default async function Home({ params }: any) {
               />
             </div>
           </div>
-        </noscript>
+        </NoScript>
       </StickySection>
       <StickySection height={h(100)}>
         <BlogPage params={params} searchParams={{}} />

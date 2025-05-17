@@ -3,6 +3,7 @@ import "./globals.css";
 import "./index.css";
 import "./App.css";
 import { Metadata, Viewport } from "next";
+import { NoScript } from "@/components/NoScript";
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -80,7 +81,7 @@ export default function RootLayout({
       <body style={{ margin: 0, overflowX: "hidden" }}>
         <div id="root">
           {children}
-          <noscript>
+          <NoScript className="fixed top-0">
             <div
               className="bg-black/40 backdrop-blur-sm"
               style={{
@@ -95,14 +96,16 @@ export default function RootLayout({
                 textShadow: "1px 1px 1px #333333",
               }}
             >
-              <h1>
-                This site requires JavaScript in order to work
-                properly.
-              </h1>
+              <h1>This site requires JavaScript in order to work properly.</h1>
             </div>
-          </noscript>
+          </NoScript>
         </div>
       </body>
+      <script>{`
+          if (typeof window !== "undefined") {
+            document.body.classList.add("JS")
+          }
+        `}</script>
     </html>
   );
 }

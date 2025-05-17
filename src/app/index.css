@@ -212,3 +212,21 @@ img.csr {
     background-color: #888;
   }
 }
+
+.noscript {
+  opacity: 0;
+  animation: fadeIn 400ms 2s ease-in forwards;
+}
+
+.JS .noscript {
+  animation: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
