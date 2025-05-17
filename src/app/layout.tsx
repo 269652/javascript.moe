@@ -82,6 +82,7 @@ export default function RootLayout({
           {children}
           <noscript>
             <div
+              className="bg-black/40 backdrop-blur-sm"
               style={{
                 position: "absolute",
                 top: 0,
@@ -94,8 +95,10 @@ export default function RootLayout({
                 textShadow: "1px 1px 1px #333333",
               }}
             >
-              <h1>This site uses CSR and requires JavaScript to run.</h1>
-              <h2>Enjoy this black and white picture.</h2>
+              <h1>
+                This site requires JavaScript in order to work
+                properly.
+              </h1>
             </div>
           </noscript>
         </div>
