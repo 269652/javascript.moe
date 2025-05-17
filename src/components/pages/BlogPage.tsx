@@ -14,9 +14,11 @@ import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import { BlogPost } from "../BlogPost";
 import { useLocale } from "next-intl";
 import { Suspense } from "react";
+import { IconButton } from "../Button";
+import Link from "next/link";
 
 // Blog Page Component
-export default async function BlogPage({ params, searchParams }: any) {
+export default async function BlogPage({ params, searchParams, path }: any) {
   const {
     locale,
     category: categorySlug,
@@ -66,9 +68,15 @@ export default async function BlogPage({ params, searchParams }: any) {
             <div className="flex flex-col gap-2">
               <div className="flex justify-between">
                 <h1 className="mb-4 text-3xl font-bold">{title}</h1>
-                <Suspense>
-                  <LanguageSwitcher availableLocales={supportedLocales} />
-                </Suspense>
+                <div className="flex gap-1">
+                  <Suspense>
+                    <LanguageSwitcher availableLocales={supportedLocales} />
+                  </Suspense>
+                  <IconButton
+                    href={`${path}/rss.xml`}
+                    icon="FaRss"
+                  ></IconButton>
+                </div>
               </div>
               <Labels
                 labels={labels}

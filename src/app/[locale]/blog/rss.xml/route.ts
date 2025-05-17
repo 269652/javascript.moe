@@ -24,7 +24,7 @@ export async function GET(req: NextRequest, { params }: any) {
         <link>${SITE_URL}/posts/${slug}</link>
         <guid>${SITE_URL}/posts/${slug}</guid>
         <pubDate>${pubDate}</pubDate>
-        <description><![CDATA[${excerpt}]]></description>
+        <description><![CDATA[<img src="${post.coverImage?.url}" alt="Cover Image" />${excerpt}]]></description>
       </item>
     `;
     })
@@ -37,6 +37,11 @@ export async function GET(req: NextRequest, { params }: any) {
         <title>${config.title}</title>
         <link>${SITE_URL}</link>
         <description>${config.description}</description>
+        <image>
+          <url>${config.coverImage?.url}</url>
+          <title>Mo’s Blog</title>
+          <link>https://javascript.moe/en/blog</link>
+        </image>
         ${items}
       </channel>
     </rss>

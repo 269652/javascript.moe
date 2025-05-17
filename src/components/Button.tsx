@@ -7,6 +7,7 @@ import ReactDOM from "react-dom";
 import { useRef, useState } from "react";
 import { useBody, useOnClickOutside } from "@/lib/hooks";
 import { PlacesType, Tooltip } from "react-tooltip";
+import Link from "next/link";
 
 export type ButtonProps = {
   tooltip?: string;
@@ -14,6 +15,7 @@ export type ButtonProps = {
   allowDisabledClick?: boolean;
   onDisabledClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   tooltipPlacement?: PlacesType;
+  href?: string;
 };
 export type ReactButton = React.ButtonHTMLAttributes<HTMLButtonElement> &
   ButtonProps;
@@ -29,12 +31,16 @@ export const Button = ({
   disabled,
   id,
   tooltipPlacement,
+  href,
   ...rest
 }: ReactButton) => {
   const body = useBody();
+  const Cmp = href ? Link : "button";
+  let props = {} as any;
+  if (href) props.href = href;
   return (
     <>
-      <button
+      <Cmp
         id={id}
         title={rest.title}
         onClick={(e) => {
@@ -60,10 +66,11 @@ export const Button = ({
           }
         )}
         {...rest}
+        {...props}
         disabled={!allowDisabledClick && disabled}
       >
         {children}
-      </button>
+      </Cmp>
       {body &&
         ReactDOM.createPortal(
           <Tooltip
