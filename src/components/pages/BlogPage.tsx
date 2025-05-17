@@ -10,12 +10,9 @@ import {
 import supportedLocales from "@/lib/locales";
 import Image from "next/image";
 import { Categories } from "../../container/Categories";
-import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import { BlogPost } from "../BlogPost";
-import { useLocale } from "next-intl";
 import { Suspense } from "react";
 import { IconButton } from "../Button";
-import Link from "next/link";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams, path }: any) {
@@ -72,8 +69,8 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                     <LanguageSwitcher availableLocales={supportedLocales} />
                   </Suspense>
                   <IconButton
-                  iconClsn="min-w-8 "
-                  className="min-w-[48px] min-h-[48px]"
+                    iconClsn="min-w-8 "
+                    className="min-w-[48px] min-h-[48px]"
                     href={`/${path}/rss.xml`}
                     icon="FaRss"
                   ></IconButton>
@@ -83,6 +80,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 labels={labels}
                 labelNames={labelNames}
                 className="flex md:hidden"
+                connection={(await searchParams).c}
               />
               <div className="flex justify-between h-fit items-end">
                 <Categories
@@ -94,6 +92,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                   labels={labels}
                   labelNames={labelNames}
                   className="hidden md:flex"
+                  connection={(await searchParams).c}
                 />
               </div>
             </div>

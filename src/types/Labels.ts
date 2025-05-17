@@ -4,4 +4,5 @@ export type LabelsProps = {
   labels: Label[];
   labelNames: string[];
   className?: string;
+  connection: string;
 };

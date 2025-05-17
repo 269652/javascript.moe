@@ -6,10 +6,10 @@ import { useParams, useSearchParams } from "next/navigation";
 import { Panel } from "./Panel";
 import { LabelsProps } from "@/types/Labels";
 
-export const Labels = ({ labels, labelNames, className }: LabelsProps) => {
+export const Labels = ({ labels, labelNames, className, connection }: LabelsProps) => {
   const { locale } = useParams<{ locale: string }>();
-  const search = useSearchParams();
-  const isAndCon = search.get("c") === "AND";
+  
+  const isAndCon = connection === "AND";
   return (
     <Panel
       scrollDir="y"
