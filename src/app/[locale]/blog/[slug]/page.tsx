@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { marked } from "marked";
+import { marked, Renderer } from "marked";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import BlogPostStructuredData from "@/components/BlogStructuredData";
@@ -12,7 +12,23 @@ import { Suspense } from "react";
 import { ViewCounter } from "@/components/ViewCounter";
 import { getBlogPost } from "@/lib/api";
 import clsx from "clsx";
+import hljs from "highlight.js";
+import "highlight.js/styles/github-dark.css";
 
+const renderer = new Renderer();
+
+renderer.code = function ({ text, lang = "bash", escaped }) {
+  const validLang = lang && hljs.getLanguage(lang);
+  const highlighted = validLang
+    ? hljs.highlight(text, { language: lang }).value
+    : hljs.highlightAuto(text).value;
+
+  return `<pre><code class="hljs language-${
+    lang ?? "plaintext"
+  }">${highlighted}</code></pre>`;
+};
+
+marked.use({ renderer });
 marked.use(footnote());
 
 export async function generateMetadata({
@@ -124,7 +140,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
               })}
             >
               <Link href={`/${locale}/blog${isFancy ? "?ui=1" : ""}`}>
-                <IconButton icon="FaHome" variant="noborder"/>
+                <IconButton icon="FaHome" variant="noborder" />
               </Link>
               <Link
                 href={`/${locale}/blog/${post.slug}-${post.documentId}${
@@ -132,7 +148,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
                 }`}
               >
                 <IconButton
-                variant="noborder"
+                  variant="noborder"
                   icon="FaImage"
                   className={clsx({
                     "text-yellow-300": isFancy,
@@ -154,7 +170,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
             <article key={post.id} className="bg-black/30 p-2 md:p-4 post ">
               <p
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
-                className="max-w-[80ch] mx-auto"
+                className="max-w-[80ch] mx-auto prose prose-invert"
               />
             </article>
           </main>
