@@ -145,7 +145,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
               </div>
             ) : (
               <div
-                className={clsx("flex flex-col gap-2", { "px-4": !isFancy })}
+                className={clsx("flex flex-col gap-2 px-4")}
               >
                 {posts
                   .sort((a: any, b: any) =>

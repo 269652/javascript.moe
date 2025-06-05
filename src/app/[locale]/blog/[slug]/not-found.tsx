@@ -32,7 +32,7 @@ export default async function NotFound() {
 
       <LanguageSwitcher
         showCurrent
-        href={blogPostLink({ locale, post })}
+        href={blogPostLink({ locale, post, ui: 0})}
         availableLocales={[
           post.locale,
           ...post.localizations?.map((p: BlogPostProps) => p.locale),
