@@ -10,7 +10,7 @@ const LanguageSwitcher = ({
   availableLocales,
   href,
   showCurrent = true,
-  searchParams = {}
+  searchParams = {},
 }: any) => {
   const { locale } = useParams<{ locale: string }>();
   const pathname = usePathname();
@@ -18,7 +18,7 @@ const LanguageSwitcher = ({
   const currentLocale = supportedLocales.includes(locale) ? locale : "en";
 
   return (
-    <div className="top-4 right-8 flex z-10 h-fit rounded-md bg-black/30 overflow-hidden ">
+    <div className="top-4 right-8 flex z-10 h-fit rounded-md bg-white/15 overflow-hidden ">
       {supportedLocales
         .filter(
           (loc) =>
@@ -28,8 +28,8 @@ const LanguageSwitcher = ({
         .map((loc) => {
           const path = href ? href : pathname;
           let newUrl = path.replace(`/${currentLocale}`, `/${loc}`);
-          if (searchParams.c === "AND") newUrl += "?c=AND";
-
+          if (Object.keys(searchParams).length !== 0)
+            newUrl += "?" + new URLSearchParams(searchParams).toString();
           return (
             <Link key={loc} href={newUrl}>
               <Image
@@ -37,9 +37,13 @@ const LanguageSwitcher = ({
                 alt={`Switch to ${loc}`}
                 width={30}
                 height={20}
-                className={clsx("cursor-pointer min-w-[48px] p-2 hover:bg-white/10", {
-                  "!cursor-default  bg-white/15 shadow-[0px_0px_3px_1px_black_inset]": currentLocale === loc,
-                })}
+                className={clsx(
+                  "cursor-pointer min-w-[48px] p-2 hover:bg-white/10",
+                  {
+                    "!cursor-default  bg-white/15 shadow-[0px_0px_3px_1px_black_inset]":
+                      currentLocale === loc,
+                  }
+                )}
               />
             </Link>
           );

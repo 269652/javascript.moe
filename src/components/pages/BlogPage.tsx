@@ -72,26 +72,42 @@ export default async function BlogPage({ params, searchParams, path }: any) {
             }
           )}
         >
-          <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col max-w-7xl">
+          <main
+            className={clsx(
+              "bg-black/40 w-full mx-auto drop-shadow-2xl flex flex-col max-w-7xl",
+              {
+                "": isFancy,
+              }
+            )}
+          >
             <div className="flex flex-col gap-2">
-              <div className="flex flex-wrap-reverse gap-1 justify-between">
+              <div className="flex flex-wrap-reverse gap-1 justify-between bg-white/10 p-2">
                 <div className="flex gap-1 items-center">
-                  <IconButton icon="FaHome" href={`/${locale}`} />
+                  <IconButton
+                    variant="noborder"
+                    icon="FaHome"
+                    href={`/${locale}`}
+                  />
                   <Link href={`/${locale}/blog${!isFancy ? "?ui=1" : ""}`}>
                     <IconButton
+                      variant="noborder"
                       icon="FaImage"
                       className={clsx({
                         "text-yellow-300": isFancy,
                       })}
                     />
                   </Link>
-                  <h1 className="text-3xl font-bold">{title}</h1>
+                  <h1 className="text-3xl font-bold ml-4">{title}</h1>
                 </div>
-                <div className="flex gap-1 justify-end flex-1">
+                <div className="flex gap-1 justify-end flex-1 ">
                   <Suspense>
-                    <LanguageSwitcher availableLocales={supportedLocales} />
+                    <LanguageSwitcher
+                      availableLocales={supportedLocales}
+                      searchParams={await searchParams}
+                    />
                   </Suspense>
                   <IconButton
+                    variant="noborder"
                     iconClsn="min-w-8 "
                     className="min-w-[48px] min-h-[48px]"
                     href={`/${path}/rss.xml`}
@@ -106,7 +122,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 connection={(await searchParams).c}
                 variant={!isFancy ? "light" : "dark"}
               />
-              <div className="flex justify-between h-fit items-end">
+              <div className="flex justify-between h-fit items-end px-4">
                 <Categories
                   categories={categories}
                   activeSlug={categorySlug}
@@ -128,7 +144,9 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 <p className="text-center text-gray-400">{t("noPostsFound")}</p>
               </div>
             ) : (
-              <div className="flex flex-col gap-2">
+              <div
+                className={clsx("flex flex-col gap-2", { "px-4": !isFancy })}
+              >
                 {posts
                   .sort((a: any, b: any) =>
                     b.publishedAt.localeCompare(a.publishedAt)

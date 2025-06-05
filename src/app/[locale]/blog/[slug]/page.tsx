@@ -123,8 +123,8 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
                 "bg-white/10": !isFancy,
               })}
             >
-              <Link href={`/${locale}/blog`}>
-                <IconButton icon="FaHome" />
+              <Link href={`/${locale}/blog${isFancy ? "?ui=1" : ""}`}>
+                <IconButton icon="FaHome" variant="noborder"/>
               </Link>
               <Link
                 href={`/${locale}/blog/${post.slug}-${post.documentId}${
@@ -132,6 +132,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
                 }`}
               >
                 <IconButton
+                variant="noborder"
                   icon="FaImage"
                   className={clsx({
                     "text-yellow-300": isFancy,
@@ -139,7 +140,10 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
                 />
               </Link>
               <Suspense>
-                <LanguageSwitcher availableLocales={availableLocales} />
+                <LanguageSwitcher
+                  availableLocales={availableLocales}
+                  searchParams={{ ui: isFancy ? 1 : 0 }}
+                />
               </Suspense>
               <ViewCounter post={post} className="!ml-auto" increment />
             </div>
