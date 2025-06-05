@@ -6,6 +6,7 @@ export type BlogPostLinksParams = {
   locale: string;
   // The blog post object from getBlogPost();
   post: BlogPostProps;
+  ui: number;
 };
 
 export type BlogCategoryLinksParams = {
@@ -22,8 +23,15 @@ export const l =
     return vals.reduce((acc, cur, i) => strings[i] + cur, locale);
   };
 
-export const blogPostLink = ({ locale, post }: BlogPostLinksParams) => {
-  return `/${locale}/blog/${post.slug}-${post.documentId}`;
+export const blogPostLink = ({ locale, post, ui }: BlogPostLinksParams) => {
+  const searchParams = {} as any;
+  if (ui == 1) searchParams.ui = "1";
+  const isEmpty = Object.keys(searchParams).length === 0;
+  return (
+    `/${locale}/blog/${post.slug}-${post.documentId}` +
+    (!isEmpty ? "?" : "")  +
+    new URLSearchParams(searchParams).toString()
+  );
 };
 
 export const coverImageLink = ({ post }: { post: BlogPostProps }) => {

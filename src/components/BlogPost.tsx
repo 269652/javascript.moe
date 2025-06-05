@@ -13,11 +13,13 @@ export const BlogPost = ({
   locale,
   categorySlug,
   labelsSlug,
+  ui,
 }: {
   post: BlogPostProps;
   locale: string;
   categorySlug: string;
   labelsSlug: string;
+  ui: number
 }) => {
   const htmlExcerpt = marked(post.excerpt);
   const availableLocales = post.localizations?.map((p: any) => p.locale);
@@ -28,7 +30,7 @@ export const BlogPost = ({
       className="flex flex-col md:flex-row bg-black/50 rounded- md first:rounded-tr-none overflow-hidden shadow-lg"
     >
       <div className="relative w-full md:w-1/3 justify-between">
-        <Link href={blogPostLink({ locale, post })}>
+        <Link href={blogPostLink({ locale, post, ui})}>
           <Image
             src={coverImageLink({ post })}
             alt={post.title}
@@ -83,7 +85,7 @@ export const BlogPost = ({
                 key={post.id}
                 showCurrent
                 availableLocales={availableLocales}
-                href={blogPostLink({ locale, post })}
+                href={blogPostLink({ locale, post, ui })}
               />
             </Suspense>
             <ViewCounter post={post} />

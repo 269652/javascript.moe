@@ -136,6 +136,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                   .map((post: any) => {
                     return (
                       <BlogPost
+                        ui={isFancy ? 1 : 0}
                         key={post.id}
                         post={post}
                         categorySlug={categorySlug}
