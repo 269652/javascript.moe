@@ -114,13 +114,13 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
               {
                 "bg-black/40": isFancy,
                 // "bg-white/10": !isFancy
-                "p-1 md:p-4": isFancy,
+                // "p-1 md:p-4": isFancy,
               }
             )}
           >
             <div
               className={clsx("flex gap-1 items-center p-2", {
-                "bg-white/10": !isFancy,
+                "bg-white/10": 1,
               })}
             >
               <Link href={`/${locale}/blog${isFancy ? "?ui=1" : ""}`}>

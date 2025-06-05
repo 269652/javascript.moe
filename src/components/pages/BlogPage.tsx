@@ -122,7 +122,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 connection={(await searchParams).c}
                 variant={!isFancy ? "light" : "dark"}
               />
-              <div className="flex justify-between h-fit items-end px-4">
+              <div className="flex justify-between h-fit items-end px-4 border-b-2 border-white/40 ">
                 <Categories
                   categories={categories}
                   activeSlug={categorySlug}
@@ -145,7 +145,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
               </div>
             ) : (
               <div
-                className={clsx("flex flex-col gap-2 px-4")}
+                className={clsx("flex flex-col gap-2 px-4 bg-white/20")}
               >
                 {posts
                   .sort((a: any, b: any) =>

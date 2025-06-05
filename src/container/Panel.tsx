@@ -29,7 +29,7 @@ export const Panel = ({
             scrollDir === "y",
           " flex-1  max-w-fit": stretch === "grow",
           shrink: stretch === "shrink",
-          "border-b-2 border-gray-500mr-auto": hasBottomBorder,
+          "border-b-2 -mb-[1.5px]": hasBottomBorder,
           "pb-0": !hasBottomPadding,
         },
         className
