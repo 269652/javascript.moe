@@ -2,7 +2,7 @@ import { getBlogConfig, getBlogPosts } from "@/lib/api";
 import { format } from "date-fns";
 import { NextRequest, NextResponse } from "next/server";
 
-const SITE_URL = "https://javascript.moe/en/blog";
+const SITE_URL = "https://javascript.moe";
 
 export async function GET(req: NextRequest, { params }: any) {
   const { locale } = await params;
@@ -21,8 +21,8 @@ export async function GET(req: NextRequest, { params }: any) {
       return `
       <item>
         <title><![CDATA[${post.title}]]></title>
-        <link>${SITE_URL}/${slug}-${post.documentId}</link>
-        <guid>${SITE_URL}/${slug}-${post.documentId}</guid>
+        <link>${SITE_URL}/${post.locale}/blog/${slug}-${post.documentId}</link>
+        <guid>${SITE_URL}/${post.locale}/blog/${slug}-${post.documentId}</guid>
         <pubDate>${pubDate}</pubDate>
         <description><![CDATA[<img src="${post.coverImage?.url}" alt="Cover Image" />${excerpt}]]></description>
       </item>
@@ -35,12 +35,12 @@ export async function GET(req: NextRequest, { params }: any) {
     <rss version="2.0">
       <channel>
         <title>${config.title}</title>
-        <link>${SITE_URL}</link>
+        <link>${SITE_URL}/${locale}</link>
         <description>${config.description}</description>
         <image>
           <url>${config.coverImage?.url}</url>
           <title>Mo’s Blog</title>
-          <link>https://javascript.moe/en/blog</link>
+          <link>${SITE_URL}/${locale}/blog</link>
         </image>
         ${items}
       </channel>
