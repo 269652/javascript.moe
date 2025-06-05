@@ -128,7 +128,11 @@ article > p > p {
 
 article p > pre {
   margin-bottom: 1rem;
-  @apply overflow-x-auto max-w-full;
+  @apply overflow-x-auto max-w-full p-4 bg-white/10;
+}
+
+article p > code {
+  @apply overflow-auto max-w-full py-1 px-4 bg-white/10;
 }
 
 article ul li {

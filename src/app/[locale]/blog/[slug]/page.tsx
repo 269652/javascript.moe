@@ -11,6 +11,7 @@ import footnote from "marked-footnote";
 import { Suspense } from "react";
 import { ViewCounter } from "@/components/ViewCounter";
 import { getBlogPost } from "@/lib/api";
+import clsx from "clsx";
 
 marked.use(footnote());
 
@@ -54,11 +55,13 @@ export async function generateMetadata({
 
 interface BlogPageProps {
   params: Promise<{ slug: string; locale: string }>;
+  searchParams: Promise<{ ui: string }>;
 }
 
-const BlogPage = async ({ params }: BlogPageProps) => {
+const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
   const { slug, locale } = await params;
   const id = slug.split("-").pop(); // Assuming the ID is part of the slug after a dash
+  const isFancy = +(await searchParams).ui === 1;
 
   if (!id) {
     notFound(); // Return a 404 if the post doesn't exist or another error occurs
@@ -78,27 +81,62 @@ const BlogPage = async ({ params }: BlogPageProps) => {
   ];
 
   const htmlContent = marked(post.content || "");
-
+  const image = (
+    <Image
+      src={
+        post.coverImage ? coverImageLink({ post }) : "/images/wallpaper/22.webp"
+      }
+      className={clsx({
+        "w-screen h-screen absolute": isFancy,
+        "": !isFancy,
+      })}
+      width={1024}
+      height={768}
+      alt={post.title || "Blog Post Cover Image"}
+    />
+  );
   return (
     <>
       <BlogPostStructuredData post={post} />
       <div className="max-h-screen">
-        <Image
-          src={
-            post.coverImage
-              ? coverImageLink({ post })
-              : "/images/wallpaper/22.webp"
-          }
-          className="w-screen h-screen absolute"
-          width={1024}
-          height={768}
-          alt={post.title || "Blog Post Cover Image"}
-        />
-        <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4 mx-auto">
-          <main className="bg-black/40 w-full mx-auto p-1 md:p-4 flex flex-col gap-1 max-w-[110ch]  ">
-            <div className="flex gap-1 items-center">
+        {isFancy && image}
+        <div
+          className={clsx(
+            "block w-full justify-center h-screen overflow-y-auto mx-auto",
+            {
+              "p-1 md:p-4": isFancy,
+            }
+          )}
+        >
+          <main
+            className={clsx(
+              "w-full mx-auto flex flex-col gap-1 max-w-[110ch]",
+              {
+                "bg-black/40": isFancy,
+                // "bg-white/10": !isFancy
+                "p-1 md:p-4": isFancy,
+              }
+            )}
+          >
+            <div
+              className={clsx("flex gap-1 items-center p-2", {
+                "bg-white/10": !isFancy,
+              })}
+            >
               <Link href={`/${locale}/blog`}>
                 <IconButton icon="FaHome" />
+              </Link>
+              <Link
+                href={`/${locale}/blog/${post.slug}-${post.documentId}${
+                  !isFancy ? "?ui=1" : ""
+                }`}
+              >
+                <IconButton
+                  icon="FaImage"
+                  className={clsx({
+                    "text-yellow-300": isFancy,
+                  })}
+                />
               </Link>
               <Suspense>
                 <LanguageSwitcher availableLocales={availableLocales} />
@@ -108,6 +146,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
             <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title flex flex-col mx-auto">
               {post.title}
             </h1>
+            {!isFancy && image}
             <article key={post.id} className="bg-black/30 p-2 md:p-4 post ">
               <p
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
