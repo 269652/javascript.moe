@@ -13,6 +13,8 @@ import { Categories } from "../../container/Categories";
 import { BlogPost } from "../BlogPost";
 import { Suspense } from "react";
 import { IconButton } from "../Button";
+import clsx from "clsx";
+import Link from "next/link";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams, path }: any) {
@@ -26,6 +28,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
     .filter(Boolean);
 
   const isAndCon = (await searchParams).c === "AND";
+  const isFancy = +(await searchParams).ui === 1;
 
   const { data: posts = [] } = await getBlogPosts({
     locale,
@@ -52,22 +55,36 @@ export default async function BlogPage({ params, searchParams, path }: any) {
       <div className="max-h-screen relative">
         {/* Language Flags */}
 
-        <Image
-          src={coverImageUrl}
-          className="w-screen h-screen absolute"
-          width={1024}
-          height={768}
-          alt="Depiction of a forest fragrance"
-        />
-        <div className="block w-full justify-center h-screen overflow-y-auto p-1 md:p-4 mx-auto">
+        {isFancy && (
+          <Image
+            src={coverImageUrl}
+            className="w-screen h-screen absolute"
+            width={1024}
+            height={768}
+            alt="Depiction of a tranquil sea"
+          />
+        )}
+        <div
+          className={clsx(
+            "block w-full justify-center h-screen overflow-y-auto mx-auto",
+            {
+              "p-1 md:p-4": isFancy,
+            }
+          )}
+        >
           <main className="bg-black/40 w-full mx-auto p-2 md:p-4 drop-shadow-2xl flex flex-col max-w-7xl">
             <div className="flex flex-col gap-2">
               <div className="flex flex-wrap-reverse gap-1 justify-between">
                 <div className="flex gap-1 items-center">
-                  <IconButton
-                    icon="FaHome"
-                    href={`/${locale}`}
-                  />
+                  <IconButton icon="FaHome" href={`/${locale}`} />
+                  <Link href={`/${locale}/blog${!isFancy ? "?ui=1" : ""}`}>
+                    <IconButton
+                      icon="FaImage"
+                      className={clsx({
+                        "text-yellow-300": isFancy,
+                      })}
+                    />
+                  </Link>
                   <h1 className="text-3xl font-bold">{title}</h1>
                 </div>
                 <div className="flex gap-1 justify-end flex-1">
@@ -87,18 +104,21 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 labelNames={labelNames}
                 className="flex md:hidden"
                 connection={(await searchParams).c}
+                variant={!isFancy ? "light" : "dark"}
               />
               <div className="flex justify-between h-fit items-end">
                 <Categories
                   categories={categories}
                   activeSlug={categorySlug}
                   locale={locale}
+                  variant={!isFancy ? "light" : "dark"}
                 />
                 <Labels
                   labels={labels}
                   labelNames={labelNames}
                   className="hidden md:flex"
                   connection={(await searchParams).c}
+                  variant={!isFancy ? "light" : "dark"}
                 />
               </div>
             </div>

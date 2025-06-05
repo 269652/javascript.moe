@@ -13,6 +13,7 @@ export type BlogCategoryLinksParams = {
   locale: string;
   // The blog category object from getCategories();
   category: BlogCategory;
+  isFancy: boolean;
 };
 
 export const l =
@@ -35,8 +36,14 @@ export const coverImageLink = ({ post }: { post: BlogPostProps }) => {
 export const blogCategoryLink = ({
   locale,
   category,
+  isFancy,
 }: BlogCategoryLinksParams) => {
-  return `/${locale}/blog/category/${category.slug}`;
+  const searchParams = {} as any;
+  if (isFancy) searchParams.ui = "1";
+  return (
+    `/${locale}/blog/category/${category.slug}?` +
+    new URLSearchParams(searchParams).toString()
+  );
 };
 
 export const blogLink = ({ locale }: { locale: string }) => {

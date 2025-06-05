@@ -7,20 +7,22 @@ export const Categories = ({
   categories,
   activeSlug,
   locale,
+  variant,
 }: {
   categories: Category[];
   activeSlug: string;
   locale: string;
+  variant: "light" | "dark";
 }) => {
   return (
-    <Panel scrollDir="x" stretch="grow" hasBottomBorder>
+    <Panel scrollDir="x" stretch="grow" hasBottomBorder variant={variant}>
       {categories
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((category: any) => {
           const active = activeSlug === category.slug;
           const href = active
             ? blogLink({ locale })
-            : blogCategoryLink({ locale, category });
+            : blogCategoryLink({ locale, category, isFancy: variant === 'dark' });
 
           return (
             <Link

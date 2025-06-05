@@ -6,9 +6,15 @@ import { useParams, useSearchParams } from "next/navigation";
 import { Panel } from "./Panel";
 import { LabelsProps } from "@/types/Labels";
 
-export const Labels = ({ labels, labelNames, className, connection }: LabelsProps) => {
+export const Labels = ({
+  labels,
+  labelNames,
+  className,
+  connection,
+  variant,
+}: LabelsProps) => {
   const { locale } = useParams<{ locale: string }>();
-  
+
   const isAndCon = connection === "AND";
   return (
     <Panel
@@ -17,6 +23,7 @@ export const Labels = ({ labels, labelNames, className, connection }: LabelsProp
       hasBottomBorder
       hasBottomPadding
       className={className}
+      variant={variant}
     >
       {labels
         .sort((a, b) => a.name.localeCompare(b.name))
@@ -27,11 +34,14 @@ export const Labels = ({ labels, labelNames, className, connection }: LabelsProp
           const newLabelNames = active
             ? labelNames.filter((l: string) => l !== cat.slug)
             : [...labelNames, cat.slug].sort();
+
+          const searchParams = {} as any;
+          if (isAndCon) searchParams.c = "AND";
+          if (variant === "dark") searchParams.ui = 1;
           const href =
             newLabelNames.length > 0
-              ? `/${locale}/blog/labels/${newLabelNames.join(",")}${
-                  isAndCon ? "?c=AND" : ""
-                }`
+              ? `/${locale}/blog/labels/${newLabelNames.join(",")}?` +
+                new URLSearchParams(searchParams).toString()
               : `/${locale}/blog`;
 
           return (
@@ -43,7 +53,8 @@ export const Labels = ({ labels, labelNames, className, connection }: LabelsProp
                 {
                   "bg-purple-600 hover:bg-purple-500": active,
                   "bg-gray-700 hover:bg-purple-500": !active,
-                  "!bg-gray-400/40 !hover:bg-purple-500 cursor-default !text-gray-100": disabled,
+                  "!bg-gray-400/40 !hover:bg-purple-500 cursor-default !text-gray-100":
+                    disabled,
                 }
               )}
             >
@@ -54,10 +65,12 @@ export const Labels = ({ labels, labelNames, className, connection }: LabelsProp
       {labelNames.length > 1 && (
         <Link
           className={clsx(
-            "absolute top-0 right-0 p-2  rounded-bl-lg min-w-11 text-center shadow-[0px_0px_2px_1px_black]",
+            "absolute top-0 right-0 p-2  rounded-bl-lg min-w-11 text-center",
             {
               "bg-amber-500 hover:bg-amber-400": isAndCon,
               "bg-sky-500 hover:bg-sky-400  ": !isAndCon,
+              "shadow-[0px_0px_2px_1px_black]": variant === "dark",
+              "shadow-[0px_0px_2px_1px_white]": variant === "light",
             }
           )}
           href={`/${locale}/blog/labels/${labelNames.join(",")}${

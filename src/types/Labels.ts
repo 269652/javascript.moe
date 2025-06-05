@@ -5,4 +5,5 @@ export type LabelsProps = {
   labelNames: string[];
   className?: string;
   connection: string;
+  variant: 'light' | 'dark'
 };

@@ -8,18 +8,22 @@ export const Panel = ({
   hasBottomBorder,
   hasBottomPadding,
   className,
+  variant,
 }: PropsWithChildren<{
   scrollDir: "x" | "y";
   stretch: "grow" | "shrink";
   hasBottomBorder?: boolean;
   hasBottomPadding?: boolean;
   className?: string;
+  variant: "light" | "dark";
 }>) => {
   return (
     <div
       className={clsx(
-        "flex p-2 bg-black/30 rounded-t-md shadow-[0_0px_2px_1px_black] mx-[1px]",
+        "flex p-2  rounded-t-md  mx-[1px]",
         {
+          "shadow-[0_0px_2px_1px_black] bg-black/30": variant === "dark",
+          " bg-white/15": variant === "light",
           "overflow-x-auto": scrollDir === "x",
           "overflow-y-auto flex-wrap basis-1/2 justify-start max-h-[98px] gap-1 ":
             scrollDir === "y",
