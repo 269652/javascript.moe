@@ -132,7 +132,7 @@ article p > pre {
 }
 
 article p > code {
-  @apply overflow-auto max-w-full py-1 px-4 bg-white/10;
+  @apply overflow-x-auto overflow-y-clip max-w-full py-1.5 px-4 bg-[#0D1117];
 }
 
 article ul li {
