@@ -74,7 +74,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
         >
           <main
             className={clsx(
-              "bg-black/40 w-full mx-auto drop-shadow-2xl flex flex-col max-w-7xl",
+              "bg-black/40 w-full mx-auto flex flex-col max-w-7xl",
               {
                 "": isFancy,
               }
