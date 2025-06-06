@@ -14,6 +14,11 @@ import { getBlogPost } from "@/lib/api";
 import clsx from "clsx";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
+import bash from 'highlight.js/lib/languages/bash';
+import powershell from 'highlight.js/lib/languages/powershell';
+
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('powershell', powershell);
 
 const renderer = new Renderer();
 
