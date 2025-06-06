@@ -29,7 +29,7 @@ renderer.code = function ({ text, lang = "bash", escaped }) {
     : hljs.highlightAuto(text).value;
 
   return `<pre><code class="hljs language-${
-    lang ?? "plaintext"
+    lang || "plaintext"
   }">${highlighted}</code></pre>`;
 };
 
