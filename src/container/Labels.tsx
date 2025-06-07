@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { Panel } from "./Panel";
 import { LabelsProps } from "@/types/Labels";
+import { blogLabelsLink } from "@/lib/links";
 
 export const Labels = ({
   labels,
@@ -14,8 +15,15 @@ export const Labels = ({
   variant,
 }: LabelsProps) => {
   const { locale } = useParams<{ locale: string }>();
-
+  const searchParams = Object.fromEntries(useSearchParams().entries());
+  const newSearchParams = { ...searchParams };
   const isAndCon = connection === "AND";
+
+  if (!isAndCon) {
+    newSearchParams.c = "AND";
+  } else {
+    delete newSearchParams.c;
+  }
   return (
     <Panel
       scrollDir="y"
@@ -73,9 +81,11 @@ export const Labels = ({
               "shadow-[0px_0px_2px_1px_white]": variant === "light",
             }
           )}
-          href={`/${locale}/blog/labels/${labelNames.join(",")}${
-            isAndCon ? "" : "?c=AND"
-          }`}
+          href={blogLabelsLink({
+            locale,
+            searchParams: newSearchParams,
+            labels: labelNames,
+          })}
         >
           {isAndCon ? "AND" : "OR"}
         </Link>

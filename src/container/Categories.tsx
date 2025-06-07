@@ -2,6 +2,7 @@ import { blogCategoryLink, blogLink } from "@/lib/links";
 import Link from "next/link";
 import { Panel } from "./Panel";
 import { Category } from "@/types/Category";
+import { useSearchParams } from "next/navigation";
 
 export const Categories = ({
   categories,
@@ -14,6 +15,7 @@ export const Categories = ({
   locale: string;
   variant: "light" | "dark";
 }) => {
+  const searchParams = { ui: variant === "dark" ? 1 : 0 };
   return (
     <Panel scrollDir="x" stretch="grow" hasBottomBorder variant={variant}>
       {categories
@@ -21,8 +23,12 @@ export const Categories = ({
         .map((category: any) => {
           const active = activeSlug === category.slug;
           const href = active
-            ? blogLink({ locale })
-            : blogCategoryLink({ locale, category, isFancy: variant === 'dark' });
+            ? blogLink({ locale, searchParams })
+            : blogCategoryLink({
+                locale,
+                category,
+                searchParams,
+              });
 
           return (
             <Link

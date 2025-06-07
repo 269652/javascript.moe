@@ -19,7 +19,7 @@ export const BlogPost = ({
   locale: string;
   categorySlug: string;
   labelsSlug: string;
-  ui: number
+  ui: number;
 }) => {
   const htmlExcerpt = marked(post.excerpt);
   const availableLocales = post.localizations?.map((p: any) => p.locale);
@@ -30,7 +30,7 @@ export const BlogPost = ({
       className="flex flex-col md:flex-row bg-black/50 rounded- md first:rounded-tr-none overflow-hidden  backdrop-blur-[12px]"
     >
       <div className="relative w-full md:w-1/3 justify-between">
-        <Link href={blogPostLink({ locale, post, ui})}>
+        <Link href={blogPostLink({ locale, post, searchParams: { ui } })}>
           <Image
             src={coverImageLink({ post })}
             alt={post.title}
@@ -45,7 +45,7 @@ export const BlogPost = ({
       </div>
       <div className="flex-1 p-4 flex flex-col justify-between">
         <div dangerouslySetInnerHTML={{ __html: htmlExcerpt }} />
-        <div className="flex gap-2 mt-4 flex-wrap items-center h-fit">
+        <div className="flex gap-2 mt-4 flex-wrap items-end h-fit">
           {post.category && (
             <Link
               href={`/blog/category/${post.category.slug}`}
@@ -85,7 +85,7 @@ export const BlogPost = ({
                 key={post.id}
                 showCurrent
                 availableLocales={availableLocales}
-                href={blogPostLink({ locale, post, ui })}
+                href={blogPostLink({ locale, post, searchParams: { ui   } })}
               />
             </Suspense>
             <ViewCounter post={post} />

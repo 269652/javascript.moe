@@ -1,12 +1,13 @@
 import { BlogCategory } from "@/types/BlogCategory";
 import { BlogPostProps } from "@/types/BlogPost";
+import { Label } from "@/types/Label";
 
 export type BlogPostLinksParams = {
   // The locale obtained by useLocale()
   locale: string;
   // The blog post object from getBlogPost();
   post: BlogPostProps;
-  ui: number;
+  searchParams: any;
 };
 
 export type BlogCategoryLinksParams = {
@@ -14,7 +15,7 @@ export type BlogCategoryLinksParams = {
   locale: string;
   // The blog category object from getCategories();
   category: BlogCategory;
-  isFancy: boolean;
+  searchParams: any;
 };
 
 export const l =
@@ -23,13 +24,15 @@ export const l =
     return vals.reduce((acc, cur, i) => strings[i] + cur, locale);
   };
 
-export const blogPostLink = ({ locale, post, ui }: BlogPostLinksParams) => {
-  const searchParams = {} as any;
-  if (ui == 1) searchParams.ui = "1";
+export const blogPostLink = ({
+  locale,
+  post,
+  searchParams,
+}: BlogPostLinksParams) => {
   const isEmpty = Object.keys(searchParams).length === 0;
   return (
     `/${locale}/blog/${post.slug}-${post.documentId}` +
-    (!isEmpty ? "?" : "")  +
+    (!isEmpty ? "?" : "") +
     new URLSearchParams(searchParams).toString()
   );
 };
@@ -44,16 +47,41 @@ export const coverImageLink = ({ post }: { post: BlogPostProps }) => {
 export const blogCategoryLink = ({
   locale,
   category,
-  isFancy,
+  searchParams,
 }: BlogCategoryLinksParams) => {
-  const searchParams = {} as any;
-  if (isFancy) searchParams.ui = "1";
+  const isEmpty = Object.keys(searchParams).length === 0;
+
   return (
-    `/${locale}/blog/category/${category.slug}?` +
+    `/${locale}/blog/category/${category.slug}` +
+    (!isEmpty ? "?" : "") +
     new URLSearchParams(searchParams).toString()
   );
 };
 
-export const blogLink = ({ locale }: { locale: string }) => {
-  return `/${locale}/blog`;
+export const blogLabelsLink = ({ locale, labels, searchParams }: any) => {
+  const isEmpty = Object.keys(searchParams).length === 0;
+  console.log ("BL", isEmpty, searchParams)
+  return (
+    `/${locale}/blog/labels/${labels
+      .sort()
+      .join(",")}` +
+    (!isEmpty ? "?" : "") +
+    new URLSearchParams(searchParams).toString()
+  );
+};
+
+export const blogLink = ({
+  locale,
+  searchParams,
+}: {
+  locale: string;
+  searchParams: any;
+}) => {
+  const isEmpty = Object.keys(searchParams).length === 0;
+
+  return (
+    `/${locale}/blog` +
+    (!isEmpty ? "?" : "") +
+    new URLSearchParams(searchParams).toString()
+  );
 };
