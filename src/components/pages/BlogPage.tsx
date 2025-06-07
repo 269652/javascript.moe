@@ -112,6 +112,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                     href={dynamicLink({
                       locale,
                       params: await params,
+                      category: { slug: (await params).category },
                       searchParams: {
                         ...(await searchParams),
                         ui: !isFancy ? 1 : 0,

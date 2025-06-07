@@ -47,8 +47,13 @@ export const coverImageLink = ({ post }: { post: BlogPostProps }) => {
 export const blogCategoryLink = ({
   locale,
   category,
-  searchParams,
+  searchParams: oldSearchParams,
 }: BlogCategoryLinksParams) => {
+  const searchParams = { ...oldSearchParams };
+
+  if (searchParams.ui == "0") delete searchParams.ui;
+  if (searchParams.p == "1") delete searchParams.p;
+
   const isEmpty = Object.keys(searchParams).length === 0;
 
   return (
@@ -58,7 +63,17 @@ export const blogCategoryLink = ({
   );
 };
 
-export const blogLabelsLink = ({ locale, labels, searchParams }: any) => {
+export const blogLabelsLink = ({
+  locale,
+  labels,
+  searchParams: oldSearchParams,
+}: any) => {
+  const searchParams = { ...oldSearchParams };
+
+  if (searchParams.c === "OR") delete searchParams.c;
+  if (searchParams.ui == "0") delete searchParams.ui;
+  if (searchParams.p == "1") delete searchParams.p;
+
   const isEmpty = Object.keys(searchParams).length === 0;
   return (
     `/${locale}/blog/labels/${labels.sort().join(",")}` +
@@ -69,16 +84,17 @@ export const blogLabelsLink = ({ locale, labels, searchParams }: any) => {
 
 export const dynamicLink = ({
   locale,
+  category,
   params,
   searchParams: oldSearchParams,
 }: any) => {
   const searchParams = { ...oldSearchParams };
   if (searchParams.c === "OR") delete searchParams.c;
   if (searchParams.ui == "0") delete searchParams.ui;
-  if (params.category) {
+  if (category?.slug) {
     return blogCategoryLink({
       locale,
-      category: params.category,
+      category,
       searchParams,
     });
   } else if (params.labels) {
