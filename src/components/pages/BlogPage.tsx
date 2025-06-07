@@ -64,7 +64,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
       <div className="max-h-screen relative">
         {/* Language Flags */}
 
-        {isFancy && (
+        {isFancy && !(isVideo && !posts?.length) && (
           <Image
             src={coverImageUrl}
             className="w-screen h-screen absolute"
