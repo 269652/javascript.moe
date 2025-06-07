@@ -15,6 +15,7 @@ import { Suspense } from "react";
 import { IconButton } from "../Button";
 import clsx from "clsx";
 import Link from "next/link";
+import { dynamicLink } from "@/lib/links";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams, path }: any) {
@@ -88,7 +89,16 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                     icon="FaHome"
                     href={`/${locale}`}
                   />
-                  <Link href={`/${locale}/blog${!isFancy ? "?ui=1" : ""}`}>
+                  <Link
+                    href={dynamicLink({
+                      locale,
+                      params: await params,
+                      searchParams: {
+                        ...(await searchParams),
+                        ui: !isFancy ? 1 : 0,
+                      },
+                    })}
+                  >
                     <IconButton
                       variant="noborder"
                       icon="FaImage"

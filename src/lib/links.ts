@@ -60,14 +60,28 @@ export const blogCategoryLink = ({
 
 export const blogLabelsLink = ({ locale, labels, searchParams }: any) => {
   const isEmpty = Object.keys(searchParams).length === 0;
-  console.log ("BL", isEmpty, searchParams)
   return (
-    `/${locale}/blog/labels/${labels
-      .sort()
-      .join(",")}` +
+    `/${locale}/blog/labels/${labels.sort().join(",")}` +
     (!isEmpty ? "?" : "") +
     new URLSearchParams(searchParams).toString()
   );
+};
+
+export const dynamicLink = ({ locale, params, searchParams: oldSearchParams }: any) => {
+  const searchParams = {...oldSearchParams};
+  if (searchParams.c === 'OR') delete searchParams.c;
+  if (searchParams.ui == "0") delete searchParams.ui;
+  if (params.category) {
+    return blogCategoryLink({
+      locale,
+      category: params.category,
+      searchParams,
+    });
+  } else if (params.labels) {
+    return blogLabelsLink({ locale, labels: decodeURIComponent(params.labels).split(','), searchParams });
+  } else {
+    return blogLink({ locale, searchParams });
+  }
 };
 
 export const blogLink = ({
