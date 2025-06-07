@@ -48,6 +48,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
 
   const title = config?.title;
   const coverImageUrl = config?.coverImage?.url || "/images/wallpaper/19.webp";
+  const isVideo = config.coverVideo?.mime.includes("video");
 
   const translations = (await import(`@/assets/translations/${locale}.ts`))
     .default.blog;
@@ -70,6 +71,16 @@ export default async function BlogPage({ params, searchParams, path }: any) {
             width={1024}
             height={768}
             alt="Depiction of a tranquil sea"
+          />
+        )}
+        {isFancy && isVideo && !posts?.length && (
+          <video
+            autoPlay
+            loop
+            src={config.coverVideo.url}
+            className="w-screen h-screen absolute object-cover"
+            width={1024}
+            height={768}
           />
         )}
         <div

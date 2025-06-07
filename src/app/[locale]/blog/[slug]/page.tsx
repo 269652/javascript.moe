@@ -90,7 +90,7 @@ interface BlogPageProps {
 const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
   const { slug, locale } = await params;
   const id = slug.split("-").pop(); // Assuming the ID is part of the slug after a dash
-  const isFancy = +(await searchParams).ui === 1;
+  const isFancy = (await searchParams).ui == "1";
 
   if (!id) {
     notFound(); // Return a 404 if the post doesn't exist or another error occurs
@@ -109,8 +109,20 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
     ...localizations.map((ele: any) => ele.locale),
   ];
 
+  const isVideo = post.coverVideo?.mime?.includes("video");
+
   const htmlContent = marked(post.content || "");
-  const image = (
+  const image = isVideo ? (
+    <video
+      src={post.coverVideo.url}
+      autoPlay
+      loop
+      className={clsx("object-cover", {
+        "w-screen h-screen absolute z-0": isFancy,
+        "w-full relative": !isFancy,
+      })}
+    />
+  ) : (
     <Image
       src={
         post.coverImage ? coverImageLink({ post }) : "/images/wallpaper/22.webp"
@@ -124,6 +136,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
       alt={post.title || "Blog Post Cover Image"}
     />
   );
+
   return (
     <>
       <BlogPostStructuredData post={post} />

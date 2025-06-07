@@ -141,7 +141,6 @@ export async function getCategory(
     if (locale) url += `&locale=${locale}`;
 
     url += `&filters[slug][$eq]=${slug}`;
-    console.log("getCategory ", url);
     const res = await fetch(url, {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
