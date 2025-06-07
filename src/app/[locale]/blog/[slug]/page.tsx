@@ -119,7 +119,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
         post.coverImage ? coverImageLink({ post }) : "/images/wallpaper/22.webp"
       }
       className={clsx({
-        "w-screen h-screen absolute": isFancy,
+        "w-screen h-screen sticky": isFancy,
         "": !isFancy,
       })}
       width={1024}
@@ -138,12 +138,9 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
           <Video src={post.coverVideo.url} inline={false} />
         )}
         <div
-          className={clsx(
-            "block w-fit justify-center z-10 absolute top-0",
-            {
-              "p-1 md:p-4": isFancy,
-            }
-          )}
+          className={clsx("block w-fit justify-center z-10 absolute top-0", {
+            "p-1 md:p-4": isFancy,
+          })}
         >
           <main
             className={clsx(
