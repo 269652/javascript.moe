@@ -176,7 +176,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
               </Suspense>
               <ViewCounter post={post} className="!ml-auto" increment />
             </div>
-            <h1 className="p-4 pl-2  w-fit title">{post.title}</h1>
+            <h1 className="p-4  w-fit title">{post.title}</h1>
             {!isFancy && image}
             <article key={post.id} className="bg-black/30 p-2 md:p-4 post ">
               <p
