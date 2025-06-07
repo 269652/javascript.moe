@@ -16,6 +16,7 @@ import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
 import bash from "highlight.js/lib/languages/bash";
 import powershell from "highlight.js/lib/languages/powershell";
+import { Video } from "@/components/Video";
 
 hljs.registerLanguage("bash", bash);
 hljs.registerLanguage("powershell", powershell);
@@ -109,21 +110,10 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
     ...localizations.map((ele: any) => ele.locale),
   ];
 
-  const isVideo = post.coverVideo?.mime?.includes("video");
+  const hasVideo = post.coverVideo?.mime?.includes("video");
 
   const htmlContent = marked(post.content || "");
-  const image = isVideo ? (
-    <video
-      src={post.coverVideo.url}
-      autoPlay
-      loop
-      muted
-      className={clsx("object-cover", {
-        "w-screen h-screen absolute z-0": isFancy,
-        "w-full relative": !isFancy,
-      })}
-    />
-  ) : (
+  const image = (
     <Image
       src={
         post.coverImage ? coverImageLink({ post }) : "/images/wallpaper/22.webp"
@@ -141,11 +131,15 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
   return (
     <>
       <BlogPostStructuredData post={post} />
-      <div className="max-h-screen">
-        {isFancy && image}
+
+      <div className="h-screen relative overflow-y-auto flex justify-center items-center">
+        {isFancy && !hasVideo && image}
+        {isFancy && hasVideo && (
+          <Video src={post.coverVideo.url} inline={false} />
+        )}
         <div
           className={clsx(
-            "block w-full justify-center h-screen overflow-y-auto mx-auto",
+            "block w-fit justify-center z-10 absolute top-0",
             {
               "p-1 md:p-4": isFancy,
             }
@@ -153,7 +147,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
         >
           <main
             className={clsx(
-              "w-full mx-auto flex flex-col gap-1 max-w-[110ch] backdrop-blur-[12px] rounded-md shadow-[0_0px_2px_1px_black]",
+              "w-full mx-auto flex flex-col gap-1 max-w-[110ch] backdrop-blur-[12px] rounded-md z-10 shadow-[0_0px_2px_1px_black] ",
               {
                 "bg-black/40": isFancy,
                 // "bg-white/10": !isFancy
@@ -191,7 +185,10 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
               <ViewCounter post={post} className="!ml-auto" increment />
             </div>
             <h1 className="p-4  w-fit title">{post.title}</h1>
-            {!isFancy && image}
+            {!isFancy && !hasVideo && image}
+            {!isFancy && hasVideo && (
+              <Video src={post.coverVideo.url} inline={true} />
+            )}
             <article key={post.id} className="bg-black/30 p-2 md:p-4 post ">
               <p
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
