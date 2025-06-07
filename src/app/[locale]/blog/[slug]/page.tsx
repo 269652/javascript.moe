@@ -119,7 +119,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
         post.coverImage ? coverImageLink({ post }) : "/images/wallpaper/22.webp"
       }
       className={clsx({
-        "w-screen h-screen sticky": isFancy,
+        "w-screen h-screen sticky top-0": isFancy,
         "": !isFancy,
       })}
       width={1024}
