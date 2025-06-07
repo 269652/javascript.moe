@@ -203,3 +203,17 @@ thead tr {
 table {
   @apply my-4;
 }
+
+
+.pagination-page:first-child {
+  @apply mr-2;
+}
+
+.pagination-page:last-child {
+  @apply ml-2;
+}
+
+.pagination-page:last-child::before {
+  content: "...";
+  display: flex;
+}

@@ -7,7 +7,7 @@ const SITE_URL = "https://javascript.moe";
 export async function GET(req: NextRequest, { params }: any) {
   const { locale } = await params;
   const config = await getBlogConfig({ locale });
-  const { data: posts } = await getBlogPosts({ locale });
+  const { data: posts } = await getBlogPosts({ locale, page: 1 });
 
   const items = posts
     .map((post: any) => {

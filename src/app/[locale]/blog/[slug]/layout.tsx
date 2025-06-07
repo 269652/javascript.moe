@@ -11,7 +11,7 @@ export async function generateStaticParams({ params }: any) {
   const allParams: { locale: string; slug: string }[] = [];
 
   for (const locale of supportedLocales) {
-    const { data: posts } = await getBlogPosts({ locale });
+    const { data: posts } = await getBlogPosts({ locale, page: 1, pageSize: 100 });
     posts.forEach((post: any) => {
       allParams.push({
         locale,

@@ -11,6 +11,7 @@ export async function GET(req: NextRequest, { params }: any) {
   const { data: posts } = await getBlogPosts({
     locale,
     categorySlug,
+    page: 1,
   });
 
   const items = posts
@@ -47,9 +48,7 @@ export async function GET(req: NextRequest, { params }: any) {
         <image>
           <url>${category.coverImage?.url}</url>
           <title>Mo’s Blog</title>
-          <link>https://javascript.moe/en/blog/category/${
-            category.slug
-          }</link>
+          <link>https://javascript.moe/en/blog/category/${category.slug}</link>
         </image>
         ${items}
       </channel>

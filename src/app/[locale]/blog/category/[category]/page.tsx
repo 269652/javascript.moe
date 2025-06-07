@@ -10,17 +10,18 @@ export async function generateMetadata({
   searchParams,
 }: {
   params: Promise<{ locale: Locale; category: string }>;
-  searchParams: Promise<{ c?: string; ui?: string }>;
+  searchParams: Promise<{ c?: string; ui?: string; p?: string }>;
 }): Promise<Metadata> {
   const { locale, category: categorySlug } = await params;
-  const { c, ui } = await searchParams;
-  
+  const { c, ui, p = 1 } = await searchParams;
+
   const isAndCon = c === "AND";
   const isAlternativeUI = ui == "1";
 
   const { data: posts } = await getBlogPosts({
     locale,
     join: isAndCon ? "AND" : "OR",
+    page: Number(p),
   });
   const category = await getCategory(categorySlug, { locale });
 

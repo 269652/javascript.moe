@@ -51,18 +51,20 @@ export const Button = ({
           }
         }}
         className={clsx(
-          "select-none p-1 rounded-sm shadow-sm text-white flex items-center w-max h-max leading-[1rem]",
-          "bg-white/20 hover:bg-white/40",
+          "select-none p-1 rounded-sm shadow-sm flex items-center w-max h-max leading-[1rem] cursor-pointer",
           "backdrop-blur-[2px]",
-          "disabled:bg-gray-500 disabled:hover:!bg-gray-500 disabled:hover:!brightness-100 disabled:text-black-400",
+          "disabled:bg-white/10 disabled:hover:!bg-white/10 ",
           className,
           "hover:border-[1.5px]",
           {
             "bg-gray-500 cursor-default": disabled && allowDisabledClick,
             "border-[1.5px]": true,
+            "bg-white/20 hover:bg-white/40": !disabled,
             "border-black": variant === "noborder",
             "border-white/50": variant !== "noborder",
             "hover:border-white/70": 1,
+            "text-white": !disabled,
+            "text-gray-400": disabled,
           }
         )}
         {...rest}

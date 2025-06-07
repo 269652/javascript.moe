@@ -49,11 +49,15 @@ export async function getBlogPosts({
   categorySlug,
   labelNames,
   join,
+  page,
+  pageSize = 10,
 }: {
   locale?: string;
   categorySlug?: string;
   labelNames?: string[]; // Accepts an array of label names
   join?: "AND" | "OR";
+  page: number;
+  pageSize?: number;
 }) {
   try {
     let filterQuery = "";
@@ -75,16 +79,20 @@ export async function getBlogPosts({
         .join("&");
       filterQuery += (filterQuery ? "&" : "") + labelFilter;
     }
-    console.log(
-      "FETCH",
-      `${STRAPI_URL}/blog-posts?populate=*&locale=${locale}&${filterQuery}`
-    );
 
     let url = `${STRAPI_URL}/blog-posts?populate=*`;
+    url += `&pagination[pageSize]=${pageSize}`;
+
     if (locale) url += `&locale=${locale}`;
     if (filterQuery) {
       url += `&${filterQuery}`;
     }
+    if (page) {
+      url += `&pagination[page]=${page}`;
+    }
+
+    console.log("FETCH", url);
+
     const res = await fetch(url, {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,

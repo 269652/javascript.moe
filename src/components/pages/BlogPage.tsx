@@ -11,11 +11,12 @@ import supportedLocales from "@/lib/locales";
 import Image from "next/image";
 import { Categories } from "../../container/Categories";
 import { BlogPost } from "../BlogPost";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { IconButton } from "../Button";
 import clsx from "clsx";
 import Link from "next/link";
 import { dynamicLink } from "@/lib/links";
+import { Pagination } from "../Pagination";
 
 // Blog Page Component
 export default async function BlogPage({ params, searchParams, path }: any) {
@@ -28,15 +29,21 @@ export default async function BlogPage({ params, searchParams, path }: any) {
     .split(",")
     .filter(Boolean);
 
-  const isAndCon = (await searchParams).c === "AND";
-  const isFancy = +(await searchParams).ui === 1;
+  const { c, ui, p } = await searchParams;
+  const isAndCon = c === "AND";
+  const isFancy = +ui === 1;
 
-  const { data: posts = [] } = await getBlogPosts({
+  const {
+    data: posts = [],
+    meta: { pagination },
+  } = await getBlogPosts({
     locale,
     categorySlug: categorySlug,
     labelNames,
     join: isAndCon ? "AND" : "OR",
+    page: p || 1,
   });
+
   const config = (await getBlogConfig({ locale })) ?? {};
 
   const title = config?.title;
@@ -152,7 +159,10 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 <p className="text-center text-gray-400">{t("noPostsFound")}</p>
               </div>
             ) : (
-              <div className={clsx("flex flex-col gap-2 px-4 bg-white/20")}>
+              <div
+                className={clsx("flex flex-col gap-2 px-4 bg-white/20")}
+                key={(await searchParams).p}
+              >
                 {posts
                   .sort((a: any, b: any) =>
                     b.publishedAt.localeCompare(a.publishedAt)
@@ -171,6 +181,11 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                   })}
               </div>
             )}
+            <Pagination
+              pagination={pagination}
+              params={await params}
+              searchParams={await searchParams}
+            />
           </main>
         </div>
       </div>
