@@ -5,13 +5,13 @@ import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { Panel } from "./Panel";
 import { LabelsProps } from "@/types/Labels";
-import { blogLabelsLink } from "@/lib/links";
+import { blogLabelsLink, blogLink } from "@/lib/links";
 
 export const Labels = ({
   labels,
   labelNames,
   className,
-  searchParams
+  searchParams,
 }: LabelsProps) => {
   const { locale } = useParams<{ locale: string }>();
   const newSearchParams = { ...searchParams };
@@ -30,7 +30,7 @@ export const Labels = ({
       hasBottomBorder
       hasBottomPadding
       className={className}
-      variant={searchParams.ui == "1" ? 'dark' : 'light'}
+      variant={searchParams.ui == "1" ? "dark" : "light"}
     >
       {labels
         .sort((a, b) => a.name.localeCompare(b.name))
@@ -44,9 +44,8 @@ export const Labels = ({
 
           const href =
             newLabelNames.length > 0
-              ? `/${locale}/blog/labels/${newLabelNames.join(",")}?` +
-                new URLSearchParams(searchParams).toString()
-              : `/${locale}/blog`;
+              ? blogLabelsLink({ locale, labels: newLabelNames, searchParams })
+              : blogLink({ locale, searchParams });
 
           return (
             <Link
@@ -73,7 +72,7 @@ export const Labels = ({
             {
               "bg-amber-500 hover:bg-amber-400": isAndCon,
               "bg-purple-500 hover:bg-purple-400  ": !isAndCon,
-              "shadow-[0px_0px_2px_1px_black]": 1
+              "shadow-[0px_0px_2px_1px_black]": 1,
             }
           )}
           href={blogLabelsLink({
