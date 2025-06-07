@@ -68,7 +68,7 @@ export const Labels = ({
             "absolute top-0 right-0 p-2  rounded-bl-lg min-w-11 text-center",
             {
               "bg-amber-500 hover:bg-amber-400": isAndCon,
-              "bg-sky-500 hover:bg-sky-400  ": !isAndCon,
+              "bg-purple-500 hover:bg-purple-400  ": !isAndCon,
               "shadow-[0px_0px_2px_1px_black]": variant === "dark",
               "shadow-[0px_0px_2px_1px_white]": variant === "light",
             }
