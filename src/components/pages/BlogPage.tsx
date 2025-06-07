@@ -76,6 +76,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
         {isFancy && isVideo && !posts?.length && (
           <video
             autoPlay
+            muted
             loop
             src={config.coverVideo.url}
             className="w-screen h-screen absolute object-cover"

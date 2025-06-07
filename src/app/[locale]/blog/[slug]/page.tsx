@@ -117,6 +117,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
       src={post.coverVideo.url}
       autoPlay
       loop
+      muted
       className={clsx("object-cover", {
         "w-screen h-screen absolute z-0": isFancy,
         "w-full relative": !isFancy,
