@@ -73,15 +73,13 @@ export default function RootLayout({
         />
 
         <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-T9WY6FR7C8"
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="947e6c6c-bd7b-4007-8007-37f25bc86202"
         ></script>
-        <script>{gtag}</script>
       </head>
       <body style={{ margin: 0, overflowX: "hidden" }}>
-        <div id="root">
-          {children}
-        </div>
+        <div id="root">{children}</div>
       </body>
       <script>{`
           if (typeof window !== "undefined") {
