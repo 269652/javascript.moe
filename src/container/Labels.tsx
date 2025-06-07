@@ -11,19 +11,18 @@ export const Labels = ({
   labels,
   labelNames,
   className,
-  connection,
-  variant,
+  searchParams
 }: LabelsProps) => {
   const { locale } = useParams<{ locale: string }>();
-  const searchParams = Object.fromEntries(useSearchParams().entries());
   const newSearchParams = { ...searchParams };
-  const isAndCon = connection === "AND";
+  const isAndCon = searchParams.c === "AND";
 
   if (!isAndCon) {
     newSearchParams.c = "AND";
   } else {
     delete newSearchParams.c;
   }
+
   return (
     <Panel
       scrollDir="y"
@@ -31,7 +30,7 @@ export const Labels = ({
       hasBottomBorder
       hasBottomPadding
       className={className}
-      variant={variant}
+      variant={searchParams.ui == "1" ? 'dark' : 'light'}
     >
       {labels
         .sort((a, b) => a.name.localeCompare(b.name))
@@ -43,9 +42,6 @@ export const Labels = ({
             ? labelNames.filter((l: string) => l !== cat.slug)
             : [...labelNames, cat.slug].sort();
 
-          const searchParams = {} as any;
-          if (isAndCon) searchParams.c = "AND";
-          if (variant === "dark") searchParams.ui = 1;
           const href =
             newLabelNames.length > 0
               ? `/${locale}/blog/labels/${newLabelNames.join(",")}?` +
@@ -77,8 +73,7 @@ export const Labels = ({
             {
               "bg-amber-500 hover:bg-amber-400": isAndCon,
               "bg-purple-500 hover:bg-purple-400  ": !isAndCon,
-              "shadow-[0px_0px_2px_1px_black]": variant === "dark",
-              "shadow-[0px_0px_2px_1px_white]": variant === "light",
+              "shadow-[0px_0px_2px_1px_black]": 1
             }
           )}
           href={blogLabelsLink({

@@ -119,8 +119,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 labels={labels}
                 labelNames={labelNames}
                 className="flex md:hidden"
-                connection={(await searchParams).c}
-                variant={!isFancy ? "light" : "dark"}
+                searchParams={await searchParams}
               />
               <div className="flex justify-between h-fit items-end px-4  border-b-2 border-white/40 ">
                 <Categories
@@ -133,8 +132,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                   labels={labels}
                   labelNames={labelNames}
                   className="hidden md:flex"
-                  connection={(await searchParams).c}
-                  variant={!isFancy ? "light" : "dark"}
+                  searchParams={await searchParams}
                 />
               </div>
             </div>
@@ -144,9 +142,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 <p className="text-center text-gray-400">{t("noPostsFound")}</p>
               </div>
             ) : (
-              <div
-                className={clsx("flex flex-col gap-2 px-4 bg-white/20")}
-              >
+              <div className={clsx("flex flex-col gap-2 px-4 bg-white/20")}>
                 {posts
                   .sort((a: any, b: any) =>
                     b.publishedAt.localeCompare(a.publishedAt)

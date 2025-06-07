@@ -4,6 +4,5 @@ export type LabelsProps = {
   labels: Label[];
   labelNames: string[];
   className?: string;
-  connection: string;
-  variant: 'light' | 'dark'
+  searchParams: { c?: string; ui?: string };
 };

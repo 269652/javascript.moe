@@ -14,11 +14,11 @@ import { getBlogPost } from "@/lib/api";
 import clsx from "clsx";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
-import bash from 'highlight.js/lib/languages/bash';
-import powershell from 'highlight.js/lib/languages/powershell';
+import bash from "highlight.js/lib/languages/bash";
+import powershell from "highlight.js/lib/languages/powershell";
 
-hljs.registerLanguage('bash', bash);
-hljs.registerLanguage('powershell', powershell);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("powershell", powershell);
 
 const renderer = new Renderer();
 
@@ -38,11 +38,16 @@ marked.use(footnote());
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string; locale: string }>;
+  searchParams: Promise<{ c?: string; ui?: string }>;
 }): Promise<Metadata> {
   const { slug, locale } = await params;
   const id = slug.split("-").pop(); // Assuming the ID is part of the slug after a dash
+
+  const { ui } = await searchParams;
+  const isAlternativeUI = ui == "1";
 
   if (!id) {
     throw new Error("Invalid ID");
@@ -55,6 +60,9 @@ export async function generateMetadata({
   }
 
   return {
+    robots: {
+      index: isAlternativeUI ? false : true,
+    },
     title: `${post.title} | Moritz Roessler | Senior Frontend Developer`,
     description: post.excerpt || "Detailed blog post content here.",
     openGraph: {

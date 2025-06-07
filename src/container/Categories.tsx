@@ -2,7 +2,6 @@ import { blogCategoryLink, blogLink } from "@/lib/links";
 import Link from "next/link";
 import { Panel } from "./Panel";
 import { Category } from "@/types/Category";
-import { useSearchParams } from "next/navigation";
 
 export const Categories = ({
   categories,

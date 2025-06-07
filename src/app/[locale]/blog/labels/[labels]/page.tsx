@@ -10,11 +10,14 @@ export async function generateMetadata({
   searchParams,
 }: {
   params: Promise<{ locale: Locale }>;
-  searchParams: Promise<{ c: string }>;
+  searchParams: Promise<{ c?: string; ui?: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { c, ui } = await searchParams;
+  
+  const isAndCon = c === "AND";
+  const isAlternativeUI = ui == "1";
 
-  const isAndCon = (await searchParams).c === "AND";
   const { data: posts } = await getBlogPosts({
     locale,
     join: isAndCon ? "AND" : "OR",
@@ -24,7 +27,7 @@ export async function generateMetadata({
   return {
     robots: {
       index: false,
-      follow: true,
+      follow: isAlternativeUI ? false : true,
     },
     ...blogMetadata({ locale, posts, config }),
   };

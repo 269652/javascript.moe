@@ -10,26 +10,34 @@ export async function generateMetadata({
   searchParams,
 }: {
   params: Promise<{ locale: Locale; category: string }>;
-  searchParams: Promise<{ c: string }>;
+  searchParams: Promise<{ c?: string; ui?: string }>;
 }): Promise<Metadata> {
   const { locale, category: categorySlug } = await params;
+  const { c, ui } = await searchParams;
+  
+  const isAndCon = c === "AND";
+  const isAlternativeUI = ui == "1";
 
-  const isAndCon = (await searchParams).c === "AND";
   const { data: posts } = await getBlogPosts({
     locale,
     join: isAndCon ? "AND" : "OR",
   });
   const category = await getCategory(categorySlug, { locale });
-  
+
   return {
     robots: {
-      index: true,
-      follow: true,
+      index: isAlternativeUI ? false : true,
+      follow: isAlternativeUI ? false : true,
     },
     ...blogCategoryMetadata({ category, locale, posts }),
   };
 }
 
 export default async (props: any) => (
-  <BlogPage {...props} path={`${(await props.params)?.locale}/blog/category/${(await props.params)?.category}`} />
+  <BlogPage
+    {...props}
+    path={`${(await props.params)?.locale}/blog/category/${
+      (await props.params)?.category
+    }`}
+  />
 );
