@@ -50,7 +50,7 @@ export const BlogPost = ({
             <Link
               href={`/blog/category/${post.category.slug}`}
               className={clsx(
-                "bg-amber-600 p-1 px-2 rounded-full text-sm text-white border-transparent border-2",
+                "bg-yellow-400 p-1 px-2 rounded-full text-sm text-white border-transparent border-2",
                 {
                   "border-white hover:border-white cursor-default":
                     post.category.slug === categorySlug,
@@ -68,7 +68,7 @@ export const BlogPost = ({
                 key={label.id}
                 href={`/blog/labels/${label.slug}`}
                 className={clsx(
-                  "bg-purple-600 p-1 px-2 rounded-full text-sm text-white border-transparent  border-2",
+                  "bg-sky-600 p-1 px-2 rounded-full text-sm text-white border-transparent  border-2",
                   {
                     "border-white hover:border-white cursor-default":
                       labelsSlug.includes(label.slug),
