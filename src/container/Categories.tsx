@@ -30,7 +30,7 @@ export const Categories = ({
               href={href}
               className={`category whitespace-nowrap p-2 px-3 text-sm transition ${
                 active
-                  ? "bg-yellow-600 hover:bg-yellow-400"
+                  ? "bg-yellow-400 hover:bg-yellow-300"
                   : "bg-gray-700 hover:bg-yellow-500"
               } text-white`}
             >

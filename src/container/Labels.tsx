@@ -51,7 +51,7 @@ export const Labels = ({
               className={clsx(
                 `p-2 px-3 rounded-full  text-sm text-white transition`,
                 {
-                  "bg-purple-600 hover:bg-purple-500": active,
+                  "bg-sky-600 hover:bg-sky-500": active,
                   "bg-gray-700 hover:bg-purple-500": !active,
                   "!bg-gray-400/40 !hover:bg-purple-500 cursor-default !text-gray-100":
                     disabled,
