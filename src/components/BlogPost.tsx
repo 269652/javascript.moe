@@ -27,7 +27,7 @@ export const BlogPost = ({
   return (
     <article
       key={post.id}
-      className="flex flex-col md:flex-row bg-black/50 rounded- md first:rounded-tr-none overflow-hidden shadow-lg backdrop-blur-md"
+      className="flex flex-col md:flex-row bg-black/50 rounded- md first:rounded-tr-none overflow-hidden  backdrop-blur-[12px]"
     >
       <div className="relative w-full md:w-1/3 justify-between">
         <Link href={blogPostLink({ locale, post, ui})}>

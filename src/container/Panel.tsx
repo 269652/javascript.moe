@@ -22,7 +22,7 @@ export const Panel = ({
       className={clsx(
         "flex p-2  rounded-t-md  mx-[1px]",
         {
-          "shadow-[0_0px_2px_1px_black] bg-black/30": variant === "dark",
+          " bg-black/30": variant === "dark",
           " bg-white/15": variant === "light",
           "overflow-x-auto": scrollDir === "x",
           "overflow-y-auto flex-wrap basis-1/2 justify-start max-h-[98px] gap-1 ":
@@ -31,6 +31,7 @@ export const Panel = ({
           shrink: stretch === "shrink",
           "border-b-2 -mb-[1.5px]": hasBottomBorder,
           "pb-0": !hasBottomPadding,
+          "shadow-[0_0px_2px_1px_black]": true,
         },
         className
       )}

@@ -131,7 +131,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
         >
           <main
             className={clsx(
-              "w-full mx-auto flex flex-col gap-1 max-w-[110ch]",
+              "w-full mx-auto flex flex-col gap-1 max-w-[110ch] backdrop-blur-[12px] rounded-md shadow-[0_0px_2px_1px_black]",
               {
                 "bg-black/40": isFancy,
                 // "bg-white/10": !isFancy
@@ -140,7 +140,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
             )}
           >
             <div
-              className={clsx("flex gap-1 items-center p-2", {
+              className={clsx("flex gap-1 items-center p-2 rounded-t-md", {
                 "bg-white/10": 1,
               })}
             >
@@ -168,7 +168,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
               </Suspense>
               <ViewCounter post={post} className="!ml-auto" increment />
             </div>
-            <h1 className=" p-4 pl-2 bg-black/40 w-fit rounded-sm title flex flex-col mx-auto">
+            <h1 className=" p-4 pl-2 bg-black/40 w-fit title flex flex-col mx-auto">
               {post.title}
             </h1>
             {!isFancy && image}

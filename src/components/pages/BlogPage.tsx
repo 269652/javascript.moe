@@ -66,22 +66,22 @@ export default async function BlogPage({ params, searchParams, path }: any) {
         )}
         <div
           className={clsx(
-            "block w-full justify-center h-screen overflow-y-auto mx-auto",
+            "block w-full justify-center h-screen overflow-y-auto mx-auto ",
             {
-              "p-1 md:p-4": isFancy,
+              "p-1 md:p-2": isFancy,
             }
           )}
         >
           <main
             className={clsx(
-              "bg-black/40 w-full mx-auto flex flex-col max-w-7xl",
+              "bg-black/40 w-full mx-auto flex flex-col max-w-7xl rounded-md shadow-[0_0px_2px_1px_black] ",
               {
                 "": isFancy,
               }
             )}
           >
             <div className="flex flex-col gap-2">
-              <div className="flex flex-wrap-reverse gap-1 justify-between bg-white/10 p-2">
+              <div className="flex flex-wrap-reverse gap-1 justify-between bg-white/10 p-2 rounded-md ">
                 <div className="flex gap-1 items-center">
                   <IconButton
                     variant="noborder"
@@ -122,7 +122,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 connection={(await searchParams).c}
                 variant={!isFancy ? "light" : "dark"}
               />
-              <div className="flex justify-between h-fit items-end px-4 border-b-2 border-white/40 ">
+              <div className="flex justify-between h-fit items-end px-4  border-b-2 border-white/40 ">
                 <Categories
                   categories={categories}
                   activeSlug={categorySlug}
