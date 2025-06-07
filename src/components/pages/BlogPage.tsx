@@ -93,7 +93,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                       variant="noborder"
                       icon="FaImage"
                       className={clsx({
-                        "text-yellow-300": isFancy,
+                        "text-yellow-400": isFancy,
                       })}
                     />
                   </Link>
