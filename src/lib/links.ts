@@ -67,9 +67,13 @@ export const blogLabelsLink = ({ locale, labels, searchParams }: any) => {
   );
 };
 
-export const dynamicLink = ({ locale, params, searchParams: oldSearchParams }: any) => {
-  const searchParams = {...oldSearchParams};
-  if (searchParams.c === 'OR') delete searchParams.c;
+export const dynamicLink = ({
+  locale,
+  params,
+  searchParams: oldSearchParams,
+}: any) => {
+  const searchParams = { ...oldSearchParams };
+  if (searchParams.c === "OR") delete searchParams.c;
   if (searchParams.ui == "0") delete searchParams.ui;
   if (params.category) {
     return blogCategoryLink({
@@ -78,7 +82,11 @@ export const dynamicLink = ({ locale, params, searchParams: oldSearchParams }: a
       searchParams,
     });
   } else if (params.labels) {
-    return blogLabelsLink({ locale, labels: decodeURIComponent(params.labels).split(','), searchParams });
+    return blogLabelsLink({
+      locale,
+      labels: decodeURIComponent(params.labels).split(","),
+      searchParams,
+    });
   } else {
     return blogLink({ locale, searchParams });
   }
@@ -86,11 +94,14 @@ export const dynamicLink = ({ locale, params, searchParams: oldSearchParams }: a
 
 export const blogLink = ({
   locale,
-  searchParams,
+  searchParams: oldSearchParams,
 }: {
   locale: string;
   searchParams: any;
 }) => {
+  const searchParams = { ...oldSearchParams };
+  if (searchParams.p == "1") delete searchParams.p;
+
   const isEmpty = Object.keys(searchParams).length === 0;
 
   return (
