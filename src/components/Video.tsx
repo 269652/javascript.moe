@@ -17,7 +17,7 @@ export const Video = (props: VideoProps) => {
       muted
       className={clsx("object-cover", {
         "w-screen h-screen  z-0 top-0 sticky": !inline,
-        "w-full relative": inline,
+        "w-full h-full relative": inline,
       })}
       onClick={(e) => {
         const vid = e.target as HTMLVideoElement;

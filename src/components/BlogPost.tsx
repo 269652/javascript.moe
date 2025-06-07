@@ -7,6 +7,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
 import { Suspense } from "react";
+import { Video } from "./Video";
 
 export const BlogPost = ({
   post,
@@ -23,6 +24,20 @@ export const BlogPost = ({
 }) => {
   const htmlExcerpt = marked(post.excerpt);
   const availableLocales = post.localizations?.map((p: any) => p.locale);
+  const hasVideo = post.coverVideo?.mime?.includes("video");
+
+  const image = hasVideo ? (
+    <Video src={post.coverVideo?.url} inline />
+  ) : (
+    <Image
+      src={coverImageLink({ post })}
+      alt={post.title}
+      width={400}
+      height={250}
+      className="object-cover h-full w-full"
+    />
+  );
+
   if (!availableLocales.includes(locale)) availableLocales.unshift(locale);
   return (
     <article
@@ -31,13 +46,7 @@ export const BlogPost = ({
     >
       <div className="relative w-full md:w-1/3 justify-between">
         <Link href={blogPostLink({ locale, post, searchParams: { ui } })}>
-          <Image
-            src={coverImageLink({ post })}
-            alt={post.title}
-            width={400}
-            height={250}
-            className="object-cover h-full w-full"
-          />
+          {image}
           <h2 className="absolute inset-x-0 top-0 bg-black/50 text-center p-2 text-lg font-semibold">
             {post.title}
           </h2>
@@ -85,7 +94,7 @@ export const BlogPost = ({
                 key={post.id}
                 showCurrent
                 availableLocales={availableLocales}
-                href={blogPostLink({ locale, post, searchParams: { ui   } })}
+                href={blogPostLink({ locale, post, searchParams: { ui } })}
               />
             </Suspense>
             <ViewCounter post={post} />

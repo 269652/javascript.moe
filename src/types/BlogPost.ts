@@ -10,6 +10,7 @@ export interface BlogPostProps {
   locale: string;
   localizations: BlogPostProps[];
   coverImage: { url: string };
-  category: Category
-  tags: Category[]
+  coverVideo: { url: string; mime: string };
+  category: Category;
+  tags: Category[];
 }
