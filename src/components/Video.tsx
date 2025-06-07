@@ -15,10 +15,14 @@ export const Video = (props: VideoProps) => {
       autoPlay
       loop
       muted
-      className={clsx("object-cover", {
-        "w-screen h-screen  z-0 top-0 sticky": !inline,
-        "w-full h-full relative": inline,
-      })}
+      className={clsx(
+        "object-cover",
+        {
+          "w-screen h-screen  z-0 top-0 sticky": !inline,
+          "w-full h-full relative": inline,
+        },
+        className
+      )}
       onClick={(e) => {
         const vid = e.target as HTMLVideoElement;
         if (vid.paused) vid.play();

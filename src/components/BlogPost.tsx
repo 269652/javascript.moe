@@ -26,15 +26,20 @@ export const BlogPost = ({
   const availableLocales = post.localizations?.map((p: any) => p.locale);
   const hasVideo = post.coverVideo?.mime?.includes("video");
 
-  const image = hasVideo ? (
-    <Video src={post.coverVideo?.url} inline />
-  ) : (
+  const vid = (
+    <Video
+      src={post.coverVideo?.url}
+      inline
+      className="hidden group-hover:block"
+    />
+  );
+  const image = (
     <Image
       src={coverImageLink({ post })}
       alt={post.title}
       width={400}
       height={250}
-      className="object-cover h-full w-full"
+      className="object-cover h-full w-full group-hover:hidden"
     />
   );
 
@@ -44,9 +49,10 @@ export const BlogPost = ({
       key={post.id}
       className="flex flex-col md:flex-row bg-black/50 rounded- md first:rounded-tr-none overflow-hidden  backdrop-blur-[12px]"
     >
-      <div className="relative w-full md:w-1/3 justify-between">
+      <div className="relative w-full md:w-1/3 justify-between group">
         <Link href={blogPostLink({ locale, post, searchParams: { ui } })}>
           {image}
+          {vid}
           <h2 className="absolute inset-x-0 top-0 bg-black/50 text-center p-2 text-lg font-semibold">
             {post.title}
           </h2>
