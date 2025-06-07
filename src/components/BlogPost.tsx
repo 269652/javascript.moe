@@ -39,7 +39,9 @@ export const BlogPost = ({
       alt={post.title}
       width={400}
       height={250}
-      className="object-cover h-full w-full group-hover:hidden"
+      className={clsx("object-cover h-full w-full", {
+        "group-hover:hidden": hasVideo,
+      })}
     />
   );
 
