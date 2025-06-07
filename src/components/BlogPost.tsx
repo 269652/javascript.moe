@@ -54,7 +54,7 @@ export const BlogPost = ({
       <div className="relative w-full md:w-1/3 justify-between group">
         <Link href={blogPostLink({ locale, post, searchParams: { ui } })}>
           {image}
-          {vid}
+          {hasVideo && vid}
           <h2 className="absolute inset-x-0 top-0 bg-black/50 text-center p-2 text-lg font-semibold">
             {post.title}
           </h2>
