@@ -84,17 +84,16 @@ export const blogLabelsLink = ({
 
 export const dynamicLink = ({
   locale,
-  category,
   params,
   searchParams: oldSearchParams,
 }: any) => {
   const searchParams = { ...oldSearchParams };
   if (searchParams.c === "OR") delete searchParams.c;
   if (searchParams.ui == "0") delete searchParams.ui;
-  if (category?.slug) {
+  if (params.category) {
     return blogCategoryLink({
       locale,
-      category,
+      category: { slug: params.category } as any,
       searchParams,
     });
   } else if (params.labels) {

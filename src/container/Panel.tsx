@@ -20,7 +20,7 @@ export const Panel = ({
   return (
     <div
       className={clsx(
-        "flex p-2  rounded-t-md  mx-[1px]",
+        "flex p-2  md:rounded-t-md  mx-[1px]",
         {
           " bg-black/30": variant === "dark",
           " bg-white/15": variant === "light",

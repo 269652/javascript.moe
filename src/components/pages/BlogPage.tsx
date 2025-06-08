@@ -101,7 +101,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
             )}
           >
             <div className="flex flex-col gap-2">
-              <div className="flex flex-wrap-reverse gap-1 justify-between bg-white/10 p-2 rounded-md ">
+              <div className="flex flex-wrap gap-1 justify-between bg-white/10 p-2 rounded-md ">
                 <div className="flex gap-1 items-center">
                   <IconButton
                     variant="noborder"
@@ -112,7 +112,6 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                     href={dynamicLink({
                       locale,
                       params: await params,
-                      category: { slug: (await params).category },
                       searchParams: {
                         ...(await searchParams),
                         ui: !isFancy ? 1 : 0,
@@ -138,8 +137,8 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                   </Suspense>
                   <IconButton
                     variant="noborder"
-                    iconClsn="min-w-8 "
-                    className="min-w-[48px] min-h-[48px]"
+                    // iconClsn="min-w-8 "
+                    className="md:min-w-8 md:min-h-8"
                     href={`/${path}/rss.xml`}
                     icon="FaRss"
                   ></IconButton>
@@ -151,17 +150,17 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                 className="flex md:hidden"
                 searchParams={await searchParams}
               />
-              <div className="flex justify-between h-fit items-end px-4  border-b-2 border-white/40 ">
-                <Categories
+              <div className="flex justify-between h-fit items-end md:px-4  border-b-2 border-white/40 ">
+                {/* <Categories
                   categories={categories}
                   activeSlug={categorySlug}
                   locale={locale}
                   variant={!isFancy ? "light" : "dark"}
-                />
+                /> */}
                 <Labels
                   labels={labels}
                   labelNames={labelNames}
-                  className="hidden md:flex"
+                  className="hidden md:flex ml-auto"
                   searchParams={await searchParams}
                 />
               </div>
@@ -173,7 +172,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
               </div>
             ) : (
               <div
-                className={clsx("flex flex-col gap-2 px-4 bg-white/20")}
+                className={clsx("flex flex-col gap-2 md:px-4 bg-white/20")}
                 key={(await searchParams).p}
               >
                 {posts
