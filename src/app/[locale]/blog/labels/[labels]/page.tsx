@@ -35,5 +35,10 @@ export async function generateMetadata({
 }
 
 export default async (props: any) => (
-  <BlogPage {...props} path={`${(await props.params)?.locale}/blog`} />
+  <BlogPage
+    {...props}
+    path={`${(await props.params)?.locale}/blog/labels/${
+      (await props.params)?.labels
+    }`}
+  />
 );

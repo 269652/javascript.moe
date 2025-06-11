@@ -17,9 +17,20 @@ import clsx from "clsx";
 import Link from "next/link";
 import { dynamicLink } from "@/lib/links";
 import { Pagination } from "../Pagination";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { LoginButton } from "../LoginButton";
 
 // Blog Page Component
-export default async function BlogPage({ params, searchParams, path }: any) {
+export default async function BlogPage({
+  params,
+  searchParams,
+  path,
+}: {
+  path: string;
+  params: any;
+  searchParams: any;
+}) {
   const {
     locale,
     category: categorySlug,
@@ -55,6 +66,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
 
   const { data: categories = [] } = await getCategories({ locale });
   const { data: labels = [] } = await getLabels({ locale });
+  const session = await getServerSession(authOptions);
 
   const t = (key: string) => translations?.[key] || key;
 
@@ -63,7 +75,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
       <BlogOverviewStructuredData posts={posts} config={config} />
       <div className="max-h-screen relative">
         {/* Language Flags */}
-
+        {JSON.stringify(session)}
         {isFancy && !(isVideo && !posts?.length) && (
           <Image
             src={coverImageUrl}
@@ -142,6 +154,7 @@ export default async function BlogPage({ params, searchParams, path }: any) {
                     href={`/${path}/rss.xml`}
                     icon="FaRss"
                   ></IconButton>
+                  {false && <LoginButton session={session} />}
                 </div>
               </div>
               <Labels

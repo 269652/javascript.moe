@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 import { setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "de" }, { locale: "es" }];
@@ -111,6 +113,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+
   // Use `params` directly (no await needed)
   setRequestLocale(locale);
   return (
