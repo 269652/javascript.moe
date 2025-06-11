@@ -13,7 +13,7 @@ export const Labels = ({
   className,
   searchParams,
 }: LabelsProps) => {
-  const { locale } = useParams<{ locale: string }>();
+  const { locale } = useParams<{ locale: string }>()!;
   const newSearchParams = { ...searchParams };
   const isAndCon = searchParams.c === "AND";
 

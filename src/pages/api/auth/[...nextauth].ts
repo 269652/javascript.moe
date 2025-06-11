@@ -14,21 +14,21 @@ export const authOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, token, user }: any) {
       if (token) {
         session.jwt = token.jwt;
         session.id = token.id;
       }
       return session;
     },
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account }: any) {
       if (account && user) {
         try {
           const response = await fetch(
             `${process.env.NEXT_PUBLIC_STRAPI_BASE}/api/auth/${account.provider}/callback?access_token=${account.access_token}`
           );
           const data = await response.json();
-          console.log ("DATA", data);
+          console.log("DATA", data);
 
           token.jwt = data.jwt;
           token.id = data.user.id;
