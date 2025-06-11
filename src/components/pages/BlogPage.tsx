@@ -75,7 +75,6 @@ export default async function BlogPage({
       <BlogOverviewStructuredData posts={posts} config={config} />
       <div className="max-h-screen relative">
         {/* Language Flags */}
-        {JSON.stringify(session)}
         {isFancy && !(isVideo && !posts?.length) && (
           <Image
             src={coverImageUrl}
