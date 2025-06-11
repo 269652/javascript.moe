@@ -12,7 +12,7 @@ const LanguageSwitcher = ({
   showCurrent = true,
   searchParams = {},
 }: any) => {
-  const { locale } = useParams<{ locale: string }>();
+  const { locale } = useParams<{ locale: string }>()!;
   const pathname = usePathname();
 
   const currentLocale = supportedLocales.includes(locale) ? locale : "en";
