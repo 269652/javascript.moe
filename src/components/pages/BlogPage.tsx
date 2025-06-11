@@ -66,7 +66,7 @@ export default async function BlogPage({
 
   const { data: categories = [] } = await getCategories({ locale });
   const { data: labels = [] } = await getLabels({ locale });
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions as any);
 
   const t = (key: string) => translations?.[key] || key;
 
