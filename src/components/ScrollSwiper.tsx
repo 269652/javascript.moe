@@ -120,7 +120,7 @@ export const SectionTop = () => {
         <FlyOut range={[0.25, 0.5]}>
           <Container>
             <AnimatedImageCircle
-              images={["/images/profile.webp", "/images/profile2.webp"]}
+              images={["/images/profile2.webp"]}
               alts={[
                 "Selfie of Moritz Roessler",
                 "Selfie of Moritz Roessler with sunglasses",

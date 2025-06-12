@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import clsx from "clsx";
 import {
@@ -86,19 +86,21 @@ export const AnimatedImageCircle = ({
         }}
         alt={alts[0]}
       />
-      <MotionImg
-        width={imgHeight + "px"}
-        height={imgHeight + "px"}
-        loading="lazy"
-        src={images[1]}
-        className="absolute h-full w-full"
-        style={{
-          opacity: reverse,
-          objectFit: "cover",
-          height: "100%",
-        }}
-        alt={alts[1]}
-      />
+      {images[1] && (
+        <MotionImg
+          width={imgHeight + "px"}
+          height={imgHeight + "px"}
+          loading="lazy"
+          src={images[1]}
+          className="absolute h-full w-full"
+          style={{
+            opacity: reverse,
+            objectFit: "cover",
+            height: "100%",
+          }}
+          alt={alts[1]}
+        />
+      )}
     </MotionDiv>
   );
 };
