@@ -42,7 +42,7 @@ export async function GET(req: NextRequest, { params }: any) {
     <rss version="2.0">
       <channel>
         <title>${labelsStr} | ${config.title}</title>
-        <link>${SITE_URL}/category/${category.slug}</link>
+        <link>${SITE_URL}/labels/${labelsStr}</link>
         <description>${
           category?.description || config.description
         }</description>

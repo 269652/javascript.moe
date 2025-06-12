@@ -56,7 +56,7 @@ export const Labels = ({
                 {
                   "bg-sky-600 hover:bg-sky-500": active,
                   "bg-gray-700 hover:bg-sky-700": !active,
-                  "!bg-gray-400/40 !hover:bg-purple-500 cursor-default !text-gray-100":
+                  "!bg-gray-400/40 !hover:bg-purple-500 cursor-default !text-gray-300":
                     disabled,
                 }
               )}

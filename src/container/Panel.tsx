@@ -25,7 +25,7 @@ export const Panel = ({
           " bg-black/30": variant === "dark",
           " bg-white/15": variant === "light",
           "overflow-x-auto": scrollDir === "x",
-          "overflow-y-auto flex-wrap basis-1/2 justify-start max-h-[98px] gap-1 ":
+          "overflow-y-auto flex-wrap basis-1/2 justify-start max-h-[24vh] md:max-h-[98px] gap-1 ":
             scrollDir === "y",
           " flex-1  max-w-fit": stretch === "grow",
           shrink: stretch === "shrink",
