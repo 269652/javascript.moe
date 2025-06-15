@@ -12,7 +12,9 @@ import Image from "next/image";
 import AWSLogo from "@/assets/aws.svg";
 import SQLLogo from "@/assets/sql.svg";
 import NodeJSLogo from "@/assets/node.svg";
-import VueJSLogo from "@/assets/vue.svg";
+import NextJSLogo from "@/assets/nextjs.svg";
+import StrapiLogo from "@/assets/strapi.svg";
+import Typo3Logo from "@/assets/typo3.svg";
 import DockerLogo from "@/assets/docker.svg";
 import TS from "@/assets/ts.svg";
 import ReactLogo from "@/assets/react.svg";
@@ -366,6 +368,11 @@ export const SectionMid = ({ locale }: any) => {
               gapTiming={-2}
               data={[
                 {
+                  text: "Node.js",
+                  logo: NodeJSLogo,
+                  href: "https://nodejs.org/en",
+                },
+                {
                   text: "SQL",
                   logo: SQLLogo,
                   href: "https://www.postgresql.org/",
@@ -376,28 +383,45 @@ export const SectionMid = ({ locale }: any) => {
                   href: "https://aws.amazon.com/de/console/",
                 },
                 {
-                  text: "Node.js",
-                  logo: NodeJSLogo,
-                  href: "https://nodejs.org/en",
-                },
-                {
-                  text: "Vue.js",
-                  logo: VueJSLogo,
-                  href: "https://vuejs.org/",
+                  text: "Lambda",
+                  logo: LambdaLogo,
+                  href: "https://aws.amazon.com/de/lambda/",
                 },
                 {
                   text: "Docker",
                   logo: DockerLogo,
                   href: "https://www.docker.com/",
                 },
-                {
-                  text: "Lambda",
-                  logo: LambdaLogo,
-                  href: "https://aws.amazon.com/de/lambda/",
-                },
               ]}
               className="!flex-row"
               offset={0.75}
+            ></Bullets>
+          </Parallax>
+          <Parallax trans={[0.7, 0]} distance={72} offset={-72}>
+            <Bullets
+              range={[0.4, 0.7]}
+              l={3}
+              gapTiming={-2}
+              data={[
+
+                {
+                  text: "Next.js",
+                  logo: NextJSLogo,
+                  href: "https://nextjs.org/",
+                },
+                {
+                  text: "Strapi",
+                  logo: StrapiLogo,
+                  href: "https://strapi.io/",
+                },
+                {
+                  text: "TYPO3",
+                  logo: Typo3Logo,
+                  href: "https://typo3.org/",
+                }
+              ]}
+              className="!flex-row"
+              offset={0.5}
             ></Bullets>
           </Parallax>
         </Parallax>
