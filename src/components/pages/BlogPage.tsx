@@ -20,6 +20,7 @@ import { Pagination } from "../Pagination";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { LoginButton } from "../LoginButton";
+import { min, min } from "date-fns";
 
 // Blog Page Component
 export default async function BlogPage({
@@ -190,9 +191,11 @@ export default async function BlogPage({
                 key={(await searchParams).p}
               >
                 {posts
-                  .sort((a: any, b: any) =>
-                    b.publishedAt.localeCompare(a.publishedAt)
-                  )
+                  .sort((a: any, b: any) => {
+                    const published = b.publishedAt.localeCompare(a.publishedAt);
+                    const order = Number(a.order) - Number(b.order);
+                    return order * 10 + published * 1;
+                  })
                   .map((post: any) => {
                     return (
                       <BlogPost
