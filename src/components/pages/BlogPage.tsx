@@ -9,9 +9,8 @@ import {
 } from "@/lib/api";
 import supportedLocales from "@/lib/locales";
 import Image from "next/image";
-import { Categories } from "../../container/Categories";
 import { BlogPost } from "../BlogPost";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { IconButton } from "../Button";
 import clsx from "clsx";
 import Link from "next/link";
@@ -20,7 +19,6 @@ import { Pagination } from "../Pagination";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { LoginButton } from "../LoginButton";
-import { min, min } from "date-fns";
 
 // Blog Page Component
 export default async function BlogPage({
