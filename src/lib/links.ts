@@ -37,8 +37,8 @@ export const blogPostLink = ({
   );
 };
 
-export const coverImageLink = ({ post }: { post: BlogPostProps }) => {
-  const relativeOrAbsoluteUrl = post.coverImage.url;
+export const coverImageLink = (url: string) => {
+  const relativeOrAbsoluteUrl = url;
   return relativeOrAbsoluteUrl?.startsWith("http")
     ? relativeOrAbsoluteUrl
     : `${process.env.STRAPI_BASE}${relativeOrAbsoluteUrl}`;

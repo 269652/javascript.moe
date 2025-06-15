@@ -15,7 +15,7 @@ import { Suspense, useEffect } from "react";
 import { IconButton } from "../Button";
 import clsx from "clsx";
 import Link from "next/link";
-import { dynamicLink } from "@/lib/links";
+import { coverImageLink, dynamicLink } from "@/lib/links";
 import { Pagination } from "../Pagination";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
@@ -58,7 +58,9 @@ export default async function BlogPage({
   const config = (await getBlogConfig({ locale })) ?? {};
 
   const title = config?.title;
-  const coverImageUrl = config?.coverImage?.url || "/images/wallpaper/19.webp";
+  const coverImageUrl = coverImageLink(
+    config?.coverImage?.url || "/images/wallpaper/19.webp"
+  );
   const isVideo = config.coverVideo?.mime.includes("video");
 
   const translations = (await import(`@/assets/translations/${locale}.ts`))
@@ -89,7 +91,7 @@ export default async function BlogPage({
             autoPlay
             muted
             loop
-            src={config.coverVideo.url}
+            src={coverImageLink(config.coverVideo.url)}
             className="w-screen h-screen absolute object-cover"
             width={1024}
             height={768}

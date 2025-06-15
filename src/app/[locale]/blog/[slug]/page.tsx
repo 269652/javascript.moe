@@ -116,7 +116,9 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
   const image = (
     <Image
       src={
-        post.coverImage ? coverImageLink({ post }) : "/images/wallpaper/22.webp"
+        post.coverImage
+          ? coverImageLink(post.coverImage.url)
+          : "/images/wallpaper/22.webp"
       }
       className={clsx({
         "w-screen h-screen sticky top-0": isFancy,

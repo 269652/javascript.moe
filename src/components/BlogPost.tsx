@@ -28,14 +28,14 @@ export const BlogPost = ({
 
   const vid = (
     <Video
-      src={post.coverVideo?.url}
+      src={coverImageLink(post.coverVideo?.url)}
       inline
       className="hidden group-hover:block"
     />
   );
   const image = (
     <Image
-      src={coverImageLink({ post })}
+      src={coverImageLink(post.coverImage.url)}
       alt={post.title}
       width={400}
       height={250}
