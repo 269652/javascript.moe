@@ -137,7 +137,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
       <div className="h-screen relative overflow-y-auto flex justify-center items-center">
         {isFancy && !hasVideo && image}
         {isFancy && hasVideo && (
-          <Video src={post.coverVideo.url} inline={false} />
+          <Video src={coverImageLink(post.coverVideo.url)} inline={false} />
         )}
         <div
           className={clsx("block w-fit justify-center z-10 absolute top-0", {
