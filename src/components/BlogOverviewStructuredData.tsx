@@ -1,3 +1,5 @@
+import { coverImageLink } from "@/lib/links";
+
 export function BlogOverviewStructuredData({
   posts,
   config = {},
@@ -22,9 +24,7 @@ export function BlogOverviewStructuredData({
     blogPost: posts.map((post) => ({
       "@type": "BlogPosting",
       headline: post.title,
-      image: post.coverImage?.url.startsWith("http")
-        ? post.coverImage.url
-        : `${config.imageUrl}${post.coverImage.url}`,
+      image: coverImageLink(post.coverImage?.url),
       url: `${config.url}/${post.slug}-${post.documentId}`,
       datePublished: post.publishedAt,
       dateModified: post.updatedAt || post.publishedAt,

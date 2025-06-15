@@ -35,7 +35,7 @@ export const BlogPost = ({
   );
   const image = (
     <Image
-      src={coverImageLink(post.coverImage.url)}
+      src={coverImageLink(post.coverImage?.url)}
       alt={post.title}
       width={400}
       height={250}

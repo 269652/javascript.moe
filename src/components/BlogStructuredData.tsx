@@ -1,7 +1,7 @@
+import { coverImageLink } from "@/lib/links";
+
 const BlogPostStructuredData = ({ post }: { post: any }) => {
-  const fullImageUrl = post.coverImage?.url?.startsWith("http")
-    ? post.coverImage.url
-    : `https://javascript.moe${post.coverImage.url}`;
+  const fullImageUrl = coverImageLink(post.coverImage?.url);
 
   const structuredData = {
     "@context": "https://schema.org",
