@@ -186,7 +186,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
             <h1 className="p-4  w-fit title">{post.title}</h1>
             {!isFancy && !hasVideo && image}
             {!isFancy && hasVideo && (
-              <Video src={post.coverVideo.url} inline={true} />
+              <Video src={coverImageLink(post.coverVideo.url)} inline={true} />
             )}
             <article key={post.id} className="bg-black/30 p-2 md:p-4 post ">
               <p
