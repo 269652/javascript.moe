@@ -326,7 +326,7 @@ export const SectionMid = ({ locale }: any) => {
           active={activeIndex === 1}
         />
         <AppearingText
-          range={[0, 0.5]}
+          range={[0, 0.7]}
           className="top-[50vh]"
           texts={["Software Engineer", "Fullstack Dev"]}
           hash="about"
@@ -403,7 +403,6 @@ export const SectionMid = ({ locale }: any) => {
               l={3}
               gapTiming={-2}
               data={[
-
                 {
                   text: "Next.js",
                   logo: NextJSLogo,
@@ -418,7 +417,7 @@ export const SectionMid = ({ locale }: any) => {
                   text: "TYPO3",
                   logo: Typo3Logo,
                   href: "https://typo3.org/",
-                }
+                },
               ]}
               className="!flex-row"
               offset={0.5}
@@ -446,7 +445,7 @@ export const SectionMid = ({ locale }: any) => {
           active={activeIndex === 2}
         />
         <AppearingText
-          range={[0.75, 1]}
+          range={[0.75, 1.01]}
           className="top-[50vh]"
           texts={["Hobby Perfumer", "Fine Fragrances"]}
           hash="perfumery"
@@ -504,6 +503,7 @@ export const SectionBot = () => {
         active
       />
       <AppearingText
+        range={[0, 1.01]}
         texts={[t("texts.senior"), t("texts.lead"), t("texts.contact")]}
         slices={[0, 14, 0]}
         hash="contact"
