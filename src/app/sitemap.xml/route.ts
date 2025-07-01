@@ -6,30 +6,24 @@ const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
 async function fetchBlogPosts() {
   try {
-    const en = await fetch(STRAPI_URL + "&locale=en", {
+    const opts = {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
       },
-      // You can tweak caching if needed
-    });
-    const de = await fetch(STRAPI_URL + "&locale=de", {
-      headers: {
-        Authorization: `Bearer ${STRAPI_TOKEN}`,
-      },
-      // You can tweak caching if needed
-    });
-    const es = await fetch(STRAPI_URL + "&locale=de", {
-      headers: {
-        Authorization: `Bearer ${STRAPI_TOKEN}`,
-      },
-      // You can tweak caching if needed
-    });
+    };
+
+    const en = await fetch(STRAPI_URL + "&locale=en", opts);
+    const de = await fetch(STRAPI_URL + "&locale=de", opts);
+    const es = await fetch(STRAPI_URL + "&locale=es", opts);
+
     if (!en.ok || !de.ok || !es.ok) {
       throw new Error(`Failed to fetch!`);
     }
+
     const jsonDE = await de.json();
     const jsonEN = await en.json();
     const jsonES = await es.json();
+    
     return (jsonEN.data || [])
       .concat(jsonDE.data || [])
       .concat(jsonES.data || []);
