@@ -1,21 +1,38 @@
 import { type MetadataRoute } from "next";
 
-const STRAPI_URL = "https://strapi.javascript.moe/api/blog-posts?populate=*";
+const STRAPI_URL =
+  "https://strapi.javascript.moe/api/blog-posts?populate=*&[pagination][pageSize]=1000";
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
 async function fetchBlogPosts() {
   try {
-    const res = await fetch(STRAPI_URL, {
+    const en = await fetch(STRAPI_URL + "&locale=en", {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
       },
       // You can tweak caching if needed
     });
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`);
+    const de = await fetch(STRAPI_URL + "&locale=de", {
+      headers: {
+        Authorization: `Bearer ${STRAPI_TOKEN}`,
+      },
+      // You can tweak caching if needed
+    });
+    const es = await fetch(STRAPI_URL + "&locale=de", {
+      headers: {
+        Authorization: `Bearer ${STRAPI_TOKEN}`,
+      },
+      // You can tweak caching if needed
+    });
+    if (!en.ok || !de.ok || !es.ok) {
+      throw new Error(`Failed to fetch!`);
     }
-    const json = await res.json();
-    return json.data || [];
+    const jsonDE = await de.json();
+    const jsonEN = await en.json();
+    const jsonES = await es.json();
+    return (jsonEN.data || [])
+      .concat(jsonDE.data || [])
+      .concat(jsonES.data || []);
   } catch (error) {
     console.error("Failed fetching blog posts for sitemap:", error);
     return [];
@@ -135,22 +152,21 @@ export async function GET(): Promise<Response> {
   const blogPostUrls = posts.flatMap((post: any) => {
     const slug = `${post.slug}-${post.documentId}`;
     const updatedAt = post.updatedAt || new Date().toISOString();
+    const localizations = [
+      post.locale,
+      ...post.localizations.map((loc: any) => loc.locale),
+    ];
+
     return [
       {
-        loc: `https://javascript.moe/en/blog/${slug}`,
+        loc: `https://javascript.moe/${post.locale}/blog/${slug}`,
         lastmod: updatedAt,
-        alternates: [
-          { hreflang: "en", href: `https://javascript.moe/en/blog/${slug}` },
-          { hreflang: "de", href: `https://javascript.moe/de/blog/${slug}` },
-        ],
-      },
-      {
-        loc: `https://javascript.moe/de/blog/${slug}`,
-        lastmod: updatedAt,
-        alternates: [
-          { hreflang: "en", href: `https://javascript.moe/en/blog/${slug}` },
-          { hreflang: "de", href: `https://javascript.moe/de/blog/${slug}` },
-        ],
+        alternates: localizations.map((hreflang) => {
+          return {
+            hreflang,
+            href: `https://javascript.moe/${hreflang}/blog/${slug}`,
+          };
+        }),
       },
     ];
   });
