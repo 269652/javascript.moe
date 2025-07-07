@@ -110,9 +110,14 @@ export const MyName = () => {
   const oeRect = oeRef.current?.getBoundingClientRect() || null;
   const cw = (mRect?.width || 0) + (oeRect?.width || 0);
   const heightPipe = useTransform(trans, [0.95, 1], ["0px", 0.681 * cw + "px"]);
-  const widthUS = useTransform(trans, [0.95, 1], ["0px", cw + "px"], {
-    clamp: true,
-  });
+  const widthUS = useTransform(
+    trans,
+    [0.95, 0.999, 1],
+    ["0px", cw + "px", (mRect?.width || 0) + (oeRect?.width || 0) / 2 + "px"],
+    {
+      clamp: true,
+    }
+  );
   const yPpipe = useTransform(
     trans,
     [0.95, 1],
@@ -157,7 +162,9 @@ export const MyName = () => {
   const wPipe = useTransform(trans, [0.5, 1], ["0px", "4px"], {
     clamp: true,
   });
-
+  const blurE = useTransform(trans, [0.9, 1], ["blur(0px)", "blur(4px)"], {
+    clamp: true,
+  });
   const color = useTransform(
     scrollYPage,
     [0, 0.05, 0.09, 0.2],
@@ -224,11 +231,11 @@ export const MyName = () => {
         <MotionSpan style={{ opacity }}>oritz R</MotionSpan>
         <span ref={oeRef}>
           <MotionSpan
-            style={{ x: oeX, display: "inline-block", scaleX: scale, color }}
+            style={{ x: oeX, display: "inline-flex", scaleX: scale, color }}
           >
-            oe
+            o<MotionDiv style={{ filter: blurE }}>e</MotionDiv>
             <MotionDiv
-              className="absolute h-1 rounded-full"
+              className="absolute h-1 rounded-full top-[4.4rem]"
               style={{
                 background: fillPipe,
                 scale: scalePipe,
