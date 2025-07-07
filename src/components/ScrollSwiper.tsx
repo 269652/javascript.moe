@@ -121,13 +121,13 @@ export const SectionTop = () => {
       <Parallax distance={320 * 0.5} offset={320 * 0.5}>
         <FlyOut range={[0.25, 0.5]}>
           <Container>
-            <AnimatedImageCircle
+            {/* <AnimatedImageCircle
               images={["/images/profile2.webp"]}
               alts={[
                 "Selfie of Moritz Roessler",
                 "Selfie of Moritz Roessler with sunglasses",
               ]}
-            />
+            /> */}
             {/* <IntersectionAnchor
                 hash={""}
                 scroll={false}
