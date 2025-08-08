@@ -17,6 +17,7 @@ import "highlight.js/styles/github-dark.css";
 import bash from "highlight.js/lib/languages/bash";
 import powershell from "highlight.js/lib/languages/powershell";
 import { Video } from "@/components/Video";
+import { AnchorJumper } from "@/components/AnchorJumper";
 
 hljs.registerLanguage("bash", bash);
 hljs.registerLanguage("powershell", powershell);
@@ -194,6 +195,7 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
                 className="max-w-[80ch] mx-auto prose prose-invert"
               />
             </article>
+            <AnchorJumper />
           </main>
         </div>
       </div>
