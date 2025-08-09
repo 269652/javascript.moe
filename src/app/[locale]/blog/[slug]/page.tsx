@@ -203,4 +203,6 @@ const BlogPage = async ({ params, searchParams }: BlogPageProps) => {
   );
 };
 
+export const revalidate = 30;
+
 export default BlogPage;

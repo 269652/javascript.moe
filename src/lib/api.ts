@@ -118,7 +118,7 @@ export async function getBlogPost(id: string, { locale }: { locale?: string }) {
         "Cache-Control": "max-age=600, stale-while-revalidate=0", // Cache for 10 minutes and revalidate immediately after
       },
       cache: "force-cache",
-      next: { revalidate: 120 }, // Revalidate every 2 minutes
+      next: { revalidate: 30 }, // Revalidate every 2 minutes
     });
 
     if (!res.ok) {
