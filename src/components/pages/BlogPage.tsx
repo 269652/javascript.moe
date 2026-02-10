@@ -46,7 +46,7 @@ export default async function BlogPage({
 
   const {
     data: posts = [],
-    meta: { pagination },
+    meta: { pagination } = {},
   } = await getBlogPosts({
     locale,
     categorySlug: categorySlug,

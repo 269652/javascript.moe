@@ -175,7 +175,7 @@ export async function getBlogConfig({ locale }: { locale?: string }) {
       cache: "force-cache",
       next: { revalidate: 120 }, // Revalidate every 2 minutes
     });
-
+    console.log ("CONFIG", url);
     if (!res.ok) {
       return null;
     }

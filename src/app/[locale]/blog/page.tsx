@@ -23,7 +23,7 @@ export async function generateMetadata({
     page: Number(p),
   });
   const config = await getBlogConfig({ locale });
-
+  console.log ("CONFIG", config)
   return {
     robots: {
       index: isAlternativeUI ? false : true,
