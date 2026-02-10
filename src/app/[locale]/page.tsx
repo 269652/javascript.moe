@@ -6,7 +6,7 @@ import "swiper/css";
 
 import { SectionBot, SectionMid, SectionTop } from "@/components/ScrollSwiper";
 import { getTranslations } from "next-intl/server";
-import BlogPage from "@/components/pages/BlogPage";
+// import BlogPage from "@/components/pages/BlogPage";
 
 import { Bullets } from "@/components/AnimatedText";
 import { Icon } from "@/components/Icon";
@@ -129,9 +129,9 @@ export default async function Home({ params }: any) {
           </div>
         </NoScript>
       </StickySection>
-      <StickySection height={h(100)}>
+      {/* <StickySection height={h(100)}>
         <BlogPage params={params} searchParams={{}} path={`${locale}/blog`} />
-      </StickySection>
+      </StickySection> */}
       <NoScript className="absolute top-0 left-0 w-screen h-screen">
         <div
           className="bg-black/40 backdrop-blur-sm"

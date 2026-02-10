@@ -29,7 +29,6 @@ import { Icon } from "./Icon";
 import { ScrollbarTooltip } from "./ScrollbarTooltip";
 import { FlyOut } from "./FlyOut";
 import { Container } from "./Container";
-import { AnimatedImageCircle } from "./AnimatedImageCircle";
 
 export type ScrollSwiperProps = PropsWithChildren<{
   className?: string;
