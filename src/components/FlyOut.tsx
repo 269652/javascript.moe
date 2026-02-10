@@ -13,7 +13,7 @@ export type FlyOutProps = PropsWithChildren<{
 export const FlyOut = ({ children, range }: FlyOutProps) => {
   const { ref } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined,
     offset: ["start start", "end end"],
   });

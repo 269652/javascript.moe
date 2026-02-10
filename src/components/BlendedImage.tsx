@@ -41,7 +41,7 @@ export const DualImages = ({
 }) => {
   const { ref: scrollRef } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: scrollRef || undefined,
     offset: ["start start", "end end"],
   });

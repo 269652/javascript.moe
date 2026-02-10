@@ -27,7 +27,7 @@ export const Parallax = ({
 }: ParallaxProps) => {
   const { ref } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined,
     offset: ["start start", "end end"],
   });

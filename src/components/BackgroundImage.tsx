@@ -15,12 +15,12 @@ export const BackgroundImage = ({
 }: BackgroundImageProps) => {
   const { ref } = useContext(sectionCtx);
   const { scrollYProgress: totalProgress } = useScroll({
-    layoutEffect: false,
+    
     // target: ref || undefined,
     offset: ["start start", "end end"],
   });
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined,
     offset: ["start start", "end end"],
   });

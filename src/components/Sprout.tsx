@@ -9,7 +9,7 @@ export const Sprout = ({ range = [0, 1], x, y, offset }: any) => {
   const { ref } = useContext(sectionCtx);
 
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined,
     offset: ["start start", "end end"],
   });

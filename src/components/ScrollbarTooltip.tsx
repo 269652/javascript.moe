@@ -10,7 +10,7 @@ import { IconButton } from "./Button";
 export const ScrollbarTooltip = () => {
   const { ref } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined, //ref || undefined,
     offset: ["start start", "end end"],
   });
@@ -57,7 +57,7 @@ export const ScrollbarTooltip = () => {
 export const RisingSun = () => {
   const { ref } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined, //ref || undefined,
     offset: ["start start", "end end"],
   });

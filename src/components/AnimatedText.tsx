@@ -22,7 +22,7 @@ import { IntersectionAnchor } from "./IntersectionAnchor";
 export const AnimatedText = () => {
   const { ref } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined,
     offset: ["start start", "end end"],
   });
@@ -53,7 +53,7 @@ export const MyName = () => {
   const scrollYProgress =
     typeof window === "undefined" ? new MotionValue(1) : scrollYProgressHook;
   // const { scrollYProgress } = useScroll({
-  //   layoutEffect: false,
+  //   
   //   target: ref || undefined,
   //   offset: ["start start", "end end"],
   // });
@@ -271,7 +271,7 @@ export const AppearingText = ({
 }) => {
   const { ref } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined,
     offset: ["start start", "end end"],
   });
@@ -394,7 +394,7 @@ export const Bullets = ({
   const { ref } = useContext(sectionCtx);
 
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined,
     offset: ["start start", "end end"],
   });
@@ -527,7 +527,7 @@ export const SlicedText = ({
 }) => {
   const { ref } = useContext(sectionCtx);
   const { scrollYProgress } = useScroll({
-    layoutEffect: false,
+    
     target: ref || undefined,
     offset: ["start start", "end end"],
   });
