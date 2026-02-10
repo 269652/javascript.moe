@@ -12,7 +12,8 @@ export async function generateStaticParams({ params }: any) {
 
   for (const locale of supportedLocales) {
     const { data: categories } = await getCategories({ locale });
-    categories.forEach((cat: any) => {
+    categories.filter((cat: any) => cat.slug).forEach((cat: any) => {
+      console.log("Generating static params for:", { locale, category: cat.slug });
       allParams.push({
         locale,
         category: cat.slug, // join slug and id
