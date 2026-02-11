@@ -58,7 +58,7 @@ export const ScrollSwiper = ({
         window.history.replaceState(
           null,
           "",
-          window.location.toString().replace(/#.+$/g, "")
+          window.location.toString().replace(/#.+$/g, ""),
         );
       }
       setTimeout(() => {
@@ -108,7 +108,7 @@ export const SectionTop = () => {
                 */}
       <DualImages
         saturate
-        images={["/images/wallpaper/20.webp", "/images/wallpaper/me-ls.webp"]}
+        images={["/images/wallpaper/me-ls.webp", "/images/wallpaper/20.webp"]}
         hq={["/images/wallpaper/22.webp"]}
         moveX={0}
         alts={[
