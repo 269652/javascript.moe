@@ -135,7 +135,7 @@ dialog:not([open]) {
   position: relative;
 }
 
-img.csr {
+/* img.csr {
   animation: sat 400ms forwards ease-in;
 }
 
@@ -146,7 +146,7 @@ img.csr {
   100% {
     filter: saturate(1);
   }
-}
+} */
 
 .aic {
   opacity: 0;

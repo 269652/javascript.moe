@@ -45,7 +45,7 @@ export const DualImages = ({
     target: scrollRef || undefined,
     offset: ["start start", "end end"],
   });
-  const trans = useTransform(scrollYProgress, range, [0.4, 0.6]);
+  const trans = useTransform(scrollYProgress, range, [0, 1 ]);
 
   const y = useParallax(trans, 50, 50);
   const x = useTransform(trans, ...xMotion);
