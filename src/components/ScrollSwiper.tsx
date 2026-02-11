@@ -108,8 +108,8 @@ export const SectionTop = () => {
                 */}
       <DualImages
         saturate
-        images={["/images/wallpaper/me-ls.webp", "/images/wallpaper/20.webp"]}
-        hq={["/images/wallpaper/22.webp"]}
+        images={["/images/wallpaper/me-ls.webp", "/images/wallpaper/22.webp"]}
+        hq={["/images/wallpaper/me-ls.webp"]}
         moveX={0}
         alts={[
           "A small pond surrounded by trees and wildflowers with sunlight filtering through.",
